@@ -38,7 +38,7 @@ test("server-renders the finished WAIC editorial guide", async () => {
   assert.match(html, /十大不可错过/);
   assert.match(html, /重点展品索引/);
   assert.match(html, /每一个判断.*都能回到来源/s);
-  assert.match(html, /property="og:image" content="https:\/\/waic-preview\.example\/og\.png"/i);
+  assert.match(html, /property="og:image" content="https:\/\/waic-2026-aftershow-guide\.deron-qi\.chatgpt\.site\/og\.png"/i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|SkeletonPreview/i);
 });
 
@@ -57,7 +57,7 @@ test("keeps the research index complete and the starter disposable", async () =>
   assert.match(page, /type="search"/);
   assert.match(css, /@media \(max-width: 760px\)/);
   assert.match(css, /prefers-reduced-motion: reduce/);
-  assert.match(layout, /\/og\.png/);
+  assert.match(layout, /new URL\("og\.png", siteUrl\)/);
   assert.doesNotMatch(page, /SkeletonPreview|_sites-preview/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 

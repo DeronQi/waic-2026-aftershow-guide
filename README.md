@@ -1,98 +1,61 @@
-# vinext-starter
+# WAIC 2026 展后精选
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+一份适合浏览和分享的 WAIC 2026 展后图录，整理大会参展单位的新品、亮点与不可错过内容。
 
-## Prerequisites
+## 在线访问
 
-- Node.js `>=22.13.0`
+[https://deronqi.github.io/waic-2026-aftershow-guide/](https://deronqi.github.io/waic-2026-aftershow-guide/)
 
-## Quick Start
+## 内容范围
+
+- 四条产业信号
+- 十大不可错过内容
+- 六大赛道导航
+- 25 项重点展品搜索与筛选
+- A/B/C 来源分级与原始资料链接
+- 展品成熟度、演示边界和数据口径提示
+
+当前版本基于 30 份网页原始资料和 11 张展商名录图片完成首轮整理，并非 1100 余家参展单位的全量数据库。
+
+## 本地开发
+
+需要 Node.js 22.13 或更高版本。
 
 ```bash
 npm install
 npm run dev
+```
+
+## 构建
+
+验证 Sites / vinext 构建：
+
+```bash
 npm run build
 ```
 
-This starter does not use `wrangler.jsonc`.
+生成 GitHub Pages 静态文件：
 
-## Included Shape
-
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
-
-## Workspace Auth Headers
-
-OpenAI workspace sites can read the current user's email from
-`oai-authenticated-user-email`.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
+```bash
+npm run build:pages
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+静态输出位于 `out/`。
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+## 内容说明
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+- “首发”不自动等同于产品成熟。
+- 现场 Demo 不自动等同于跨场景泛化能力。
+- “全球首个、唯一、领先”等描述按厂商口径处理，除非存在独立证据。
+- 政府发布会使用“3000 余项技术产品”，部分展商名录报道使用“4000 余款展品”；站点采用政府口径并保留差异说明。
 
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+## 技术栈
 
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
+- React 19
+- Next.js 16
+- vinext / Vite
+- GitHub Pages 静态导出
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+## License
 
-## Useful Commands
-
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+网站代码仅用于本项目展示。站点引用的厂商名称、产品信息及外部资料版权归各自权利人所有。
