@@ -1,0 +1,485 @@
+export type Track =
+  | "算力与芯片"
+  | "模型与智能体"
+  | "具身智能"
+  | "AI 原生终端"
+  | "行业 AI · AI4S"
+  | "安全 · 治理 · 学术";
+
+export type Artwork = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
+export type DetailSection = {
+  heading: string;
+  body: string;
+};
+
+export type Exhibit = {
+  vendor: string;
+  title: string;
+  track: Track;
+  isTopTen: boolean;
+  summary: string;
+  facts: string[];
+  details: DetailSection[];
+  artwork: Artwork;
+  source: string;
+};
+
+export const tracks: { name: Track; short: string; description: string }[] = [
+  { name: "算力与芯片", short: "COMPUTE", description: "超节点、万卡集群、互联与近存计算成为新的系统竞争单元。" },
+  { name: "模型与智能体", short: "AGENTS", description: "从聊天回答走向任务拆解、工具调用和端到端交付。" },
+  { name: "具身智能", short: "ROBOTICS", description: "关注长时序作业、跨本体泛化、故障恢复与真实部署。" },
+  { name: "AI 原生终端", short: "DEVICES", description: "手机、眼镜、耳机开始争夺持续感知与主动服务入口。" },
+  { name: "行业 AI · AI4S", short: "INDUSTRY", description: "工业工程、能源与蛋白质研发出现可执行工作流。" },
+  { name: "安全 · 治理 · 学术", short: "TRUST", description: "安全攻防、学术会议和全球治理构成可信 AI 的底层议题。" },
+];
+
+export const exhibits: Exhibit[] = [
+  {
+    vendor: "华为",
+    title: "Atlas 950 SuperPoD",
+    track: "算力与芯片",
+    isTopTen: true,
+    summary: "1024 卡超节点首次线下真机展示，把芯片、互联、内存与软件栈组合成面向超大模型的系统级算力单元。",
+    facts: ["1024 卡单一超节点", "1 EFLOPS FP8 / 2 EFLOPS FP4", "256 TB 全局统一寻址空间"],
+    details: [
+      { heading: "它是什么", body: "Atlas 950 SuperPoD 面向万亿至十万亿参数模型训练和高并发推理。与传统把多台服务器简单联网不同，它把 1024 张加速卡组织为一个可统一寻址、统一调度的超节点。" },
+      { heading: "核心机制", body: "系统基于灵衢互联，官方披露 NPU 间达到 TB 级带宽、约 3 微秒往返时延，并提供 256 TB 全局统一地址空间。互联与内存成为决定大规模并行效率的关键，而不再只是单卡峰值。" },
+      { heading: "为什么重要", body: "华为同时展示 CANN、Mind 系列软件栈及二十余个行业案例，说明竞争已延伸到编译、调度、容错和应用迁移。它代表国产算力从芯片产品进入超节点系统工程阶段。" },
+    ],
+    artwork: { src: "images/editorial/compute-huawei.png", alt: "华为 Atlas 950 SuperPoD 展示区", caption: "Atlas 950 SuperPoD 现场图 · 华为" },
+    source: "https://www.huawei.com/cn/news/2026/7/atlas-950-superpod",
+  },
+  {
+    vendor: "中科曙光",
+    title: "曙光 8000 全国产 AI 超集群",
+    track: "算力与芯片",
+    isTopTen: true,
+    summary: "面向大模型与 AI for Science 的十万卡级全国产超集群，强调从计算、存储、网络到冷却和应用的完整链路。",
+    facts: ["十万卡级集群规模", "覆盖 FP64 至 INT8", "已优化 300+ 应用"],
+    details: [
+      { heading: "它是什么", body: "曙光 8000 不是单一服务器，而是一套以国产部件构成的十万卡级 AI 超集群。它同时服务科学计算、模型训练与推理、工业仿真等负载，因此把高精度计算和低精度 AI 计算放进同一底座。" },
+      { heading: "系统能力", body: "方案覆盖芯片、计算、存储、网络、冷却、应用和服务，并接入国家超算互联网。公开资料显示，它支持从 FP64 到 INT8 的多精度计算，已有三百余个应用完成适配优化。" },
+      { heading: "为什么重要", body: "厂商公布的运行数据包括日均约 15 万个作业、峰值约 50 万个作业。比规模数字更值得关注的是，这类集群能否持续保持高利用率、快速恢复故障，并让既有科研软件平滑迁移。" },
+    ],
+    artwork: { src: "images/editorial/products/sugon-8000.jpeg", alt: "曙光 8000 全国产 AI 超集群产品图", caption: "曙光 8000 产品资料图 · 南方+" },
+    source: "https://tech.gmw.cn/2026-07/19/content_38894137.htm",
+  },
+  {
+    vendor: "阿里巴巴 · 平头哥",
+    title: "真武 M890 × 磐久 AL128",
+    track: "算力与芯片",
+    isTopTen: true,
+    summary: "从 AI 芯片、Scale-up 互联到单柜 128 卡超节点的一体化方案，展示云厂商对高密度算力系统的垂直整合。",
+    facts: ["M890 配置 144 GB 内存", "芯片间互联 800 GB/s", "单柜 128 卡"],
+    details: [
+      { heading: "产品组合", body: "真武 M890 是面向大模型训推的 AI 芯片，磐久 AL128 则把 128 张卡集中在一个机柜中。两者不是孤立新品，而是一套从芯片到机柜级基础设施的联合设计。" },
+      { heading: "核心机制", body: "公开资料显示，M890 配置 144 GB 内存，芯片间互联带宽 800 GB/s，支持 FP32 到 FP4 多种精度；AL128 采用正交无缆架构，并通过 ALink 构建 Scale-up 网络。" },
+      { heading: "为什么重要", body: "单柜高密度可以缩短通信路径、减少布线复杂度，并让云基础设施以更大的算力单元服务智能体和长上下文推理。真正的看点是芯片、网络、散热与云调度能否共同提高有效算力。" },
+    ],
+    artwork: { src: "images/editorial/products/alibaba-al128.png", alt: "真武 M890 与磐久 AL128 超节点产品图", caption: "真武 M890 × 磐久 AL128 · 南方+" },
+    source: "https://static.nfnews.com/content/202607/16/c12632116.html",
+  },
+  {
+    vendor: "中兴通讯及伙伴",
+    title: "OEX / Matrix 超节点",
+    track: "算力与芯片",
+    isTopTen: true,
+    summary: "通过开放解耦、正交背板和多芯协同，让不同加速芯片进入统一的超节点系统与伙伴生态。",
+    facts: ["开放解耦 OEX 架构", "正交背板、零线缆互联", "Matrix 多伙伴协作"],
+    details: [
+      { heading: "它是什么", body: "OEX 是中兴面向智算基础设施提出的开放超节点方案，Matrix 则是与芯片、部件及软件伙伴共同推进的生态项目。目标是让超节点不被单一芯片或封闭接口锁定。" },
+      { heading: "核心机制", body: "方案采用正交、无背板式的零线缆连接，并把计算板、交换板和机框进行模块化解耦。官方介绍称，这种设计可显著降低互联部件成本，同时提升部署和维护效率。" },
+      { heading: "为什么重要", body: "开放超节点的价值在于兼容多种国产芯片，并让整机、网络和软件厂商围绕统一接口协作。它要解决的不只是峰值性能，还包括供应链选择、扩容和长期运维。" },
+    ],
+    artwork: { src: "images/editorial/products/zte-oex.png", alt: "中兴 OEX 超节点产品图", caption: "OEX 超节点资料图 · 南方+" },
+    source: "https://www.zte.com.cn/china/about/news/20260717C3.html",
+  },
+  {
+    vendor: "东方算芯",
+    title: "DF1000 软件定义近存计算芯片",
+    track: "算力与芯片",
+    isTopTen: true,
+    summary: "以软件定义计算和 3D 堆叠近存计算绕开存储墙，并从芯片延伸到服务器、超节点和集群。",
+    facts: ["520 TFLOPS BF16", "6.4 TB/s 访存带宽", "TY64 单柜 33P BF16"],
+    details: [
+      { heading: "它是什么", body: "DF1000 是一颗面向大模型训推的软件定义近存计算芯片。东方算芯同时展示加速卡、擎元 QY100 服务器、拓域 TY64 超节点和慧算 HS512 集群，形成从芯片到集群的产品链。" },
+      { heading: "核心机制", body: "路线以可重构计算阵列复用硬件资源，并通过 3D 混合键合把计算与存储拉近。公开参数为 520 TFLOPS BF16、6.4 TB/s 访存带宽和约 900 GB/s 互联带宽。" },
+      { heading: "为什么重要", body: "它试图用架构和封装创新缓解先进制程与 HBM 依赖。TY64 在单柜内组合 64 张卡，官方给出 33P BF16，展示了该芯片进入系统级扩展后的形态。" },
+    ],
+    artwork: { src: "images/editorial/products/eastern-df1000.jpg", alt: "东方算芯 DF1000 全栈产品展台", caption: "DF1000 全栈产品现场图 · 第一财经" },
+    source: "https://www.ijiwei.com/n/1066127",
+  },
+  {
+    vendor: "百度",
+    title: "百度搭子",
+    track: "模型与智能体",
+    isTopTen: true,
+    summary: "把资料检索、文件处理、网页操作与报告生成串成可执行任务链，目标是直接交付文档和演示稿。",
+    facts: ["自动拆解复杂任务", "跨网页与本地文件执行", "可交付报告和演示文稿"],
+    details: [
+      { heading: "它是什么", body: "百度搭子是面向个人工作的通用智能体。用户可以给出“完成竞品分析报告”这类目标，它会拆分研究、材料读取、结构组织和成稿等步骤，而不是只返回一段回答。" },
+      { heading: "怎样工作", body: "产品可在网页、文件和应用之间获取上下文，并把中间结果继续用于后续步骤；长期使用还会记住偏好。移动端接入意味着任务可以从对话发起，在后台持续执行。" },
+      { heading: "为什么重要", body: "它把评价标准从单轮问答质量转向结果交付：资料是否引用正确、文档结构是否可用、失败后能否继续、用户是否能控制权限。真正的产品价值来自完整任务闭环。" },
+    ],
+    artwork: { src: "images/editorial/products/baidu-dazi.jpeg", alt: "百度搭子产品介绍图", caption: "百度搭子产品资料图 · 南方+" },
+    source: "https://www.yicai.com/news/103278845.html",
+  },
+  {
+    vendor: "阶跃星辰 · STEPX",
+    title: "STEPX Neo · Step AOS · Amoo",
+    track: "模型与智能体",
+    isTopTen: true,
+    summary: "以终端硬件、智能体原生操作系统和模型能力组成一套产品栈，探索 AI 从应用功能进入系统层。",
+    facts: ["STEPX 终端品牌", "Step AOS 智能体原生 OS", "端云协同与本地隐私处理"],
+    details: [
+      { heading: "产品组合", body: "STEPX Neo 是终端产品，Step AOS 是智能体原生操作系统，Amoo 则承接面向物理世界的模型能力。三者把硬件、系统与模型放进同一条产品路线。" },
+      { heading: "核心机制", body: "其中 StepEdge 端侧模型强调低时延本地推理、全模态隐私数据处理和端云协同调度。系统层智能体可以读取跨应用上下文，并把多步操作组织成一个连续任务。" },
+      { heading: "为什么重要", body: "当智能体进入操作系统，竞争焦点会从单个 App 转向权限、调度和设备协同。用户看到的是一句指令，背后则是本地模型、云模型、应用接口和隐私策略共同工作。" },
+    ],
+    artwork: { src: "images/editorial/products/stepx-neo.png", alt: "STEPX Neo 产品图", caption: "STEPX Neo 产品资料图 · 南方+" },
+    source: "https://www.news.cn/digital/20260714/8354f82874ee4741ad1fd9ef716112ef/c.html",
+  },
+  {
+    vendor: "商汤",
+    title: "SenseNova U1 Pro",
+    track: "模型与智能体",
+    isTopTen: false,
+    summary: "统一多模态理解与生成，重点解决复杂信息组织、中文文字渲染和高分辨率视觉内容生产。",
+    facts: ["理解与生成统一", "最高 8K 输出", "支持特殊长宽比"],
+    details: [
+      { heading: "它是什么", body: "SenseNova U1 Pro 是商汤面向内容理解与生成的多模态旗舰模型。它可以读懂图文材料，再把信息重新组织为海报、图表、信息图或其他视觉交付物。" },
+      { heading: "核心能力", body: "官方产品页强调最高 8K 输出、特殊长宽比生成和复杂中文文字呈现。相比只生成漂亮图片，它更重视标题、层级、标注和版式能否准确承载信息。" },
+      { heading: "适用场景", body: "营销物料、教育内容、企业报告和产品原型都需要“内容正确”与“视觉可用”同时成立。U1 Pro 的看点是把理解、规划和视觉生成合并，减少多工具来回搬运。" },
+    ],
+    artwork: { src: "images/editorial/products/sensenova-u1-pro.jpg", alt: "SenseNova U1 Pro 视觉生成示例", caption: "SenseNova U1 Pro 生成示例 · 商汤" },
+    source: "https://www.sensenova.cn/u1-pro",
+  },
+  {
+    vendor: "MiniMax",
+    title: "M3",
+    track: "模型与智能体",
+    isTopTen: false,
+    summary: "以百万级上下文、稀疏注意力、原生多模态和计算机操作能力服务长时间智能体任务。",
+    facts: ["1M 上下文", "原生图像与视频输入", "面向计算机操作与编程"],
+    details: [
+      { heading: "它是什么", body: "MiniMax M3 是面向长任务和智能体工作流的旗舰模型，原生处理文本、图像和视频，并把编程、工具调用和计算机操作纳入统一能力。" },
+      { heading: "核心机制", body: "模型采用 MSA 稀疏注意力支持 1M 上下文。官方称，在百万上下文下每 Token 计算量约为前代的二十分之一，Prefill 提升超过 9 倍、解码提升超过 15 倍。" },
+      { heading: "为什么重要", body: "长上下文只有在长时间任务中才真正有价值。官方示例覆盖数小时论文复现和内核优化，重点是模型能否保留目标、读懂大量材料，并在多轮工具调用后继续验证结果。" },
+    ],
+    artwork: { src: "images/editorial/model-minimax.png", alt: "MiniMax M3 模型发布视觉", caption: "MiniMax M3 官方发布图" },
+    source: "https://www.minimax.io/blog/minimax-m3",
+  },
+  {
+    vendor: "月之暗面",
+    title: "Kimi K2.7 Code",
+    track: "模型与智能体",
+    isTopTen: false,
+    summary: "针对真实软件工程长任务优化的开源代码智能体模型，强化端到端完成能力并降低思考 Token 消耗。",
+    facts: ["1T 总参数 / 32B 激活参数", "256K 上下文", "支持图像与视频输入"],
+    details: [
+      { heading: "它是什么", body: "Kimi K2.7 Code 基于 K2.6，专门面向复杂软件工程工作流。它不只补全代码，而是读取仓库、规划修改、调用工具、运行测试并持续处理较长的端到端任务。" },
+      { heading: "模型规格", body: "官方模型卡给出 1T 总参数、32B 激活参数、256K 上下文和 MoonViT 视觉编码器，并采用原生 INT4 量化。模型支持图像和视频输入，可用于含界面或运行结果的开发任务。" },
+      { heading: "产品意义", body: "官方称其思考 Token 使用量较 K2.6 约降低 30%。对代码智能体而言，关键不是一次生成多少代码，而是能否在长任务中保持计划、正确调用工具并用测试闭环。" },
+    ],
+    artwork: { src: "images/editorial/products/kimi-k27.png", alt: "Kimi K2.7 Code 官方模型卡视觉", caption: "Kimi K2.7 Code 模型卡 · 月之暗面 / Hugging Face" },
+    source: "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+  },
+  {
+    vendor: "生数科技",
+    title: "Motubrain 世界动作模型",
+    track: "模型与智能体",
+    isTopTen: false,
+    summary: "把视频、语言与动作统一建模，让机器人同时学习环境变化、任务目标和可执行动作。",
+    facts: ["一脑适配多种本体", "多任务泛化", "支持长程连续任务"],
+    details: [
+      { heading: "它是什么", body: "Motubrain 被定位为机器人的通用大脑。它把感知、世界建模和动作执行统一在一个模型中，目标是在家庭、工业与商业场景里完成连续复杂任务。" },
+      { heading: "核心机制", body: "模型联合视频生成、动作条件世界模型、逆动力学和 VLA 能力，学习“采取动作后世界如何变化”。与只拟合观察到动作的传统 VLA 相比，它试图获得可迁移的物理知识。" },
+      { heading: "为什么重要", body: "官方强调多视角建模、统一动作表征、跨本体适配和实时闭环控制。若同一个大脑能迁移到不同机器人，部署新本体所需的数据和调试成本就可能显著下降。" },
+    ],
+    artwork: { src: "images/editorial/products/motubrain.jpg", alt: "Motubrain 世界动作模型发布海报", caption: "Motubrain 官方发布海报 · 生数科技" },
+    source: "https://www.motubrain.com/",
+  },
+  {
+    vendor: "智元机器人",
+    title: "远征 A3 Ultra · G2 Max 等五款新品",
+    track: "具身智能",
+    isTopTen: true,
+    summary: "以全尺寸人形机器人、轮式机器人和灵巧操作产品构成矩阵，并把演示推进到仓储、半导体等长时序作业。",
+    facts: ["五款具身新品集中发布", "A3 Ultra 全尺寸商用人形", "覆盖接待、仓储与工业场景"],
+    details: [
+      { heading: "产品矩阵", body: "智元本届集中展示远征 A3 Ultra、G2 Max 等五款新品，覆盖全尺寸人形、轮式移动和精细操作。相比只展示一台样机，矩阵化产品更接近按场景选型。" },
+      { heading: "A3 Ultra", body: "A3 Ultra 身高约 174 厘米，使用视觉与激光雷达融合感知、高阶灵巧手和自动充电，面向展厅讲解、酒店接待、场馆导览、门店导购等连续服务。" },
+      { heading: "为什么重要", body: "现场还展示仓储和半导体等长序列任务。真正的商业化考验是机器人能否长时间运行、遇到异常自行恢复，并让同一套模型在多个本体和岗位间复用。" },
+    ],
+    artwork: { src: "images/editorial/products/zhiyuan-a3-ultra.png", alt: "智元远征 A3 Ultra 产品图", caption: "远征 A3 Ultra 产品资料图 · 南方+" },
+    source: "https://static.nfnews.com/content/202607/16/c12632116.html",
+  },
+  {
+    vendor: "蚂蚁集团",
+    title: "LingBot-VLA 机器人智慧药房",
+    track: "具身智能",
+    isTopTen: true,
+    summary: "三种构型机器人在药房内协同完成接单、取药、配药和交付，用完整业务流程展示具身模型。",
+    facts: ["三种机器人构型协同", "覆盖接单至交付", "LingBot-VLA 统一驱动"],
+    details: [
+      { heading: "它是什么", body: "展台把货架、药品和取药窗口组成一间可运行的机器人药房。不同机器人根据订单分工，连续执行接单、抓取、搬运和交付，而不是重复单一动作。" },
+      { heading: "核心机制", body: "LingBot-VLA 负责把视觉、语言指令与动作连接起来，并适配多种机器人构型。多机器人协作还需要任务分配、路径避让和状态同步，复杂度高于单机演示。" },
+      { heading: "为什么重要", body: "药房把具身智能放进边界清晰、流程可核查的行业场景。它既能展示模型泛化，也会暴露抓取准确率、异常药品处理、人工接管和医疗安全责任等真实问题。" },
+    ],
+    artwork: { src: "images/editorial/products/ant-pharmacy.jpeg", alt: "蚂蚁 LingBot-VLA 机器人智慧药房", caption: "机器人智慧药房现场图 · 南方+" },
+    source: "https://static.nfnews.com/content/202607/16/c12632116.html",
+  },
+  {
+    vendor: "RoboScience",
+    title: "Visics · RoboMirage · FingerEye",
+    track: "具身智能",
+    isTopTen: false,
+    summary: "模型、仿真数据和视觉触觉灵巧手形成一套具身技术栈，重点解决跨本体迁移与精细操作。",
+    facts: ["Visics 通用具身模型", "RoboMirage 物理引擎", "FingerEye 视觉触觉手"],
+    details: [
+      { heading: "三层技术栈", body: "Visics 是通用具身模型，RoboMirage 用于生成和训练物理交互数据，FingerEye 则把视觉与触觉感知带到末端执行器。三者分别对应大脑、训练环境和手。" },
+      { heading: "核心机制", body: "Visics 采用以对象为中心的视觉—语言—对象—动作建模，目标是让策略围绕物体关系而不是特定机器人关节学习，从而更快适配不同本体和多对象任务。" },
+      { heading: "为什么重要", body: "具身系统常被硬件差异和真实数据成本卡住。仿真生成可扩展训练数据，触觉补足纯视觉在遮挡和接触时的不足，跨本体模型则决定同一能力能否规模化复制。" },
+    ],
+    artwork: { src: "images/editorial/products/roboscience.png", alt: "RoboScience 机器人精细操作与 FingerEye 灵巧手", caption: "Visics 与 FingerEye 操作展示 · RoboScience" },
+    source: "https://www.news.cn/finance/20260718/cc0ca32a79d2406986a1697e9f448aae/c.html",
+  },
+  {
+    vendor: "傅利叶",
+    title: "具身之家 · GRW · GR Nano",
+    track: "具身智能",
+    isTopTen: false,
+    summary: "用家庭与康养空间承载轮式双臂和小型机器人，探索陪伴、康复与日常协作的长期服务。",
+    facts: ["具身之家场景化展示", "GRW 轮式双臂", "GR Nano 小型具身平台"],
+    details: [
+      { heading: "它是什么", body: "傅利叶把展台布置成“具身之家”，让 GRW 轮式双臂机器人与 GR Nano 小型平台进入家庭和康养环境。重点不是舞台动作，而是人与机器人共处。" },
+      { heading: "场景设计", body: "轮式底盘适合室内稳定移动，双臂负责拿取和协作；较小的 GR Nano 则降低空间和交互压力。方案延续傅利叶在康复领域的经验，强调陪伴与辅助。" },
+      { heading: "为什么重要", body: "家庭环境比工厂更非结构化，也更考验安全、噪音、续航和意图理解。机器人必须知道何时靠近、何时停止，并在无法完成任务时用自然方式寻求人类帮助。" },
+    ],
+    artwork: { src: "images/editorial/products/fourier-home.jpg", alt: "傅利叶具身之家展区", caption: "傅利叶具身之家现场图 · 人民政协网" },
+    source: "https://www.rmzxw.com.cn/c/2026-07-17/3948694.shtml",
+  },
+  {
+    vendor: "魔法原子",
+    title: "三款战略具身新品",
+    track: "具身智能",
+    isTopTen: false,
+    summary: "以多种机器人形态、具身模型和九类应用场景构成组合，现场演示货架整理等工业与商业任务。",
+    facts: ["三款战略新品", "多形态机器人协同", "覆盖九类应用场景"],
+    details: [
+      { heading: "产品思路", body: "魔法原子没有把具身智能限定为单一人形机器人，而是同时展示多种硬件形态与 MagicBot 体系。不同身体针对不同工作空间和负载，模型能力则尽量复用。" },
+      { heading: "现场内容", body: "展台用货架整理等连续任务展示机器人感知物体、规划抓取和完成摆放的过程，并把能力扩展到工业、商业服务等九类场景。" },
+      { heading: "为什么重要", body: "多形态路线承认“身体必须适配岗位”。商业化不一定从最像人的机器人开始，而可能从任务最清晰、改造成本最低的形态切入，再逐步复用数据和模型。" },
+    ],
+    artwork: { src: "images/editorial/products/magiclab.jpg", alt: "魔法原子机器人执行货架任务", caption: "魔法原子货架作业演示 · 新华报业" },
+    source: "https://jsnews.jschina.com.cn/jsyw/202607/t20260718_s6a5af230e4b0b0018d77382c.shtml",
+  },
+  {
+    vendor: "科大讯飞",
+    title: "讯飞 AI 眼镜",
+    track: "AI 原生终端",
+    isTopTen: true,
+    summary: "以唇动识别、多模态降噪和实时翻译解决嘈杂环境中的听说问题，并强调轻量化长时佩戴。",
+    facts: ["唇动与语音联合识别", "多模态环境降噪", "实时翻译"],
+    details: [
+      { heading: "它是什么", body: "讯飞 AI 眼镜把语音识别、翻译和环境感知放进日常眼镜形态。用户不需要举起手机，看到和听到的现场信息可以直接进入 AI 服务。" },
+      { heading: "核心机制", body: "产品利用唇动信息辅助语音识别，再结合多模态降噪处理展馆、街道和会议等复杂声场。这条路线特别适合实时翻译和面对面交流。" },
+      { heading: "为什么重要", body: "眼镜要成为常驻入口，识别准确率之外还要解决重量、续航、发热和隐私提示。它的价值在于降低交流摩擦，但前提是设备能在真实噪声和长时间佩戴中稳定工作。" },
+    ],
+    artwork: { src: "images/editorial/products/iflytek-glasses.jpeg", alt: "科大讯飞 AI 眼镜 WAIC 展示", caption: "讯飞 AI 眼镜现场图 · 大众网" },
+    source: "https://www.dzwww.com/xinwen/shehuixinwen/202607/t20260719_17944108.htm",
+  },
+  {
+    vendor: "荣耀",
+    title: "Robot Phone · Agentic OS",
+    track: "AI 原生终端",
+    isTopTen: false,
+    summary: "用可动相机结构提供主动视觉感知，再由系统级智能体理解环境并跨应用完成任务。",
+    facts: ["可动相机感知结构", "Agentic OS 系统级智能体", "多模态具身交互"],
+    details: [
+      { heading: "它是什么", body: "Robot Phone 在手机上加入可主动转动的相机结构，让设备不再只能等待用户举起和对准。Agentic OS 则尝试把这种视觉输入与系统级任务执行结合起来。" },
+      { heading: "交互变化", body: "可动结构能够跟随人或物体，获得更连续的环境信息；系统智能体据此理解意图、调用服务并完成动作。手机因此从一块屏幕向具有感知姿态的终端扩展。" },
+      { heading: "为什么重要", body: "这条路线把“具身”概念带进个人设备。真正体验取决于机械结构是否耐用、耗电是否可控、何时启动感知，以及用户能否清楚知道摄像头正在看什么。" },
+    ],
+    artwork: { src: "images/editorial/products/honor-robot-phone.jpg", alt: "荣耀 Robot Phone 可动相机结构", caption: "Robot Phone 产品资料图 · 荣耀" },
+    source: "https://www.honor.com/cn/news/honor-waic-2026/",
+  },
+  {
+    vendor: "千问 · Bose",
+    title: "AI 智能体耳机",
+    track: "AI 原生终端",
+    isTopTen: false,
+    summary: "耳夹式设备把同声传译、会议纪要、健康记录和眼镜联动放进全天候语音入口。",
+    facts: ["耳夹式 AI 终端", "同传与会议纪要", "可与智能眼镜联动"],
+    details: [
+      { heading: "它是什么", body: "千问与 Bose 联合展示耳夹式 AI 智能体耳机。它既承担音频输入输出，也把随时发起任务的语音入口贴近用户，减少频繁查看屏幕。" },
+      { heading: "功能组合", body: "现场披露的能力包括同声传译、会议纪要和健康记录，并可与智能眼镜联动。耳机负责听说，眼镜补充视觉，模型则连接个人上下文和在线服务。" },
+      { heading: "为什么重要", body: "耳机比手机更接近全天佩戴，但没有屏幕也意味着反馈必须更克制。主动提醒何时出现、误识别如何纠正、录音状态如何提示，都会直接影响信任和可用性。" },
+    ],
+    artwork: { src: "images/editorial/terminal-qwen.png", alt: "千问与 Bose AI 智能体耳机发布画面", caption: "AI 智能体耳机现场画面 · 第一财经" },
+    source: "https://www.yicai.com/video/103280043.html",
+  },
+  {
+    vendor: "李未可",
+    title: "X-AI 记忆眼镜 · WakeeMemory OS",
+    track: "AI 原生终端",
+    isTopTen: false,
+    summary: "以 26 克眼镜和可拆卸摄像头记录现实上下文，再由记忆系统整理会议、人物与行动项。",
+    facts: ["眼镜本体约 26 克", "10 克可拆卸磁吸摄像头", "WakeeMemory 长期记忆系统"],
+    details: [
+      { heading: "它是什么", body: "X-AI 记忆眼镜把真实世界信息作为个人智能体的长期上下文。现场产品本体约 26 克，另配约 10 克磁吸摄像头，可按需记录音画。" },
+      { heading: "怎样工作", body: "Wake-AI 3.0 与 WakeeMemory OS 负责把会议、面谈、差旅和日常经历整理为可检索记忆，并提取纪要、人物关系和行动项，供后续智能体调用。" },
+      { heading: "为什么重要", body: "与一次性问答相比，长期现实记忆能让服务更主动、更贴近个人。但它也把录制提示、敏感信息保存、遗忘与删除权推到产品核心，隐私机制必须与便利性一起设计。" },
+    ],
+    artwork: { src: "images/editorial/products/liweke-x-ai.jpg", alt: "李未可 X-AI 记忆眼镜 WAIC 展台", caption: "X-AI 记忆眼镜现场图 · 第一财经" },
+    source: "https://www.yicai.com/video/103282101.html",
+  },
+  {
+    vendor: "西门子",
+    title: "Eigen Engineering Agent",
+    track: "行业 AI · AI4S",
+    isTopTen: false,
+    summary: "从工程问答进入 PLC 编程、系统配置和迭代优化，让智能体直接参与自动化工程工作流。",
+    facts: ["可生成与修改 PLC 程序", "执行系统配置", "支持迭代诊断与优化"],
+    details: [
+      { heading: "它是什么", body: "Eigen Engineering Agent 面向工业自动化工程师，不止检索手册或解释报警，而是参与 PLC 编程、控制系统配置和工程方案迭代。" },
+      { heading: "工作方式", body: "工程师以自然语言描述目标，智能体结合项目上下文生成或修改控制逻辑，并在配置与验证过程中继续调整。它把模型能力嵌入既有工程工具，而不是另建聊天入口。" },
+      { heading: "为什么重要", body: "工业软件的价值来自准确、可追溯和能进入生产流程。Eigen 展示的是“可执行工程智能体”方向：每次修改都需要版本记录、仿真或测试，并保留专业人员审批。" },
+    ],
+    artwork: { src: "images/editorial/industry-siemens.jpg", alt: "西门子 Eigen Engineering Agent 获得 WAIC SAIL 奖项", caption: "Eigen Engineering Agent 资料图 · 西门子" },
+    source: "https://www.prnasia.com/story/540513-1.shtml",
+  },
+  {
+    vendor: "天鹜科技",
+    title: "MatwingsVenus 蛋白质研发智能体",
+    track: "行业 AI · AI4S",
+    isTopTen: false,
+    summary: "将自然语言蛋白设计、候选序列生成、自动化湿实验与结果回流组成可迭代研发闭环。",
+    facts: ["自然语言定义功能目标", "自动化样本制备与检测", "实验结果反馈模型"],
+    details: [
+      { heading: "它是什么", body: "MatwingsVenus 面向蛋白质研发人员。用户可以用自然语言描述功能目标，智能体生成候选序列并规划后续实验，而不是停留在计算预测。" },
+      { heading: "研发闭环", body: "平台连接自动化实验室，覆盖样本制备、纯化和功能检测，再把实验结果回流给模型继续优化。数字设计与湿实验因此形成连续迭代。" },
+      { heading: "为什么重要", body: "AI for Science 的瓶颈往往不是生成候选，而是实验验证慢、数据回流断裂。把设计、实验和学习连起来，才能缩短每轮研发周期并积累企业自己的高价值数据。" },
+    ],
+    artwork: { src: "images/editorial/products/matwings-venus.png", alt: "MatwingsVenus 蛋白质研发全流程展示", caption: "MatwingsVenus 展台资料图 · 天鹜科技" },
+    source: "https://www.matwings.com/",
+  },
+  {
+    vendor: "南方电网",
+    title: "大瓦特·云睿配电网规划智能体",
+    track: "行业 AI · AI4S",
+    isTopTen: false,
+    summary: "从规划诊断、方案生成到仿真校核、投资评估和报告编制，覆盖配电网规划完整业务链。",
+    facts: ["全场景认知", "方案仿真校核", "投资评估与报告生成"],
+    details: [
+      { heading: "它是什么", body: "大瓦特·云睿面向配电网规划，把专业数据、规划规则和仿真工具组织成一个可执行智能体。它的目标不是回答电力知识，而是完成一条规划业务链。" },
+      { heading: "任务闭环", body: "系统从现状诊断开始，生成候选方案，调用仿真进行校核，再完成投资效果评估与报告编制，形成“认知—决策—执行—仿真演化”闭环。" },
+      { heading: "为什么重要", body: "电网属于高责任基础设施，任何建议都必须可追溯、可复核。这个案例说明行业智能体的核心不是通用聊天能力，而是把专业规则、工具和审批流程可靠连接。" },
+    ],
+    artwork: { src: "images/editorial/products/csg-yunrui.png", alt: "大瓦特·云睿配电网规划智能体架构图", caption: "大瓦特·云睿任务闭环 · 南方+" },
+    source: "https://static.nfnews.com/content/202607/16/c12632116.html",
+  },
+  {
+    vendor: "赛那德",
+    title: "iLoabot-X 2.0 · Insight-World V3.0",
+    track: "行业 AI · AI4S",
+    isTopTen: false,
+    summary: "把自主装卸与搬运机器人连接物流垂直世界模型，瞄准工业现场“最后 20 米”的高重复重体力作业。",
+    facts: ["装卸、搬运、码垛多任务", "多模态感知与自主规划", "物流垂直物理引擎"],
+    details: [
+      { heading: "它是什么", body: "iLoabot-X 2.0 是面向仓储、转运中心和工厂的自主作业机器人，可执行装卸、搬运、上下料、分拣、码垛和巡检等任务。" },
+      { heading: "核心机制", body: "Insight-World V3.0 为物流装卸场景建立物理世界模型，结合多模态货物识别、路径规划、动态堆垛和机械臂控制，让机器人在非结构化现场自主决策。" },
+      { heading: "为什么重要", body: "物流装卸任务边界明确、劳动强度高，效率和回报可以直接量化。与通用人形路线相比，赛那德从垂直岗位切入，更容易用真实作业数据迭代模型并形成规模部署。" },
+    ],
+    artwork: { src: "images/editorial/products/senad-iloabot-x.png", alt: "赛那德 iLoabot-X 自主作业机器人", caption: "iLoabot-X 产品资料图 · 赛那德" },
+    source: "https://www.senad.cn/robot",
+  },
+  {
+    vendor: "360",
+    title: "图龙锋 · 仪天阵 · 磐石之盾",
+    track: "安全 · 治理 · 学术",
+    isTopTen: false,
+    summary: "以 AI 覆盖漏洞发现、威胁研判和实时阻断，把智能体时代的攻防链条放在同一套安全体系中。",
+    facts: ["图龙锋：AI 漏洞挖掘", "仪天阵：自动化分析研判", "磐石之盾：秒级防护阻断"],
+    details: [
+      { heading: "三款产品", body: "图龙锋聚焦 AI 漏洞发现，仪天阵负责自动化分析和研判，磐石之盾面向快速防护与阻断。三者对应发现、理解和处置三个环节。" },
+      { heading: "为什么需要", body: "智能体能够调用更多工具和企业数据，也扩大了提示注入、越权操作和供应链攻击的影响面。安全系统必须跟上机器速度，在攻击链尚未扩散时完成识别与响应。" },
+      { heading: "产业意义", body: "AI 安全不能只依赖一个检测模型，而要连接资产、身份、漏洞、流量和处置策略。360 的组合展示说明，智能体扩张必须同步建设持续监测和自动响应能力。" },
+    ],
+    artwork: { src: "images/editorial/products/360-security.png", alt: "360 WAIC AI 安全论坛视觉", caption: "360 WAIC AI 安全论坛 · 上海普陀" },
+    source: "https://www.shpt.gov.cn/yaowen/20260720/971575.html",
+  },
+];
+
+export const trends = [
+  ["01", "算力走向系统化", "从单芯片参数，转向超节点、万卡集群与软硬协同。"],
+  ["02", "智能体开始交付", "不再只给建议，而是拆解任务、调用工具并交付成果。"],
+  ["03", "机器人进入岗位", "关注连续作业、跨本体泛化和故障恢复，而非舞台动作。"],
+  ["04", "终端原生化", "眼镜、耳机与手机成为持续感知、主动服务的个人入口。"],
+] as const;
+
+export const keySources = [
+  ["大会规模与布局", "上海市政府新闻办", "https://www.shio.gov.cn/TrueCMS/shxwbgs/wxdtt/content/44bee286-669a-48d3-adb0-6d046dc83fdd.htm"],
+  ["十大现场看点", "第一财经", "https://www.yicai.com/news/103278845.html"],
+  ["十大镇馆之宝", "南方+", "https://static.nfnews.com/content/202607/16/c12632116.html"],
+  ["闭幕数据与成果", "中国日报", "https://cn.chinadaily.com.cn/a/202607/21/WS6a5eb534a310d709c2fbea57.html"],
+  ["WAIC Academic", "大会官方", "https://waica2026.worldaic.com.cn/"],
+  ["全球 AI 治理合作倡议", "新华网", "https://www.news.cn/20260717/3310820b96f949979ce6406712094935/c.html"],
+] as const;
+
+export const trackArtwork: Record<Track, Artwork> = {
+  "算力与芯片": { src: "images/editorial/event-waic-2.jpg", alt: "WAIC 2026 算力展区的 Atlas 950 SuperPoD 机柜", caption: "算力基础设施现场 · 第一财经" },
+  "模型与智能体": { src: "images/editorial/products/kimi-k27.png", alt: "Kimi K2.7 Code 官方模型卡视觉", caption: "代码智能体模型卡 · 月之暗面" },
+  "具身智能": { src: "images/editorial/products/magiclab.jpg", alt: "WAIC 2026 机器人执行货架任务", caption: "具身机器人岗位演示 · 新华报业" },
+  "AI 原生终端": { src: "images/editorial/products/liweke-x-ai.jpg", alt: "WAIC 2026 AI 记忆眼镜展台", caption: "AI 原生终端现场 · 第一财经" },
+  "行业 AI · AI4S": { src: "images/editorial/products/matwings-venus.png", alt: "MatwingsVenus 蛋白质研发流程", caption: "AI for Science 展示 · 天鹜科技" },
+  "安全 · 治理 · 学术": { src: "images/editorial/products/360-security.png", alt: "360 WAIC AI 安全论坛视觉", caption: "AI 安全主题现场 · 上海普陀" },
+};
+
+export const signalDetails: { title: string; deck: string; artwork: Artwork; sections: DetailSection[]; facts: string[] }[] = [
+  {
+    title: trends[0][1], deck: trends[0][2], artwork: trackArtwork["算力与芯片"],
+    facts: ["超节点成为基本单元", "互联与内存决定有效算力", "软件栈进入系统竞争"],
+    sections: [
+      { heading: "发生了什么", body: "WAIC 2026 的算力焦点不再是一张芯片的峰值参数，而是超节点、万卡集群、互联网络、内存体系、液冷和软件栈能否组合成稳定生产系统。" },
+      { heading: "本届样本", body: "Atlas 950 SuperPoD、曙光 8000、磐久 AL128、OEX 和 DF1000 分别从千卡统一寻址、十万卡集群、单柜高密度、开放解耦和近存计算回答同一个问题：怎样把更多芯片高效连接。" },
+      { heading: "评价标准变化", body: "真实训练与推理能力取决于通信效率、故障恢复、调度利用率和可运维性。单卡参数很高，并不自动等于集群中可以持续交付的有效算力。" },
+      { heading: "接下来怎么看", body: "应继续关注已交付规模、全负载能耗、连续运行稳定性、模型迁移成本和软件生态。只有这些环节齐备，超节点才从展台概念变成产业基础设施。" },
+    ],
+  },
+  {
+    title: trends[1][1], deck: trends[1][2], artwork: trackArtwork["模型与智能体"],
+    facts: ["从回答走向执行", "工具调用成为基础能力", "交付物取代聊天文本"],
+    sections: [
+      { heading: "发生了什么", body: "模型能力正在从一次对话延伸为完整任务链。百度搭子、Kimi K2.7 Code、MiniMax M3 和 Step AOS 都强调任务拆解、工具调用、过程修正和成果交付。" },
+      { heading: "产品形态变化", body: "智能体需要读取文件与网页、理解长期上下文、调用外部应用，并在错误发生时重新规划。模型只是其中一层，权限、记忆、工具接口和运行环境共同决定结果。" },
+      { heading: "价值如何衡量", body: "产业价值从“回答得像不像”转向“事情能否办完”。报告能否直接使用、代码能否通过测试、跨应用动作是否正确，都比一次漂亮演示更接近真实生产力。" },
+      { heading: "接下来怎么看", body: "应观察长任务成功率、人工接管点、失败恢复、调用成本和权限记录。智能体只有在多次、长期、可审计地交付后，才真正进入生产阶段。" },
+    ],
+  },
+  {
+    title: trends[2][1], deck: trends[2][2], artwork: trackArtwork["具身智能"],
+    facts: ["连续作业替代单次动作", "跨本体复用模型", "垂直岗位率先落地"],
+    sections: [
+      { heading: "发生了什么", body: "人形机器人仍然吸睛，但本届更重要的变化是厂商把叙事从舞台动作转向连续作业。药房、仓储、货架、家庭和物流装卸成为主要展示空间。" },
+      { heading: "技术重心", body: "“进入岗位”要求机器人面对长时序任务、环境变化和不可避免的失败。Visics、Motubrain 等模型又进一步追求跨本体迁移，让能力不被单一硬件锁定。" },
+      { heading: "商业化路径", body: "药房协作和物流装卸的任务边界清晰，价值可按人力、效率和安全量化；家庭与康养空间更复杂，却能验证长期交互。两类路线会形成不同的落地节奏。" },
+      { heading: "接下来怎么看", body: "关键指标是无人值守时长、任务成功率、故障恢复、部署成本和客户场景。能否从一天演示复制到数月运营，是具身智能商业化的分水岭。" },
+    ],
+  },
+  {
+    title: trends[3][1], deck: trends[3][2], artwork: trackArtwork["AI 原生终端"],
+    facts: ["持续感知成为入口", "系统级智能体跨应用", "隐私与续航决定体验"],
+    sections: [
+      { heading: "发生了什么", body: "AI 正从应用中的一个功能，变成手机、眼镜和耳机的系统级入口。讯飞眼镜、X-AI 记忆眼镜、Robot Phone 和千问耳机都在争夺持续感知。" },
+      { heading: "交互方式变化", body: "入口之争不是增加聊天按钮，而是设备能否在合适的时间理解环境、调用服务并完成动作。视觉、语音和个人记忆开始形成连续上下文。" },
+      { heading: "产品难点", body: "低时延、本地推理、续航、跨应用权限和隐私保护必须同时成立。越贴近身体、越长时间在线，设备越需要清晰提示何时记录、数据存在哪里。" },
+      { heading: "接下来怎么看", body: "把演示拆成真实使用链：连续佩戴多久、离线还能做什么、误触发如何纠正、服务能否跨应用闭环。环节自然衔接后，终端才会成为新的个人计算入口。" },
+    ],
+  },
+];

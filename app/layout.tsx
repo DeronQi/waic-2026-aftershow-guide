@@ -6,7 +6,7 @@ const imageUrl = new URL("og.png", siteUrl).toString();
 
 export const metadata: Metadata = {
   title: "WAIC 2026 展后精选｜新品、亮点与不可错过",
-  description: "35 页等尺寸 WAIC 2026 展后电子杂志：四条产业信号、十大不可错过、25 个重点展品与完整资料包。",
+  description: "35 页等尺寸 WAIC 2026 展后电子杂志：四条产业信号、十大不可错过与 25 篇重点展品详解。",
   openGraph: {
     title: "WAIC 2026 展后精选",
     description: "新品 · 亮点 · 不可错过｜35 页等尺寸展后电子杂志",

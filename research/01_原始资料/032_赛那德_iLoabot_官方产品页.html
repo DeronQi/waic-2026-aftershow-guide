@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>具身智能机器人-赛那德</title>
+    
+            <meta name="keywords" content="具身智能机器人">
+    
+            <meta name="description" content="具身机器人，数字蓝领工人iLoabot系列具备自主装卸、自主导航等能力，实现“机器换人”">
+        <link rel="stylesheet" href="https://senad.oss-rg-china-mainland.aliyuncs.com/static/css/animate.css" />
+    <link rel="stylesheet" href="https://senad.oss-rg-china-mainland.aliyuncs.com/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://senad.oss-rg-china-mainland.aliyuncs.com/static/css/reset.css?v=1784624149" />
+    <link rel="stylesheet" href="https://senad.oss-rg-china-mainland.aliyuncs.com/static/css/style.css?v=1784624149" />
+    <link rel="stylesheet" href="https://senad.oss-rg-china-mainland.aliyuncs.com/static/css/moblie.css?v=1784624149" />
+    <link rel="stylesheet" href="https://senad.oss-rg-china-mainland.aliyuncs.com/static/js/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://senad.oss-rg-china-mainland.aliyuncs.com/static/js/pop/sweetalert.css" />
+    <script src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/js/jquery-3.5.1.min.js"></script>
+    <script src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/js/wow.min.js"></script>
+    <script src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/js/main.js"></script>
+    <script src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/js/version.js"></script>
+    <script src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/js/swiper/swiper-bundle.min.js"></script>
+    <script src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/js/pop/sweetalert-dev.js"></script>
+  </head>
+    <div id="header">
+      <div class="head-box">
+        <div class="head">
+          <div class="pc-head w1776">
+            <div class="nav-box">
+              <a href="/" class="logo">
+                <img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/dfa760ba2f671c36f55c4eda0b039fbe.svg" alt="" />
+              </a>
+
+              <div class="head-nav tit-18">
+                <div class="pro-box">
+                      
+                                    <div class="pro-nav  cur  nav-ls posres">
+                    <a href="/robot">
+                        <span>
+                            <img class="img img1" src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/4b9da8c1b0d634178f6d176ddbc59b45.svg" alt="" />
+                            <img class="img img2" src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/0f4b315ac98fefbbee5f2ad2975b7635.png" alt="" />
+                        </span>
+                      <p>具身智能机器人</p>
+                    </a>
+                                        <div class="item_down">
+                        <div class="item_down_cont">
+                                                        <a href="/robot_detail/1" class="tit-14">
+                                <span>iLoabot-M</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="/robot_detail/5" class="tit-14">
+                                <span>iLoabot-Pro</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="/robot_detail/3" class="tit-14">
+                                <span>iLoabot-X</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="/robot_detail/4" class="tit-14">
+                                <span>iLoabot-Ultra</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                    </div>
+                    </div>
+                                     </div>
+                                        
+                                    <div class="pro-nav  nav-ls posres">
+                    <a href="/vision">
+                        <span>
+                            <img class="img img1" src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/12497f766d17b941921aa07effa6c208.svg" alt="" />
+                            <img class="img img2" src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/62fa888a89608e7c60976fa730c7c33e.png" alt="" />
+                        </span>
+                      <p>视觉产品</p>
+                    </a>
+                                        <div class="item_down">
+                        <div class="item_down_cont">
+                                                        <a href="/vision_detail/1" class="tit-14">
+                                <span>单件分离设备</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="/vision_detail/5" class="tit-14">
+                                <span>AI动态读码称重体积测量设备（AI-DWS）</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="/vision_detail/4" class="tit-14">
+                                <span>高精度静态读码称重体积检测设备</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="/vision_detail/3" class="tit-14">
+                                <span>电商标准套</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                    </div>
+                    </div>
+                                     </div>
+                                        
+                                        
+                                        
+                                        
+                                                    </div>
+                  
+                                  
+                                  
+                                <div class="nav-ls   posres">
+                  <a class="item_cont" href="/solution/2">解决方案</a>
+                                      <div class="item_down">
+                        <div class="item_down_cont">
+                                                        <a href="/solution/2" class="tit-14 ">
+                                <span>智慧工厂</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="/solution/5" class="tit-14 ">
+                                <span>智慧仓储</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="/solution/4" class="tit-14 ">
+                                <span>智慧物流</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                    </div>
+                    </div>
+                                    </div>
+                                  
+                                <div class="nav-ls   posres">
+                  <a class="item_cont" href="/brand">品牌优势</a>
+                                      <div class="item_down">
+                        <div class="item_down_cont">
+                                                        <a href="/brand#box5" class="tit-14 ">
+                                <span>技术创新</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="/brand#box4" class="tit-14 ">
+                                <span>全球服务</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                    </div>
+                    </div>
+                                    </div>
+                                  
+                                <div class="nav-ls   posres">
+                  <a class="item_cont" href="/about">走进赛那德</a>
+                                      <div class="item_down">
+                        <div class="item_down_cont">
+                                                        <a href="/about" class="tit-14 ">
+                                <span>关于我们</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="/join" class="tit-14 ">
+                                <span>招贤纳士</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="/news/1" class="tit-14 ">
+                                <span>创新动态</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                    </div>
+                    </div>
+                                    </div>
+                                  
+                                <div class="nav-ls   posres">
+                  <a class="item_cont" href="/source/0">资源中心</a>
+                                      <div class="item_down">
+                        <div class="item_down_cont">
+                                                        <a href="/source/0#d1" class="tit-14 ">
+                                <span>产品手册</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                        <a href="" class="tit-14 ">
+                                <span>留言表单</span>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.05812 7.43875C7.04992 7.44969 7.03898 7.46199 7.02941 7.47293L2.1007 12.872C1.83273 13.1659 1.37746 13.1864 1.08351 12.9184C0.789566 12.6505 0.769058 12.1952 1.03703 11.9012L5.5255 6.98211L1.03292 2.07664C0.764956 1.78406 0.784097 1.32879 1.07804 1.05945C1.37062 0.791484 1.82589 0.810625 2.09523 1.10457L7.03214 6.49539C7.27824 6.76336 7.28234 7.16668 7.05812 7.43875Z" fill="#666"/>
+</svg>
+                            </a>
+                                                    </div>
+                    </div>
+                                    </div>
+                                              </div>
+            </div>
+
+            <div class="head-rg">
+              <a class="head-search" href="/search/1">
+                <img src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/2.svg" alt="" />
+              </a>
+
+              <div class="lan">
+                <div class="nor">
+                  <img src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/5.svg" alt="" />
+                </div>
+
+                <div class="pos-cont tit-14">
+                  <a href="">EN</a>
+                </div>
+              </div>
+
+                <a class="con tit-16 con-btn">
+                  联系我们
+                  <svg viewBox="0 0 11 12">
+                        <path d="M9.85547 5.46582C10.1357 5.46582 10.3612 5.6915 10.3613 5.97168V5.99512C10.3713 6.12576 10.336 6.25493 10.249 6.35645C10.1533 6.46794 10.0157 6.52441 9.87793 6.52441H1.12402C0.843846 6.52431 0.618164 6.29778 0.618164 6.01758V5.99512C0.618164 5.71332 0.823311 5.46593 1.12402 5.46582H9.85547Z" stroke-width="0.6"></path>
+                        <path d="M6.64941 2.62891C6.83769 2.50277 7.11122 2.49115 7.29102 2.69434L7.29297 2.69238L10.2266 5.62598L10.29 5.7041C10.4163 5.89235 10.4278 6.16584 10.2246 6.3457L10.2266 6.34766L10.2031 6.37109L10.2012 6.36914C10.0213 6.5723 9.74782 6.56082 9.55957 6.43457L9.48145 6.37109L6.54785 3.4375C6.36688 3.25636 6.31629 2.92451 6.5498 2.71777L6.54785 2.71582L6.57129 2.69238L6.64941 2.62891Z" stroke-width="0.6"></path>
+                        <path d="M9.55957 5.55859C9.74781 5.43237 10.0213 5.42091 10.2012 5.62402L10.2031 5.62207L10.2266 5.64551L10.2246 5.64746C10.4278 5.82731 10.4163 6.10081 10.29 6.28906L10.2266 6.36719L7.29297 9.30078L7.29102 9.29883C7.11121 9.50206 6.8377 9.49042 6.64941 9.36426L6.57129 9.30078L6.54785 9.27734L6.5498 9.27539C6.31631 9.06864 6.36687 8.73678 6.54785 8.55566L9.48145 5.62207L9.55957 5.55859Z" stroke-width="0.6"></path>
+                      </svg>
+                </a>
+
+              <div class="menu">
+                <div class="top"></div>
+                <div class="middle"></div>
+                <div class="bottom"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-head">
+            <!-- 有二级的把 noNav 类名去掉, 一级的链接变成 javascript:; -->
+                
+            <div class="mb-nav  ">
+              <div class="mb-nav-frs tit-20">
+                  <a  href="/robot">具身智能机器人</a>
+              </div>
+                
+              <!-- 二级栏目判断隐藏一下 -->
+              <div class="mb-nav-scd tit-18">
+                  
+                <a href="/robot_detail/1">iLoabot-M</a>
+                  
+                <a href="/robot_detail/5">iLoabot-Pro</a>
+                  
+                <a href="/robot_detail/3">iLoabot-X</a>
+                  
+                <a href="/robot_detail/4">iLoabot-Ultra</a>
+                              </div>
+                          </div>
+                
+            <div class="mb-nav  ">
+              <div class="mb-nav-frs tit-20">
+                  <a  href="/vision">视觉产品</a>
+              </div>
+                
+              <!-- 二级栏目判断隐藏一下 -->
+              <div class="mb-nav-scd tit-18">
+                  
+                <a href="/vision_detail/1">单件分离设备</a>
+                  
+                <a href="/vision_detail/5">AI动态读码称重体积测量设备（AI-DWS）</a>
+                  
+                <a href="/vision_detail/4">高精度静态读码称重体积检测设备</a>
+                  
+                <a href="/vision_detail/3">电商标准套</a>
+                              </div>
+                          </div>
+                
+            <div class="mb-nav  ">
+              <div class="mb-nav-frs tit-20">
+                  <a  href="/solution/2">解决方案</a>
+              </div>
+                
+              <!-- 二级栏目判断隐藏一下 -->
+              <div class="mb-nav-scd tit-18">
+                  
+                <a href="/solution/2">智慧工厂</a>
+                  
+                <a href="/solution/5">智慧仓储</a>
+                  
+                <a href="/solution/4">智慧物流</a>
+                              </div>
+                          </div>
+                
+            <div class="mb-nav  ">
+              <div class="mb-nav-frs tit-20">
+                  <a  href="/brand">品牌优势</a>
+              </div>
+                
+              <!-- 二级栏目判断隐藏一下 -->
+              <div class="mb-nav-scd tit-18">
+                  
+                <a href="/brand#box5">技术创新</a>
+                  
+                <a href="/brand#box4">全球服务</a>
+                              </div>
+                          </div>
+                
+            <div class="mb-nav  ">
+              <div class="mb-nav-frs tit-20">
+                  <a  href="/about">走进赛那德</a>
+              </div>
+                
+              <!-- 二级栏目判断隐藏一下 -->
+              <div class="mb-nav-scd tit-18">
+                  
+                <a href="/about">关于我们</a>
+                  
+                <a href="/join">招贤纳士</a>
+                  
+                <a href="/news/1">创新动态</a>
+                              </div>
+                          </div>
+                
+            <div class="mb-nav  ">
+              <div class="mb-nav-frs tit-20">
+                  <a  href="/source/0">资源中心</a>
+              </div>
+                
+              <!-- 二级栏目判断隐藏一下 -->
+              <div class="mb-nav-scd tit-18">
+                  
+                <a href="/source/0#d1">产品手册</a>
+                  
+                <a href="">留言表单</a>
+                              </div>
+                          </div>
+            
+            <form action="/search/1" class="mb-search tit-14">
+              <button><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/2.svg" alt="" /></button>
+              <input type="text" name="keywords" placeholder="输入搜索关键词" />
+            </form>
+            
+            <a class="con tit-16 con-btn">
+              联系我们
+              <svg viewBox="0 0 11 12">
+                    <path d="M9.85547 5.46582C10.1357 5.46582 10.3612 5.6915 10.3613 5.97168V5.99512C10.3713 6.12576 10.336 6.25493 10.249 6.35645C10.1533 6.46794 10.0157 6.52441 9.87793 6.52441H1.12402C0.843846 6.52431 0.618164 6.29778 0.618164 6.01758V5.99512C0.618164 5.71332 0.823311 5.46593 1.12402 5.46582H9.85547Z" stroke-width="0.6"></path>
+                    <path d="M6.64941 2.62891C6.83769 2.50277 7.11122 2.49115 7.29102 2.69434L7.29297 2.69238L10.2266 5.62598L10.29 5.7041C10.4163 5.89235 10.4278 6.16584 10.2246 6.3457L10.2266 6.34766L10.2031 6.37109L10.2012 6.36914C10.0213 6.5723 9.74782 6.56082 9.55957 6.43457L9.48145 6.37109L6.54785 3.4375C6.36688 3.25636 6.31629 2.92451 6.5498 2.71777L6.54785 2.71582L6.57129 2.69238L6.64941 2.62891Z" stroke-width="0.6"></path>
+                    <path d="M9.55957 5.55859C9.74781 5.43237 10.0213 5.42091 10.2012 5.62402L10.2031 5.62207L10.2266 5.64551L10.2246 5.64746C10.4278 5.82731 10.4163 6.10081 10.29 6.28906L10.2266 6.36719L7.29297 9.30078L7.29102 9.29883C7.11121 9.50206 6.8377 9.49042 6.64941 9.36426L6.57129 9.30078L6.54785 9.27734L6.5498 9.27539C6.31631 9.06864 6.36687 8.73678 6.54785 8.55566L9.48145 5.62207L9.55957 5.55859Z" stroke-width="0.6"></path>
+                  </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <script>
+        
+        $(".head-box .head .pc-head .nav-ls").eq(5).find("a").eq(2).attr("href", "javascript:0")
+        $(".head-box .head .pc-head .nav-ls").eq(5).find("a").eq(2).click(function () {
+            let num = $(this).attr("data-download")
+    if (sessionStorage.getItem('formSubmitted') === 'true' && num == "true") {
+        document.location.href = $(this).attr("data-url")
+    } else {
+        isstaticUrl = num == "true" ?   $(this).attr("data-url") : "" 
+        $(".con-dialog").stop(true,false).fadeIn();
+    }
+        })
+    </script>      <body >
+
+    <div class="banner">
+      <div class="banner-img">
+        <img class="pc-block" src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/4ed1441c3377a9a155c9f7c094fba80f.png" alt="" />
+        <img class="mb-block" src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/3c6bff44eb7c0fe5991b0564c62f613f.png" alt="" />
+
+        <div class="ban-intro pos-center w1620">
+          <p class="h tit-56 hmMd wow fadeInUpSmall">具身机器人</p>
+
+          <div class="txt tit-24 wow fadeInUpSmall" data-wow-delay=".2s">
+            数字蓝领工人iLoabot系列具备自主装卸、自主导航等能力，实现“机器换人”
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="robot">
+      <div class="box1 main-robot">
+        <div class="wrap main-swiper">
+          <p class="tit main-tit tac wow fadeInUpSmall">产品展示</p>
+
+          <div class="sub main-sub tac wow fadeInUpSmall" data-wow-delay=".2s">
+            iLoabot系列
+          </div>
+            <div class="btn-box">
+              <div class="swiper-button-prev box1-button-prev"></div>
+              <div class="swiper-button-next box1-button-next"></div>
+          </div>
+          <div class="li-box">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                        
+                        <a href="/robot_detail/1" class="li swiper-slide" data-wow-delay=".2s">
+                            <div class="box">
+                                <div
+                            class="bg img-cover"
+                            style="background-image: url(https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/55.jpg)"
+                          ></div>
+            
+                          <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202607/55c103ef19f86e3a2d3a13fcb05efd9e.png" alt="" /></div>
+            
+                          <div class="intro">
+                            <p class="h tit-18">自主装卸货机器人</p>
+                            <div class="txt tit-14 col-999">
+                              iLoabot-M 自主装卸机器人专攻物流“最后 20 米”末端装卸难题。具备自主导航、自主装卸货、智能避障和自主学习能力。依托多模态感知、物理约束世界模型与高精度自主运控，可兼容不同车型与箱型，适配超高超宽车厢、斜坡等复杂工况，实现在非结构化动态工业环境中的全流程自主作业。
+                            </div>
+                            
+                            <div class="more tit-16">
+                              <p>查看详情</p>
+                              <span>
+                                <svg viewBox="0 0 11 11" fill="none">
+                                  <path
+                                    d="M9.85547 4.96582C10.1357 4.96582 10.3612 5.1915 10.3613 5.47168V5.49512C10.3713 5.62576 10.336 5.75493 10.249 5.85645C10.1533 5.96794 10.0157 6.02441 9.87793 6.02441H1.12402C0.843846 6.02431 0.618164 5.79778 0.618164 5.51758V5.49512C0.618164 5.21332 0.823311 4.96593 1.12402 4.96582H9.85547Z"
+                                    stroke-width="0.6"
+                                  />
+                                  <path
+                                    d="M6.64941 2.12891C6.83769 2.00277 7.11122 1.99115 7.29102 2.19434L7.29297 2.19238L10.2266 5.12598L10.29 5.2041C10.4163 5.39235 10.4278 5.66584 10.2246 5.8457L10.2266 5.84766L10.2031 5.87109L10.2012 5.86914C10.0213 6.0723 9.74782 6.06082 9.55957 5.93457L9.48145 5.87109L6.54785 2.9375C6.36688 2.75636 6.31629 2.42451 6.5498 2.21777L6.54785 2.21582L6.57129 2.19238L6.64941 2.12891Z"
+                                    stroke-width="0.6"
+                                  />
+                                  <path
+                                    d="M9.55957 5.05859C9.74781 4.93237 10.0213 4.92091 10.2012 5.12402L10.2031 5.12207L10.2266 5.14551L10.2246 5.14746C10.4278 5.32731 10.4163 5.60081 10.29 5.78906L10.2266 5.86719L7.29297 8.80078L7.29102 8.79883C7.11121 9.00206 6.8377 8.99042 6.64941 8.86426L6.57129 8.80078L6.54785 8.77734L6.5498 8.77539C6.31631 8.56864 6.36687 8.23678 6.54785 8.05566L9.48145 5.12207L9.55957 5.05859Z"
+                                    stroke-width="0.6"
+                                  />
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+                            </div>
+                        </a>
+                        
+                        <a href="/robot_detail/5" class="li swiper-slide" data-wow-delay=".2s">
+                            <div class="box">
+                                <div
+                            class="bg img-cover"
+                            style="background-image: url(https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/55.jpg)"
+                          ></div>
+            
+                          <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202604/fd76f4dedbc418ac1a6ee96a51aebcca.png" alt="" /></div>
+            
+                          <div class="intro">
+                            <p class="h tit-18">重载自主装卸机器人iLoabot-Pro</p>
+                            <div class="txt tit-14 col-999">
+                              iLoabot‑Pro重载自主装卸机器人支持80KG大负载，专为快消、烟草、医药、物流等重箱场景打造。产品支持装卸一体，能显著降低设备投入与运维成本；同时依托智能AI算法自主规划最优路径，支持多SKU、多箱规柔性适配，可从容应对复杂垛型与多元作业场景需求。
+                            </div>
+                            
+                            <div class="more tit-16">
+                              <p>查看详情</p>
+                              <span>
+                                <svg viewBox="0 0 11 11" fill="none">
+                                  <path
+                                    d="M9.85547 4.96582C10.1357 4.96582 10.3612 5.1915 10.3613 5.47168V5.49512C10.3713 5.62576 10.336 5.75493 10.249 5.85645C10.1533 5.96794 10.0157 6.02441 9.87793 6.02441H1.12402C0.843846 6.02431 0.618164 5.79778 0.618164 5.51758V5.49512C0.618164 5.21332 0.823311 4.96593 1.12402 4.96582H9.85547Z"
+                                    stroke-width="0.6"
+                                  />
+                                  <path
+                                    d="M6.64941 2.12891C6.83769 2.00277 7.11122 1.99115 7.29102 2.19434L7.29297 2.19238L10.2266 5.12598L10.29 5.2041C10.4163 5.39235 10.4278 5.66584 10.2246 5.8457L10.2266 5.84766L10.2031 5.87109L10.2012 5.86914C10.0213 6.0723 9.74782 6.06082 9.55957 5.93457L9.48145 5.87109L6.54785 2.9375C6.36688 2.75636 6.31629 2.42451 6.5498 2.21777L6.54785 2.21582L6.57129 2.19238L6.64941 2.12891Z"
+                                    stroke-width="0.6"
+                                  />
+                                  <path
+                                    d="M9.55957 5.05859C9.74781 4.93237 10.0213 4.92091 10.2012 5.12402L10.2031 5.12207L10.2266 5.14551L10.2246 5.14746C10.4278 5.32731 10.4163 5.60081 10.29 5.78906L10.2266 5.86719L7.29297 8.80078L7.29102 8.79883C7.11121 9.00206 6.8377 8.99042 6.64941 8.86426L6.57129 8.80078L6.54785 8.77734L6.5498 8.77539C6.31631 8.56864 6.36687 8.23678 6.54785 8.05566L9.48145 5.12207L9.55957 5.05859Z"
+                                    stroke-width="0.6"
+                                  />
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+                            </div>
+                        </a>
+                        
+                        <a href="/robot_detail/3" class="li swiper-slide" data-wow-delay=".2s">
+                            <div class="box">
+                                <div
+                            class="bg img-cover"
+                            style="background-image: url(https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/55.jpg)"
+                          ></div>
+            
+                          <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202607/67eb5b4b15b57893e26ef10abe76ab23.png" alt="" /></div>
+            
+                          <div class="intro">
+                            <p class="h tit-18">自主作业机器人</p>
+                            <div class="txt tit-14 col-999">
+                              iLoabot-X 自主作业机器人是面向工业物流“最后 20 米”刚性短驳场景研发的工业级重载具身智能机器人。可应用于物流转运中心、仓储、工厂制造等场景，高效完成装卸、搬运、上下料、分拣、码垛、扫码巡检等高强度、高重复、高风险作业，助力企业实现工业现场的智能化、无人化与柔性化升级。
+                            </div>
+                            
+                            <div class="more tit-16">
+                              <p>查看详情</p>
+                              <span>
+                                <svg viewBox="0 0 11 11" fill="none">
+                                  <path
+                                    d="M9.85547 4.96582C10.1357 4.96582 10.3612 5.1915 10.3613 5.47168V5.49512C10.3713 5.62576 10.336 5.75493 10.249 5.85645C10.1533 5.96794 10.0157 6.02441 9.87793 6.02441H1.12402C0.843846 6.02431 0.618164 5.79778 0.618164 5.51758V5.49512C0.618164 5.21332 0.823311 4.96593 1.12402 4.96582H9.85547Z"
+                                    stroke-width="0.6"
+                                  />
+                                  <path
+                                    d="M6.64941 2.12891C6.83769 2.00277 7.11122 1.99115 7.29102 2.19434L7.29297 2.19238L10.2266 5.12598L10.29 5.2041C10.4163 5.39235 10.4278 5.66584 10.2246 5.8457L10.2266 5.84766L10.2031 5.87109L10.2012 5.86914C10.0213 6.0723 9.74782 6.06082 9.55957 5.93457L9.48145 5.87109L6.54785 2.9375C6.36688 2.75636 6.31629 2.42451 6.5498 2.21777L6.54785 2.21582L6.57129 2.19238L6.64941 2.12891Z"
+                                    stroke-width="0.6"
+                                  />
+                                  <path
+                                    d="M9.55957 5.05859C9.74781 4.93237 10.0213 4.92091 10.2012 5.12402L10.2031 5.12207L10.2266 5.14551L10.2246 5.14746C10.4278 5.32731 10.4163 5.60081 10.29 5.78906L10.2266 5.86719L7.29297 8.80078L7.29102 8.79883C7.11121 9.00206 6.8377 8.99042 6.64941 8.86426L6.57129 8.80078L6.54785 8.77734L6.5498 8.77539C6.31631 8.56864 6.36687 8.23678 6.54785 8.05566L9.48145 5.12207L9.55957 5.05859Z"
+                                    stroke-width="0.6"
+                                  />
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+                            </div>
+                        </a>
+                        
+                        <a href="/robot_detail/4" class="li swiper-slide" data-wow-delay=".2s">
+                            <div class="box">
+                                <div
+                            class="bg img-cover"
+                            style="background-image: url(https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/55.jpg)"
+                          ></div>
+            
+                          <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202607/61d029ca3bd21fce6a4817b29812ee1e.png" alt="" /></div>
+            
+                          <div class="intro">
+                            <p class="h tit-18">自主批量卸货机器人</p>
+                            <div class="txt tit-14 col-999">
+                              深度融合行业垂直数据与通用世界模型，实现颠覆性的自主感知与智能决策。配合高柔性灵活执行机构，突破物理形态限制，无需繁琐示教，即可高效完成无限SKU异形货物复杂混码垛型的自主批量卸货。
+                            </div>
+                            
+                            <div class="more tit-16">
+                              <p>查看详情</p>
+                              <span>
+                                <svg viewBox="0 0 11 11" fill="none">
+                                  <path
+                                    d="M9.85547 4.96582C10.1357 4.96582 10.3612 5.1915 10.3613 5.47168V5.49512C10.3713 5.62576 10.336 5.75493 10.249 5.85645C10.1533 5.96794 10.0157 6.02441 9.87793 6.02441H1.12402C0.843846 6.02431 0.618164 5.79778 0.618164 5.51758V5.49512C0.618164 5.21332 0.823311 4.96593 1.12402 4.96582H9.85547Z"
+                                    stroke-width="0.6"
+                                  />
+                                  <path
+                                    d="M6.64941 2.12891C6.83769 2.00277 7.11122 1.99115 7.29102 2.19434L7.29297 2.19238L10.2266 5.12598L10.29 5.2041C10.4163 5.39235 10.4278 5.66584 10.2246 5.8457L10.2266 5.84766L10.2031 5.87109L10.2012 5.86914C10.0213 6.0723 9.74782 6.06082 9.55957 5.93457L9.48145 5.87109L6.54785 2.9375C6.36688 2.75636 6.31629 2.42451 6.5498 2.21777L6.54785 2.21582L6.57129 2.19238L6.64941 2.12891Z"
+                                    stroke-width="0.6"
+                                  />
+                                  <path
+                                    d="M9.55957 5.05859C9.74781 4.93237 10.0213 4.92091 10.2012 5.12402L10.2031 5.12207L10.2266 5.14551L10.2246 5.14746C10.4278 5.32731 10.4163 5.60081 10.29 5.78906L10.2266 5.86719L7.29297 8.80078L7.29102 8.79883C7.11121 9.00206 6.8377 8.99042 6.64941 8.86426L6.57129 8.80078L6.54785 8.77734L6.5498 8.77539C6.31631 8.56864 6.36687 8.23678 6.54785 8.05566L9.48145 5.12207L9.55957 5.05859Z"
+                                    stroke-width="0.6"
+                                  />
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+                            </div>
+                        </a>
+                                    </div>
+                <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <a style="display:none;"
+            class="load main-more tit-16 wow fadeInUpSmall"
+            data-wow-delay=".2s"
+          >
+            <p>加载更多</p>
+            <span>
+              <svg viewBox="0 0 12 12">
+                <g clip-path="url(#clip0_881_1352)">
+                  <path
+                    d="M6.55566 10.7515C6.55566 11.042 6.32175 11.2766 6.03125 11.2769L6.00586 11.2769L6.00586 11.2749C5.86902 11.2859 5.73429 11.251 5.62891 11.1606C5.51377 11.0619 5.45616 10.9197 5.45605 10.7769L5.45605 1.22607C5.45626 0.935701 5.69009 0.70187 5.98047 0.70166L6.00586 0.70166C6.3001 0.70166 6.55545 0.915051 6.55566 1.22607L6.55566 10.7515Z"
+                    stroke-width="0.6"
+                  />
+                  <path
+                    d="M9.65527 7.26941C9.78888 7.46905 9.79914 7.7613 9.57715 7.94617L6.38867 11.1366L6.30664 11.204C6.11029 11.3354 5.82397 11.3474 5.63867 11.1366L5.61426 11.1122C5.40343 10.9269 5.41544 10.6406 5.54687 10.4442L5.61426 10.3622L8.81445 7.16296C9.00499 6.97243 9.35456 6.91954 9.56738 7.16687L9.58789 7.18738L9.65527 7.26941Z"
+                    stroke-width="0.6"
+                  />
+                  <path
+                    d="M6.45996 10.4442C6.59234 10.6419 6.60398 10.9309 6.38867 11.1161L6.36914 11.1346C6.18385 11.3471 5.89701 11.3358 5.7002 11.204L5.61914 11.1366L2.42676 7.94421C2.2077 7.75925 2.21857 7.4682 2.35156 7.26941L2.41895 7.18738L2.43945 7.16687C2.65227 6.91943 3.0028 6.9724 3.19336 7.16296L6.39258 10.3622L6.45996 10.4442Z"
+                    stroke-width="0.6"
+                  />
+                </g>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="box2 i-news">
+        <div class="wrap">
+              
+          <div class="box4-title main-swiper wow fadeInLeftSmall">
+            <p class="tit main-tit">创新动态</p>
+
+            <div class="sub main-sub">
+              汇聚全球热点，掌握最新资讯，开启您的探索之旅
+            </div>
+
+            <div class="swiper-button-prev iNews-button-prev"></div>
+            <div class="swiper-button-next iNews-button-next"></div>
+          </div>
+
+          <div class="swiper-container iNews-swiper wow fadeInRightSmall">
+            <div class="swiper-wrapper">
+                  
+              <a href="/news_detail/18" class="swiper-slide">
+                <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202604/e14d54968567e8dee3e82750e69894ca.png" alt="" /></div>
+
+                <div class="intro">
+                  <p class="h tit-20">
+                    赛那德亮相2026LogiMAT&amp;FAIR plus 联展,以深度行业Know-how打造具身机器人新标杆
+                  </p>
+
+                  <div class="txt tit-16">
+                    
+                  </div>
+
+                  <div class="info tit-16">
+                    <p class="tag">创新动态</p>
+                    <div class="line"></div>
+                    <p class="time">2026/04/24</p>
+                  </div>
+
+                  <div class="more tit-16 lh1">
+                    <p>查看更多</p>
+                    <span>
+                      <svg viewBox="0 0 11 12">
+                        <path
+                          d="M9.85547 5.46582C10.1357 5.46582 10.3612 5.6915 10.3613 5.97168V5.99512C10.3713 6.12576 10.336 6.25493 10.249 6.35645C10.1533 6.46794 10.0157 6.52441 9.87793 6.52441H1.12402C0.843846 6.52431 0.618164 6.29778 0.618164 6.01758V5.99512C0.618164 5.71332 0.823311 5.46593 1.12402 5.46582H9.85547Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M6.64941 2.62891C6.83769 2.50277 7.11122 2.49115 7.29102 2.69434L7.29297 2.69238L10.2266 5.62598L10.29 5.7041C10.4163 5.89235 10.4278 6.16584 10.2246 6.3457L10.2266 6.34766L10.2031 6.37109L10.2012 6.36914C10.0213 6.5723 9.74782 6.56082 9.55957 6.43457L9.48145 6.37109L6.54785 3.4375C6.36688 3.25636 6.31629 2.92451 6.5498 2.71777L6.54785 2.71582L6.57129 2.69238L6.64941 2.62891Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M9.55957 5.55859C9.74781 5.43237 10.0213 5.42091 10.2012 5.62402L10.2031 5.62207L10.2266 5.64551L10.2246 5.64746C10.4278 5.82731 10.4163 6.10081 10.29 6.28906L10.2266 6.36719L7.29297 9.30078L7.29102 9.29883C7.11121 9.50206 6.8377 9.49042 6.64941 9.36426L6.57129 9.30078L6.54785 9.27734L6.5498 9.27539C6.31631 9.06864 6.36687 8.73678 6.54785 8.55566L9.48145 5.62207L9.55957 5.55859Z"
+                          stroke-width="0.6"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+                  
+              <a href="/news_detail/17" class="swiper-slide">
+                <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202603/cbe0a0bd728e380a3c10c5bf7971cddb.jpg" alt="" /></div>
+
+                <div class="intro">
+                  <p class="h tit-20">
+                    赛那德携iLoabot-M亮相德国LogiMAT物流展，以具身智能赋能全球市场拓展
+                  </p>
+
+                  <div class="txt tit-16">
+                    
+                  </div>
+
+                  <div class="info tit-16">
+                    <p class="tag">创新动态</p>
+                    <div class="line"></div>
+                    <p class="time">2026/03/27</p>
+                  </div>
+
+                  <div class="more tit-16 lh1">
+                    <p>查看更多</p>
+                    <span>
+                      <svg viewBox="0 0 11 12">
+                        <path
+                          d="M9.85547 5.46582C10.1357 5.46582 10.3612 5.6915 10.3613 5.97168V5.99512C10.3713 6.12576 10.336 6.25493 10.249 6.35645C10.1533 6.46794 10.0157 6.52441 9.87793 6.52441H1.12402C0.843846 6.52431 0.618164 6.29778 0.618164 6.01758V5.99512C0.618164 5.71332 0.823311 5.46593 1.12402 5.46582H9.85547Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M6.64941 2.62891C6.83769 2.50277 7.11122 2.49115 7.29102 2.69434L7.29297 2.69238L10.2266 5.62598L10.29 5.7041C10.4163 5.89235 10.4278 6.16584 10.2246 6.3457L10.2266 6.34766L10.2031 6.37109L10.2012 6.36914C10.0213 6.5723 9.74782 6.56082 9.55957 6.43457L9.48145 6.37109L6.54785 3.4375C6.36688 3.25636 6.31629 2.92451 6.5498 2.71777L6.54785 2.71582L6.57129 2.69238L6.64941 2.62891Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M9.55957 5.55859C9.74781 5.43237 10.0213 5.42091 10.2012 5.62402L10.2031 5.62207L10.2266 5.64551L10.2246 5.64746C10.4278 5.82731 10.4163 6.10081 10.29 6.28906L10.2266 6.36719L7.29297 9.30078L7.29102 9.29883C7.11121 9.50206 6.8377 9.49042 6.64941 9.36426L6.57129 9.30078L6.54785 9.27734L6.5498 9.27539C6.31631 9.06864 6.36687 8.73678 6.54785 8.55566L9.48145 5.62207L9.55957 5.55859Z"
+                          stroke-width="0.6"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+                  
+              <a href="/news_detail/16" class="swiper-slide">
+                <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202603/a12ce595d65ecf19cd60fa1588ed909a.jpg" alt="" /></div>
+
+                <div class="intro">
+                  <p class="h tit-20">
+                    iLoabot-X荣获2026物流技术大会创新案例奖，赛那德解码具身智能落地路径
+                  </p>
+
+                  <div class="txt tit-16">
+                    
+                  </div>
+
+                  <div class="info tit-16">
+                    <p class="tag">创新动态</p>
+                    <div class="line"></div>
+                    <p class="time">2026/03/26</p>
+                  </div>
+
+                  <div class="more tit-16 lh1">
+                    <p>查看更多</p>
+                    <span>
+                      <svg viewBox="0 0 11 12">
+                        <path
+                          d="M9.85547 5.46582C10.1357 5.46582 10.3612 5.6915 10.3613 5.97168V5.99512C10.3713 6.12576 10.336 6.25493 10.249 6.35645C10.1533 6.46794 10.0157 6.52441 9.87793 6.52441H1.12402C0.843846 6.52431 0.618164 6.29778 0.618164 6.01758V5.99512C0.618164 5.71332 0.823311 5.46593 1.12402 5.46582H9.85547Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M6.64941 2.62891C6.83769 2.50277 7.11122 2.49115 7.29102 2.69434L7.29297 2.69238L10.2266 5.62598L10.29 5.7041C10.4163 5.89235 10.4278 6.16584 10.2246 6.3457L10.2266 6.34766L10.2031 6.37109L10.2012 6.36914C10.0213 6.5723 9.74782 6.56082 9.55957 6.43457L9.48145 6.37109L6.54785 3.4375C6.36688 3.25636 6.31629 2.92451 6.5498 2.71777L6.54785 2.71582L6.57129 2.69238L6.64941 2.62891Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M9.55957 5.55859C9.74781 5.43237 10.0213 5.42091 10.2012 5.62402L10.2031 5.62207L10.2266 5.64551L10.2246 5.64746C10.4278 5.82731 10.4163 6.10081 10.29 6.28906L10.2266 6.36719L7.29297 9.30078L7.29102 9.29883C7.11121 9.50206 6.8377 9.49042 6.64941 9.36426L6.57129 9.30078L6.54785 9.27734L6.5498 9.27539C6.31631 9.06864 6.36687 8.73678 6.54785 8.55566L9.48145 5.62207L9.55957 5.55859Z"
+                          stroke-width="0.6"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+                  
+              <a href="/news_detail/13" class="swiper-slide">
+                <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202511/72ef63b35b678f3db9adb483e5d5c152.jpg" alt="" /></div>
+
+                <div class="intro">
+                  <p class="h tit-20">
+                    2025 CeMAT ASIA 聚焦：iLoabot 联动升级，柔性化自主装卸作业赋能物流新质生产力
+                  </p>
+
+                  <div class="txt tit-16">
+                    
+                  </div>
+
+                  <div class="info tit-16">
+                    <p class="tag">创新动态</p>
+                    <div class="line"></div>
+                    <p class="time">2025/11/01</p>
+                  </div>
+
+                  <div class="more tit-16 lh1">
+                    <p>查看更多</p>
+                    <span>
+                      <svg viewBox="0 0 11 12">
+                        <path
+                          d="M9.85547 5.46582C10.1357 5.46582 10.3612 5.6915 10.3613 5.97168V5.99512C10.3713 6.12576 10.336 6.25493 10.249 6.35645C10.1533 6.46794 10.0157 6.52441 9.87793 6.52441H1.12402C0.843846 6.52431 0.618164 6.29778 0.618164 6.01758V5.99512C0.618164 5.71332 0.823311 5.46593 1.12402 5.46582H9.85547Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M6.64941 2.62891C6.83769 2.50277 7.11122 2.49115 7.29102 2.69434L7.29297 2.69238L10.2266 5.62598L10.29 5.7041C10.4163 5.89235 10.4278 6.16584 10.2246 6.3457L10.2266 6.34766L10.2031 6.37109L10.2012 6.36914C10.0213 6.5723 9.74782 6.56082 9.55957 6.43457L9.48145 6.37109L6.54785 3.4375C6.36688 3.25636 6.31629 2.92451 6.5498 2.71777L6.54785 2.71582L6.57129 2.69238L6.64941 2.62891Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M9.55957 5.55859C9.74781 5.43237 10.0213 5.42091 10.2012 5.62402L10.2031 5.62207L10.2266 5.64551L10.2246 5.64746C10.4278 5.82731 10.4163 6.10081 10.29 6.28906L10.2266 6.36719L7.29297 9.30078L7.29102 9.29883C7.11121 9.50206 6.8377 9.49042 6.64941 9.36426L6.57129 9.30078L6.54785 9.27734L6.5498 9.27539C6.31631 9.06864 6.36687 8.73678 6.54785 8.55566L9.48145 5.62207L9.55957 5.55859Z"
+                          stroke-width="0.6"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+                  
+              <a href="/news_detail/14" class="swiper-slide">
+                <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202511/069822db7c7884005581b1c286e53673.jpg" alt="" /></div>
+
+                <div class="intro">
+                  <p class="h tit-20">
+                    iLoabot 全系亮相 2025 工博会！自主装卸作业机器人破解工业场景 “最后 20 米” 物流难题
+                  </p>
+
+                  <div class="txt tit-16">
+                    iLoabot 全系亮相 2025 工博会！自主装卸作业机器人破解工业场景 “最后 20 米” 物流难题
+                  </div>
+
+                  <div class="info tit-16">
+                    <p class="tag">创新动态</p>
+                    <div class="line"></div>
+                    <p class="time">2025/09/27</p>
+                  </div>
+
+                  <div class="more tit-16 lh1">
+                    <p>查看更多</p>
+                    <span>
+                      <svg viewBox="0 0 11 12">
+                        <path
+                          d="M9.85547 5.46582C10.1357 5.46582 10.3612 5.6915 10.3613 5.97168V5.99512C10.3713 6.12576 10.336 6.25493 10.249 6.35645C10.1533 6.46794 10.0157 6.52441 9.87793 6.52441H1.12402C0.843846 6.52431 0.618164 6.29778 0.618164 6.01758V5.99512C0.618164 5.71332 0.823311 5.46593 1.12402 5.46582H9.85547Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M6.64941 2.62891C6.83769 2.50277 7.11122 2.49115 7.29102 2.69434L7.29297 2.69238L10.2266 5.62598L10.29 5.7041C10.4163 5.89235 10.4278 6.16584 10.2246 6.3457L10.2266 6.34766L10.2031 6.37109L10.2012 6.36914C10.0213 6.5723 9.74782 6.56082 9.55957 6.43457L9.48145 6.37109L6.54785 3.4375C6.36688 3.25636 6.31629 2.92451 6.5498 2.71777L6.54785 2.71582L6.57129 2.69238L6.64941 2.62891Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M9.55957 5.55859C9.74781 5.43237 10.0213 5.42091 10.2012 5.62402L10.2031 5.62207L10.2266 5.64551L10.2246 5.64746C10.4278 5.82731 10.4163 6.10081 10.29 6.28906L10.2266 6.36719L7.29297 9.30078L7.29102 9.29883C7.11121 9.50206 6.8377 9.49042 6.64941 9.36426L6.57129 9.30078L6.54785 9.27734L6.5498 9.27539C6.31631 9.06864 6.36687 8.73678 6.54785 8.55566L9.48145 5.62207L9.55957 5.55859Z"
+                          stroke-width="0.6"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+                  
+              <a href="/news_detail/12" class="swiper-slide">
+                <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202508/292cc67aa16c52e53457ccfc2f2f5b69.png" alt="" /></div>
+
+                <div class="intro">
+                  <p class="h tit-20">
+                    赛那德 iLoabot-X首秀WRC2025：VLA智能大脑赋能，加速具身机器人商业化进程
+                  </p>
+
+                  <div class="txt tit-16">
+                    8 月 12 日，以 “让机器人更智慧，让具身更智能” 为主题的世界机器人大会（WRC）在北京圆满收官。
+                  </div>
+
+                  <div class="info tit-16">
+                    <p class="tag">创新动态</p>
+                    <div class="line"></div>
+                    <p class="time">2025/08/12</p>
+                  </div>
+
+                  <div class="more tit-16 lh1">
+                    <p>查看更多</p>
+                    <span>
+                      <svg viewBox="0 0 11 12">
+                        <path
+                          d="M9.85547 5.46582C10.1357 5.46582 10.3612 5.6915 10.3613 5.97168V5.99512C10.3713 6.12576 10.336 6.25493 10.249 6.35645C10.1533 6.46794 10.0157 6.52441 9.87793 6.52441H1.12402C0.843846 6.52431 0.618164 6.29778 0.618164 6.01758V5.99512C0.618164 5.71332 0.823311 5.46593 1.12402 5.46582H9.85547Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M6.64941 2.62891C6.83769 2.50277 7.11122 2.49115 7.29102 2.69434L7.29297 2.69238L10.2266 5.62598L10.29 5.7041C10.4163 5.89235 10.4278 6.16584 10.2246 6.3457L10.2266 6.34766L10.2031 6.37109L10.2012 6.36914C10.0213 6.5723 9.74782 6.56082 9.55957 6.43457L9.48145 6.37109L6.54785 3.4375C6.36688 3.25636 6.31629 2.92451 6.5498 2.71777L6.54785 2.71582L6.57129 2.69238L6.64941 2.62891Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M9.55957 5.55859C9.74781 5.43237 10.0213 5.42091 10.2012 5.62402L10.2031 5.62207L10.2266 5.64551L10.2246 5.64746C10.4278 5.82731 10.4163 6.10081 10.29 6.28906L10.2266 6.36719L7.29297 9.30078L7.29102 9.29883C7.11121 9.50206 6.8377 9.49042 6.64941 9.36426L6.57129 9.30078L6.54785 9.27734L6.5498 9.27539C6.31631 9.06864 6.36687 8.73678 6.54785 8.55566L9.48145 5.62207L9.55957 5.55859Z"
+                          stroke-width="0.6"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+                  
+              <a href="/news_detail/1" class="swiper-slide">
+                <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/ec1f94bd98ecd72a6d4d31890950a1ac.png" alt="" /></div>
+
+                <div class="intro">
+                  <p class="h tit-20">
+                    2025（第十届）物流技术大会 | iLoabot系列机器人获创新案例奖，具身智能重构物流新质生产力
+                  </p>
+
+                  <div class="txt tit-16">
+                    2025（第十届）物流技术大会于2025年2月26日至28日在湖州龙之梦钻石中心盛大启幕。这场行业盛会聚焦物流技术前沿，成为物流行业迈向新质生产力时代的关键交流平台，众多企业携物流创新“黑科技”亮相。
+                  </div>
+
+                  <div class="info tit-16">
+                    <p class="tag">创新动态</p>
+                    <div class="line"></div>
+                    <p class="time">2025/03/01</p>
+                  </div>
+
+                  <div class="more tit-16 lh1">
+                    <p>查看更多</p>
+                    <span>
+                      <svg viewBox="0 0 11 12">
+                        <path
+                          d="M9.85547 5.46582C10.1357 5.46582 10.3612 5.6915 10.3613 5.97168V5.99512C10.3713 6.12576 10.336 6.25493 10.249 6.35645C10.1533 6.46794 10.0157 6.52441 9.87793 6.52441H1.12402C0.843846 6.52431 0.618164 6.29778 0.618164 6.01758V5.99512C0.618164 5.71332 0.823311 5.46593 1.12402 5.46582H9.85547Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M6.64941 2.62891C6.83769 2.50277 7.11122 2.49115 7.29102 2.69434L7.29297 2.69238L10.2266 5.62598L10.29 5.7041C10.4163 5.89235 10.4278 6.16584 10.2246 6.3457L10.2266 6.34766L10.2031 6.37109L10.2012 6.36914C10.0213 6.5723 9.74782 6.56082 9.55957 6.43457L9.48145 6.37109L6.54785 3.4375C6.36688 3.25636 6.31629 2.92451 6.5498 2.71777L6.54785 2.71582L6.57129 2.69238L6.64941 2.62891Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M9.55957 5.55859C9.74781 5.43237 10.0213 5.42091 10.2012 5.62402L10.2031 5.62207L10.2266 5.64551L10.2246 5.64746C10.4278 5.82731 10.4163 6.10081 10.29 6.28906L10.2266 6.36719L7.29297 9.30078L7.29102 9.29883C7.11121 9.50206 6.8377 9.49042 6.64941 9.36426L6.57129 9.30078L6.54785 9.27734L6.5498 9.27539C6.31631 9.06864 6.36687 8.73678 6.54785 8.55566L9.48145 5.62207L9.55957 5.55859Z"
+                          stroke-width="0.6"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+                  
+              <a href="/news_detail/8" class="swiper-slide">
+                <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/39870db0adc300e5978eb39ddbed2744.png" alt="" /></div>
+
+                <div class="intro">
+                  <p class="h tit-20">
+                    国内机器人行业首家丨赛那德通过国际OIML认证，传递信任！
+                  </p>
+
+                  <div class="txt tit-16">
+                    国际法制计量组织(OIML)是于1955年成立的一个从事法制计量工作的政府间国际组织，其主要任务是：
+                  </div>
+
+                  <div class="info tit-16">
+                    <p class="tag">创新动态</p>
+                    <div class="line"></div>
+                    <p class="time">2024/08/15</p>
+                  </div>
+
+                  <div class="more tit-16 lh1">
+                    <p>查看更多</p>
+                    <span>
+                      <svg viewBox="0 0 11 12">
+                        <path
+                          d="M9.85547 5.46582C10.1357 5.46582 10.3612 5.6915 10.3613 5.97168V5.99512C10.3713 6.12576 10.336 6.25493 10.249 6.35645C10.1533 6.46794 10.0157 6.52441 9.87793 6.52441H1.12402C0.843846 6.52431 0.618164 6.29778 0.618164 6.01758V5.99512C0.618164 5.71332 0.823311 5.46593 1.12402 5.46582H9.85547Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M6.64941 2.62891C6.83769 2.50277 7.11122 2.49115 7.29102 2.69434L7.29297 2.69238L10.2266 5.62598L10.29 5.7041C10.4163 5.89235 10.4278 6.16584 10.2246 6.3457L10.2266 6.34766L10.2031 6.37109L10.2012 6.36914C10.0213 6.5723 9.74782 6.56082 9.55957 6.43457L9.48145 6.37109L6.54785 3.4375C6.36688 3.25636 6.31629 2.92451 6.5498 2.71777L6.54785 2.71582L6.57129 2.69238L6.64941 2.62891Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M9.55957 5.55859C9.74781 5.43237 10.0213 5.42091 10.2012 5.62402L10.2031 5.62207L10.2266 5.64551L10.2246 5.64746C10.4278 5.82731 10.4163 6.10081 10.29 6.28906L10.2266 6.36719L7.29297 9.30078L7.29102 9.29883C7.11121 9.50206 6.8377 9.49042 6.64941 9.36426L6.57129 9.30078L6.54785 9.27734L6.5498 9.27539C6.31631 9.06864 6.36687 8.73678 6.54785 8.55566L9.48145 5.62207L9.55957 5.55859Z"
+                          stroke-width="0.6"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+                  
+              <a href="/news_detail/2" class="swiper-slide">
+                <div class="pic"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/9eaf38fb7d3ed67f9829b0356b88d93b.png" alt="" /></div>
+
+                <div class="intro">
+                  <p class="h tit-20">
+                    【新华网】自主装卸货！国产智能机器人在上海交付使用
+                  </p>
+
+                  <div class="txt tit-16">
+                    近日，一款可以自主装卸货的机器人——iLoabot-M从赛那德上海工厂下线并投入使用。
+                  </div>
+
+                  <div class="info tit-16">
+                    <p class="tag">创新动态</p>
+                    <div class="line"></div>
+                    <p class="time">2024/03/18</p>
+                  </div>
+
+                  <div class="more tit-16 lh1">
+                    <p>查看更多</p>
+                    <span>
+                      <svg viewBox="0 0 11 12">
+                        <path
+                          d="M9.85547 5.46582C10.1357 5.46582 10.3612 5.6915 10.3613 5.97168V5.99512C10.3713 6.12576 10.336 6.25493 10.249 6.35645C10.1533 6.46794 10.0157 6.52441 9.87793 6.52441H1.12402C0.843846 6.52431 0.618164 6.29778 0.618164 6.01758V5.99512C0.618164 5.71332 0.823311 5.46593 1.12402 5.46582H9.85547Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M6.64941 2.62891C6.83769 2.50277 7.11122 2.49115 7.29102 2.69434L7.29297 2.69238L10.2266 5.62598L10.29 5.7041C10.4163 5.89235 10.4278 6.16584 10.2246 6.3457L10.2266 6.34766L10.2031 6.37109L10.2012 6.36914C10.0213 6.5723 9.74782 6.56082 9.55957 6.43457L9.48145 6.37109L6.54785 3.4375C6.36688 3.25636 6.31629 2.92451 6.5498 2.71777L6.54785 2.71582L6.57129 2.69238L6.64941 2.62891Z"
+                          stroke-width="0.6"
+                        />
+                        <path
+                          d="M9.55957 5.55859C9.74781 5.43237 10.0213 5.42091 10.2012 5.62402L10.2031 5.62207L10.2266 5.64551L10.2246 5.64746C10.4278 5.82731 10.4163 6.10081 10.29 6.28906L10.2266 6.36719L7.29297 9.30078L7.29102 9.29883C7.11121 9.50206 6.8377 9.49042 6.64941 9.36426L6.57129 9.30078L6.54785 9.27734L6.5498 9.27539C6.31631 9.06864 6.36687 8.73678 6.54785 8.55566L9.48145 5.62207L9.55957 5.55859Z"
+                          stroke-width="0.6"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+                  
+            </div>
+          </div>
+                  </div>
+      </div>
+
+              
+      <div class="box3 data-download">
+        <div class="wrap w1620">
+          <p class="tit main-tit tac wow fadeInUpSmall">资料下载</p>
+
+          <div class="li-box tit-20">
+              
+            <a
+              href="uploads/files/202511/22e77d7d94578ec4504d7dccc46cfc67.zip"
+              download
+              class="li wow fadeInRightSmall"
+              data-wow-delay=".2s"
+            >
+              <div class="icon"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/57.png" alt="" /></div>
+              <p class="h"></p>
+
+              <div class="down"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/56.png" alt="" /></div>
+            </a>
+                      </div>
+        </div>
+      </div>
+          </div>
+
+       <div id="footer">
+      <div class="footer">
+        <div class="wrap w1620">
+          <div class="top">
+            <div class="info">
+              <div class="logo"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/dfa760ba2f671c36f55c4eda0b039fbe.svg" alt="" /></div>
+              <p class="tel tit-26">021 5991 9555</p>
+              <p class="time tit-16">周一到周日 0:00-24:00</p>
+              <p class="address tit-16">地址 : 上海市嘉定区惠亚路117号5栋</p>
+            </div>
+
+            <div class="nav">
+                  
+              <div class="item tit-16">
+                <a href="/robot" class="tit-18">具身智能机器人</a>
+                                                                <a href="/robot_detail/1">iLoabot-M</a>
+                                                                <a href="/robot_detail/5">iLoabot-Pro</a>
+                                                                <a href="/robot_detail/3">iLoabot-X</a>
+                                                                <a href="/robot_detail/4">iLoabot-Ultra</a>
+                                                              </div>
+                  
+              <div class="item tit-16">
+                <a href="/vision" class="tit-18">视觉产品</a>
+                                                                <a href="/vision_detail/1">单件分离设备</a>
+                                                                <a href="/vision_detail/5">AI动态读码称重体积测量设备（AI-DWS）</a>
+                                                                <a href="/vision_detail/4">高精度静态读码称重体积检测设备</a>
+                                                                <a href="/vision_detail/3">电商标准套</a>
+                                                              </div>
+                  
+              <div class="item tit-16">
+                <a href="/solution/2" class="tit-18">解决方案</a>
+                                                                <a href="/solution/2">智慧工厂</a>
+                                                                <a href="/solution/5">智慧仓储</a>
+                                                                <a href="/solution/4">智慧物流</a>
+                                                              </div>
+                  
+              <div class="item tit-16">
+                <a href="/brand" class="tit-18">品牌优势</a>
+                                                                <a href="/brand#box5">技术创新</a>
+                                                                <a href="/brand#box4">全球服务</a>
+                                                              </div>
+                  
+              <div class="item tit-16">
+                <a href="/about" class="tit-18">走进赛那德</a>
+                                                                <a href="/about">关于我们</a>
+                                                                <a href="/join">招贤纳士</a>
+                                                                <a href="/news/1">创新动态</a>
+                                                              </div>
+                  
+              <div class="item tit-16">
+                <a href="/source/0" class="tit-18">资源中心</a>
+                                                                <a href="/source/0#d1">产品手册</a>
+                                                                <a class="con-btn">留言表单</a>
+                                                              </div>
+                          </div>
+          </div>
+
+          <div class="btm">
+            <div class="copyright tit-14">
+             <div class="span_cont">
+                  <a href="" class="span">Copyright  ©  2025 赛那德科技有限公司</a>
+                  <a href="https://beian.miit.gov.cn/" target="_blank" class="span">沪ICP备13023138号-6 浙公网安备33048302001101号</a>
+             </div>
+             <div class="wzdt_cont">
+                  <a href="/map">网站地图</a>
+                  <a href="/ystk">隐私条款</a>
+                  <a href="/flsm">法律声明</a>
+                  <a href="https://www.givegroup.cn/">技术支持</a>
+                  <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1281419247'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z.js%3Fid%3D1281419247%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+             </div>
+            </div>
+
+            <div class="share">
+                  
+              <a class="share_box" href="https://www.douyin.com/user/MS4wLjABAAAAwwOuqX3J_cGS9erDmPkgojVKg_gKrzafP5-IIZkK8wM">
+                  <img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/2d5ca58a9cd89e1e0ffe11bc3f7618c2.svg" alt="" />
+                                 
+              <a class="share_box" href="#">
+                  <img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/e77cb86dc4b3ec8e8ef04c05ae550b44.svg" alt="" />
+                               <div class="EWM_down">
+                    <img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/7636e134c89f20efbcfbc1851219087b.jpg" alt="">
+                </div>
+              </a>
+                                        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fix-bar">
+        <div  class="li con-btn">
+          <img src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/17.png" alt="" />
+        </div>
+
+        <div class="li TEL">
+          <img src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/18.png" alt="" />
+          <div class="EWM_down phone">
+              021 5991 9555
+            </div>
+        </div>
+
+        <div class="li EWM">
+            <img src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/19.png" alt="" />
+            
+            <div class="EWM_down">
+              <div class="img">
+                  <img src="https://senad.oss-rg-china-mainland.aliyuncs.com/uploads/images/202505/6b099e286b7f4e2ae057811dbef92c20.jpg" alt="">
+              </div>
+            </div>
+        </div>
+
+        <div class="li back-top BACK_TOP">
+          <img src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/20.png" alt="" />
+        </div>
+      </div>
+
+      <div id="vid-dialog" class="vid-dialog out">
+        <div class="tbox">
+          <div class="modal">
+            <div class="out alltime"></div>
+            <div class="img">
+              <video src="/" controls></video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="con-dialog">
+        <div
+                class="container pos-center img-cover"
+                style="background-image: url(https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/15.jpg)"
+        >
+          <div class="close"><img src="https://senad.oss-rg-china-mainland.aliyuncs.com/static/img/14.png" alt="" /></div>
+
+          <p class="tit tit-32">
+            欢迎您随时联系我们
+          </p>
+
+          <form id="form" action="/message" method="post" class="form tit-16">
+              <input type="hidden" name="_token" value="3xvECbCsK3YRgRUw1PwomPklArnUztnkL2k2OVNL">            <div class="lf">
+              <div class="li">
+                <div class="h">
+                  <span>*</span>
+                  姓名
+                </div>
+
+                <input
+                        type="text"
+                        name="title"
+                        id="name"
+                        placeholder="请输入您的姓名"
+                />
+              </div>
+
+              <div class="li">
+                <div class="h">
+                  <span>*</span>
+                  公司
+                </div>
+
+                <input
+                        type="text"
+                        name="company"
+                        id="company"
+                        placeholder="请输入您的公司"
+                />
+              </div>
+
+              <div class="li">
+                <div class="h">
+                  <span>*</span>
+                  手机
+                </div>
+
+                <input
+                        type="text"
+                        name="phone"
+                        id="phone"
+                        placeholder="请输入您的手机号"
+                />
+              </div>
+
+              <div class="li">
+                <div class="h">电子邮箱</div>
+
+                <input
+                        type="text"
+                        name="email"
+                        id="email"
+                        placeholder="请输入您的电子邮箱"
+                />
+              </div>
+
+              <div class="li">
+                <div class="h">行业</div>
+
+                <input
+                        type="text"
+                        name="hangye"
+                        id="industry"
+                        placeholder="请输入您的行业"
+                />
+              </div>
+
+              <div class="li">
+                <div class="h">职位</div>
+
+                <input
+                        type="text"
+                        name="zhiwei"
+                        id="position"
+                        placeholder="请输入您的职位"
+                />
+              </div>
+              <div class="li">
+                <div class="h">您是通过什么渠道了解到我们品牌的?</div>
+
+                <input
+                        type="text"
+                        name="message"
+                        id="position"
+                        placeholder="请输入"
+                />
+              </div>
+            </div>
+
+            <div class="rg">
+              <div class="h">需求</div>
+
+              <textarea
+                      name="content"
+                      id="remark"
+                      placeholder="请输入您的需求描述"
+              ></textarea>
+            </div>
+
+            <div class="btm">
+              <div class="agree active">
+                <span></span>
+                已阅读并同意
+                <a href="/ystk">隐私政策</a>
+              </div>
+
+              <input type="submit" value="提交" class="submit" />
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+        
+        
+        
+
+<script>
+
+
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+if (isMobile) {
+  
+
+    
+    // let trans = $(".iNews-swiper .swiper-slide").eq(1).width() - 25;
+
+    var iNewsSwiper = new Swiper(".iNews-swiper", {
+        speed: 1000,
+        // slidesOffsetBefore: -trans,
+        slidesPerView: "auto",
+        watchOverflow: true,
+        // centeredSlides: true,
+        navigation: {
+          nextEl: ".iNews-button-next",
+          prevEl: ".iNews-button-prev",
+        },
+    });
+    var box1 = new Swiper(".main-robot .li-box .swiper", {
+        speed:1000,
+        // initialSlide:0,
+        slidesPerView:1,
+        watchOverflow: true,
+        spaceBetween:70,
+        centeredSlides: true,
+        navigation: {
+            nextEl: ".box1-button-next",
+            prevEl: ".box1-button-prev",
+        },
+        pagination: {
+            el: '.main-robot .li-box .swiper-pagination',
+            clickable: true,
+        },
+    })
+   
+} else {
+
+
+    var box1 = new Swiper(".main-robot .li-box .swiper", {
+        speed:1000,
+        initialSlide:0,
+        loop:true,
+        // slidesOffsetBefore: -box1Trans,
+        slidesPerView:"auto",
+        // spaceBetween:70,
+        // centeredSlides: true,
+        navigation: {
+            nextEl: ".box1-button-next",
+            prevEl: ".box1-button-prev",
+        },
+        pagination: {
+            el: '.main-robot .li-box .swiper-pagination',
+            clickable: true,
+        },
+    })
+    let trans = $(".iNews-swiper .swiper-slide").eq(1).width() - 30;
+
+    var iNewsSwiper = new Swiper(".iNews-swiper", {
+        speed: 1000,
+        slidesOffsetBefore: -trans,
+        slidesPerView: "auto",
+        watchOverflow: true,
+        centeredSlides: true,
+        navigation: {
+          nextEl: ".iNews-button-next",
+          prevEl: ".iNews-button-prev",
+        },
+    });
+
+
+}
+
+
+
+</script>
+  </html>
