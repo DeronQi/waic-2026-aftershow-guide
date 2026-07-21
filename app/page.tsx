@@ -13,14 +13,12 @@ import {
   globalSources,
   glossary,
   magazineExhibits,
-  statusDefinitions,
   type ChangeStory,
   type Chapter,
 } from "./magazine-data";
 
 type PageKind =
   | "cover"
-  | "reading-note"
   | "contents"
   | "change-index"
   | "change"
@@ -31,7 +29,7 @@ type PageKind =
   | "exhibit-index"
   | "exhibit"
   | "exhibitor-index"
-  | "glossary-method"
+  | "glossary"
   | "sources";
 
 type PageEntry = {
@@ -43,7 +41,6 @@ type PageEntry = {
 
 const pageEntries: PageEntry[] = [
   { slug: "cover", label: "封面", kind: "cover" },
-  { slug: "reading-note", label: "阅读说明", kind: "reading-note" },
   { slug: "contents", label: "总目录", kind: "contents" },
   { slug: "executive-summary", label: "执行摘要", kind: "change-index" },
   ...changes.map((item, dataIndex) => ({ slug: `shift-${item.slug}`, label: item.title, kind: "change" as const, dataIndex })),
@@ -54,7 +51,7 @@ const pageEntries: PageEntry[] = [
   { slug: "exhibits", label: "重点展品索引", kind: "exhibit-index" },
   ...magazineExhibits.map((item, dataIndex) => ({ slug: `exhibit-${String(dataIndex + 1).padStart(2, "0")}`, label: `${item.vendor} · ${item.title}`, kind: "exhibit" as const, dataIndex })),
   { slug: "exhibitor-index", label: "展商索引", kind: "exhibitor-index" },
-  { slug: "glossary-method", label: "术语与方法", kind: "glossary-method" },
+  { slug: "glossary", label: "核心术语", kind: "glossary" },
   { slug: "sources", label: "来源与延伸阅读", kind: "sources" },
 ];
 
@@ -79,7 +76,7 @@ const railItems = [
 ] as const;
 
 const contentsItems = [
-  ["executive-summary", "01", "执行摘要", "五项变化、20 个不可错过与三项保留判断"],
+  ["executive-summary", "01", "执行摘要", "五项结构变化与 20 个不可错过项目"],
   ["panorama", "02", "大会全景", "规模、三地四馆与 2025→2026 热点迁移"],
   ["compute", "03", "算力、芯片与基础设施", "超节点、国产芯片、绿色算力"],
   ["models-agents", "04", "模型、世界模型与智能体", "多模态、通用智能体与专业智能体"],
@@ -87,8 +84,8 @@ const contentsItems = [
   ["devices", "06", "AI 原生终端", "手机、眼镜、耳机与陪伴硬件"],
   ["industry", "07", "行业应用", "AI4S、工业、能源、医疗教育与安全"],
   ["ecosystem-governance", "08", "学术、生态与治理", "WAIC Academic、SAIL、OPC 与全球合作"],
-  ["comparison-1", "09", "跨厂商对比与推荐", "六张核心表、三类读者与 S/A/B 评级"],
-  ["exhibitor-index", "10", "附录", "展商索引、资料卡、术语、来源与方法"],
+  ["comparison-1", "09", "跨厂商对比与推荐", "六张核心表与三类读者精选路线"],
+  ["exhibitor-index", "10", "附录", "重点展商、核心术语与延伸阅读"],
 ] as const;
 
 function indexOfSlug(slug: string) {
@@ -137,7 +134,7 @@ function CoverPage({ number, goToPage }: { number: number; goToPage: (page: numb
           <h1>WAIC<br />2026</h1>
           <h2>从模型竞赛<br />到智能伙伴</h2>
           <p>新品与产业亮点全景</p>
-          <button type="button" className="cover-start" onClick={() => goToPage(indexOfSlug("reading-note"))}>开始阅读 <span>→</span></button>
+          <button type="button" className="cover-start" onClick={() => goToPage(indexOfSlug("contents"))}>开始阅读 <span>→</span></button>
         </div>
         <div className="cover-side">
           <figure><img src="images/editorial/event-waic.jpg" alt="WAIC 2026 展馆现场" /><figcaption>SHANGHAI · 17—20 JUL 2026</figcaption></figure>
@@ -149,36 +146,6 @@ function CoverPage({ number, goToPage }: { number: number; goToPage: (page: numb
           </div>
           <p>按算力、模型、智能体、具身智能、终端、行业应用与治理完整重构。</p>
         </div>
-      </div>
-    </PageShell>
-  );
-}
-
-function ReadingNotePage({ number }: { number: number }) {
-  return (
-    <PageShell number={number} kicker="HOW TO READ" title="阅读说明" className="reading-note-page">
-      <div className="reading-layout">
-        <article className="reading-intro">
-          <span>EDITOR&apos;S NOTE</span>
-          <h2>先分清<br />“发布”与“落地”</h2>
-          <p>本刊把大会信息放回产业链和成熟度中阅读。厂商的“全球首个”“领先”保留为发布主体口径；现场 Demo 只证明当时条件下能够运行，不自动推导为无人值守、跨场景泛化或规模部署。</p>
-          <div className="retained-judgements">
-            <b>三项保留判断</b>
-            <ol>
-              <li>领先与首创仍以厂商口径为主。</li>
-              <li>Demo 成功不等于规模部署。</li>
-              <li>首发很多，价格、交付与客户证据仍不足。</li>
-            </ol>
-          </div>
-        </article>
-        <section className="status-panel">
-          <div className="panel-title"><span>六种状态</span><b>统一定义</b></div>
-          <div className="status-grid">
-            {statusDefinitions.map(([name, definition], index) => (
-              <article key={name}><span>{String(index + 1).padStart(2, "0")}</span><h3>{name}</h3><p>{definition}</p></article>
-            ))}
-          </div>
-        </section>
       </div>
     </PageShell>
   );
@@ -291,7 +258,6 @@ function ChapterPage({ number, chapter, goToPage }: { number: number; chapter: C
                 <ul>{section.points.map((point) => <li key={point}>{point}</li>)}</ul>
               </section>
             ))}
-            <section className="watch-box"><span>继续追问</span><ul>{chapter.watch.map((item) => <li key={item}>{item}</li>)}</ul></section>
           </div>
           <div className="detail-actions">
             <button type="button" className="index-return" onClick={() => goToPage(indexOfSlug("contents"))}>← 返回目录</button>
@@ -327,7 +293,7 @@ function ComparisonPage({ number, index }: { number: number; index: number }) {
 function RecommendationsPage({ number }: { number: number }) {
   return (
     <PageShell number={number} kicker="09.3 / RECOMMENDATIONS" title="三类读者的推荐清单" className="recommendations-page">
-      <div className="recommendation-heading"><span>WHO SHOULD SEE WHAT</span><h2>三类读者，不同路线</h2><p>推荐不做虚假精确总分。最终评级采用 S / A / B 三档，分别考察新颖性、可演示性、产业代表性、商业成熟度和信息可信度，并给出一句话理由。</p></div>
+      <div className="recommendation-heading"><span>WHO SHOULD SEE WHAT</span><h2>三类读者，不同路线</h2><p>产业决策者、技术从业者和普通消费者关注的重点并不相同。以下三条路线按使用目的组织，从底层系统、生产工具一路延伸到贴身终端。</p></div>
       <div className="audience-grid">
         {audienceRecommendations.map((group, index) => (
           <section key={group.audience}><header><span>0{index + 1}</span><h3>{group.audience}</h3><p>{group.lead}</p></header><ol>{group.items.map((item) => <li key={item}>{item}</li>)}</ol></section>
@@ -340,7 +306,7 @@ function RecommendationsPage({ number }: { number: number }) {
 function ExhibitIndexPage({ number, goToPage }: { number: number; goToPage: (page: number) => void }) {
   return (
     <PageShell number={number} kicker="SELECTED EXHIBITS" title="重点展品索引" className="exhibit-index-page">
-      <div className="index-heading compact-heading"><span>FIELD NOTES</span><h2>重点展品索引</h2><p>{magazineExhibits.length} 项重点展品，全部配有独立图片、状态说明、技术解读、产业意义与待验证边界。</p></div>
+      <div className="index-heading compact-heading"><span>FIELD NOTES</span><h2>重点展品索引</h2><p>{magazineExhibits.length} 项重点展品，全部配有独立图片、产品状态、技术解读与产业意义。</p></div>
       <div className="exhibit-index-grid expanded-index">
         {magazineExhibits.map((item, index) => (
           <button type="button" key={`${item.vendor}-${item.title}`} onClick={() => goToPage(indexOfSlug(`exhibit-${String(index + 1).padStart(2, "0")}`))}>
@@ -375,7 +341,6 @@ function ExhibitDetailPage({ number, index, goToPage }: { number: number; index:
             <div className="maturity-strip"><span>大会状态 <b>{meta.status}</b></span><span>成熟度 <b>{meta.maturity}</b></span></div>
             <div className="section-list">
               {item.details.map((section) => <section key={section.heading}><h3>{section.heading}</h3><p>{section.body}</p></section>)}
-              <section><h3>阅读边界</h3><p>产品参数、效果和“领先”表述以发布主体口径为准；现场展示能够证明产品方向和当时条件下的运行结果，但价格、交付、客户规模与长期稳定性仍应持续核实。</p></section>
             </div>
           </div>
           <div className="detail-actions">
@@ -391,25 +356,21 @@ function ExhibitDetailPage({ number, index, goToPage }: { number: number; index:
 function ExhibitorIndexPage({ number }: { number: number }) {
   return (
     <PageShell number={number} kicker="10.1 / EXHIBITOR INDEX" title="重点展商与单位索引" className="appendix-page exhibitor-list-page">
-      <div className="appendix-heading"><span>APPENDIX A</span><div><h2>重点展商与单位索引</h2><p>按大纲汇总已进入正文或后续可继续扩展的单位。完整 1100 余家官方名录原图保留在仓库研究资料中，不作为发布站点的过程附件展示。</p></div></div>
+      <div className="appendix-heading"><span>APPENDIX A</span><div><h2>重点展商与单位索引</h2><p>从算力底座到消费终端，按赛道汇集本刊重点提及的厂商与单位，便于快速查找。</p></div></div>
       <div className="exhibitor-table" role="table" aria-label="重点展商与单位索引">
-        <div className="exhibitor-row table-head" role="row"><b>厂商 / 单位</b><b>赛道</b><b>主要展品</b><b>正文状态</b></div>
-        {exhibitorIndex.map(([vendor, track, product, state]) => <div className="exhibitor-row" role="row" key={`${vendor}-${product}`}><span>{vendor}</span><span>{track}</span><span>{product}</span><span>{state}</span></div>)}
+        <div className="exhibitor-row table-head" role="row"><b>厂商 / 单位</b><b>赛道</b><b>主要展品</b></div>
+        {exhibitorIndex.map(([vendor, track, product]) => <div className="exhibitor-row" role="row" key={`${vendor}-${product}`}><span>{vendor}</span><span>{track}</span><span>{product}</span></div>)}
       </div>
     </PageShell>
   );
 }
 
-function GlossaryMethodPage({ number }: { number: number }) {
+function GlossaryPage({ number }: { number: number }) {
   return (
-    <PageShell number={number} kicker="10.2—10.4 / METHOD" title="厂商资料卡、术语与方法" className="appendix-page glossary-page">
+    <PageShell number={number} kicker="10.2 / GLOSSARY" title="核心术语" className="appendix-page glossary-page">
       <div className="glossary-layout">
-        <section className="profile-template">
-          <span>APPENDIX B</span><h2>统一资料卡</h2>
-          <ol><li>单位简介</li><li>本届新品 / 首秀</li><li>核心技术亮点</li><li>现场可体验内容</li><li>上市 / 量产 / 试点状态</li><li>客户或部署证据</li><li>不可错过理由</li><li>风险与未核实表述</li><li>原始资料链接与抓取日期</li></ol>
-          <div className="method-note"><b>方法</b><p>优先采用大会、政府、厂商和产品官网；权威现场报道补充体验与观察；转载和厂商供稿只提供线索。不同口径并列保留，不用推测填补缺失参数。</p></div>
-        </section>
-        <section className="glossary-list"><div><span>APPENDIX C</span><h2>术语表</h2></div>{glossary.map(([term, definition]) => <article key={term}><h3>{term}</h3><p>{definition}</p></article>)}</section>
+        <header className="glossary-intro"><span>APPENDIX B</span><h2>核心术语</h2><p>十个高频概念，串起算力系统、智能体、具身智能与创新生态。</p></header>
+        <section className="glossary-list">{glossary.map(([term, definition], index) => <article key={term}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{term}</h3><p>{definition}</p></div></article>)}</section>
       </div>
     </PageShell>
   );
@@ -417,12 +378,12 @@ function GlossaryMethodPage({ number }: { number: number }) {
 
 function SourcesPage({ number }: { number: number }) {
   return (
-    <PageShell number={number} kicker="10.4 / ORIGINALS" title="来源与延伸阅读" className="sources-page">
-      <div className="sources-intro"><span>READ THE ORIGINALS</span><h2>继续阅读<br />原始发布</h2><p>站点只保留对读者有用的直接来源链接；网页归档、展商名录原图、摘要和整理文档均保存在公开仓库的 research 目录中。</p></div>
+    <PageShell number={number} kicker="10.3 / ORIGINALS" title="来源与延伸阅读" className="sources-page">
+      <div className="sources-intro"><span>READ THE ORIGINALS</span><h2>继续阅读<br />原始发布</h2><p>大会规模、现场观察、重点项目、学术与治理议题的原始发布汇集于此，便于继续阅读。</p></div>
       <div className="source-list extended-sources">
         {globalSources.map(([topic, publisher, url], index) => <a href={url} target="_blank" rel="noreferrer" key={`${topic}-${publisher}`}><span>{String(index + 1).padStart(2, "0")}</span><b>{topic}</b><em>{publisher}</em><strong>↗</strong></a>)}
       </div>
-      <p className="source-note">调研更新至 2026 年 7 月 21 日。产品状态和公开材料仍会变化，购买或决策前请回到发布主体页面复核。</p>
+      <p className="source-note">资料更新至 2026 年 7 月 21 日。产品状态可能继续变化，请以发布主体页面为准。</p>
     </PageShell>
   );
 }
@@ -430,7 +391,6 @@ function SourcesPage({ number }: { number: number }) {
 function renderPage(entry: PageEntry, number: number, goToPage: (page: number) => void) {
   switch (entry.kind) {
     case "cover": return <CoverPage number={number} goToPage={goToPage} />;
-    case "reading-note": return <ReadingNotePage number={number} />;
     case "contents": return <ContentsPage number={number} goToPage={goToPage} />;
     case "change-index": return <ChangeIndexPage number={number} goToPage={goToPage} />;
     case "change": return <ChangeDetailPage number={number} story={changes[entry.dataIndex ?? 0]} index={entry.dataIndex ?? 0} goToPage={goToPage} />;
@@ -441,7 +401,7 @@ function renderPage(entry: PageEntry, number: number, goToPage: (page: number) =
     case "exhibit-index": return <ExhibitIndexPage number={number} goToPage={goToPage} />;
     case "exhibit": return <ExhibitDetailPage number={number} index={entry.dataIndex ?? 0} goToPage={goToPage} />;
     case "exhibitor-index": return <ExhibitorIndexPage number={number} />;
-    case "glossary-method": return <GlossaryMethodPage number={number} />;
+    case "glossary": return <GlossaryPage number={number} />;
     case "sources": return <SourcesPage number={number} />;
   }
 }
@@ -484,7 +444,7 @@ export default function Home() {
       <a className="skip-link" href="#magazine-frame">跳到当前页面</a>
       <header className="reader-topbar">
         <button type="button" className="reader-brand" onClick={() => goToPage(0)} aria-label="返回封面"><span className="brand-block" /><span><b>WAIC 2026 全景特刊</b><em>POST-SHOW FIELD GUIDE</em></span></button>
-        <nav className="reader-links" aria-label="站点链接"><a href="https://github.com/DeronQi/waic-2026-aftershow-guide" target="_blank" rel="noreferrer">资料与源码 ↗</a><ShareButton title={currentEntry.label} /></nav>
+        <nav className="reader-links" aria-label="站点链接"><a href="https://github.com/DeronQi/waic-2026-aftershow-guide" target="_blank" rel="noreferrer">项目主页 ↗</a><ShareButton title={currentEntry.label} /></nav>
       </header>
       <div className="reader-layout">
         <nav className="page-rail" aria-label="章节导航">

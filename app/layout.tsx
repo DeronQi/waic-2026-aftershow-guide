@@ -6,10 +6,10 @@ const imageUrl = new URL("og-v2.png", siteUrl).toString();
 
 export const metadata: Metadata = {
   title: "WAIC 2026 全景特刊｜从模型竞赛到智能伙伴",
-  description: "50 页等尺寸 WAIC 2026 展后电子杂志：五项结构变化、七大专题、六张对比表与 26 篇重点展品详解。",
+  description: "49 页等尺寸 WAIC 2026 展后电子杂志：五项结构变化、七大专题、六张对比表与 26 篇重点展品详解。",
   openGraph: {
     title: "WAIC 2026 全景特刊｜从模型竞赛到智能伙伴",
-    description: "新品与产业亮点全景｜50 页等尺寸展后电子杂志",
+    description: "新品与产业亮点全景｜49 页等尺寸展后电子杂志",
     type: "website",
     locale: "zh_CN",
     url: siteUrl,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "WAIC 2026 全景特刊",
-    description: "从模型竞赛到智能伙伴｜50 页等尺寸展后电子杂志",
+    description: "从模型竞赛到智能伙伴｜49 页等尺寸展后电子杂志",
     images: [imageUrl],
   },
 };

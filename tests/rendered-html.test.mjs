@@ -14,7 +14,7 @@ async function render() {
   );
 }
 
-test("server-renders the outline-led WAIC complete edition", async () => {
+test("server-renders the finished WAIC magazine edition", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
@@ -23,13 +23,13 @@ test("server-renders the outline-led WAIC complete edition", async () => {
   assert.match(html, /<html lang="zh-CN">/i);
   assert.match(html, /<title>WAIC 2026 全景特刊｜从模型竞赛到智能伙伴<\/title>/i);
   assert.match(html, /1100\+/);
-  assert.match(html, /<strong>50<\/strong><span>等尺寸页面<\/span>/);
+  assert.match(html, /<strong>49<\/strong><span>等尺寸页面<\/span>/);
   assert.match(html, /五项结构变化/);
   assert.match(html, /七大专题/);
   assert.match(html, /六张对比表/);
   assert.match(html, /26 篇重点展品详解/);
   assert.match(html, /property="og:image" content="https:\/\/waic-2026-aftershow-guide\.deron-qi\.chatgpt\.site\/og-v2\.png"/i);
-  assert.doesNotMatch(html, /证据等级|证据 [ABC]|A\/B\/C 来源分级|下载完整资料|codex-preview|SkeletonPreview/i);
+  assert.doesNotMatch(html, /证据等级|证据 [ABC]|A\/B\/C 来源分级|下载完整资料|codex-preview|SkeletonPreview|阅读说明|三项保留判断|统一资料卡|正文状态|阅读边界|继续追问|研究过程|写作过程/i);
 });
 
 test("covers the complete outline while preserving equal pages and rich product details", async () => {
@@ -61,7 +61,8 @@ test("covers the complete outline while preserving equal pages and rich product 
   assert.match(page, /function ShareButton/);
   assert.match(page, /ArrowRight/);
   assert.match(page, /onTouchStart/);
-  assert.doesNotMatch(page, /downloads\/|证据等级|evidence:/);
+  assert.doesNotMatch(page, /downloads\/|证据等级|evidence:|reading-note|ReadingNotePage|statusDefinitions|三项保留判断|统一资料卡|method-note|继续追问|阅读边界|正文状态|研究过程|写作过程/);
+  assert.doesNotMatch(magazineData, /statusDefinitions|heading: "验证问题"|heading: "还要验证"|判断口径|横向框架/);
   assert.match(css, /\.magazine-frame\s*\{[^}]*aspect-ratio:\s*16\s*\/\s*10/s);
   assert.match(css, /@media \(max-width: 700px\)[\s\S]*\.magazine-frame\s*\{\s*aspect-ratio:\s*3\s*\/\s*4/s);
   assert.match(css, /\.mag-page\s*\{[^}]*height:\s*100%/s);
@@ -69,7 +70,7 @@ test("covers the complete outline while preserving equal pages and rich product 
   assert.match(css, /\.chapter-scroll\s*\{[^}]*overflow-y:\s*auto/s);
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(layout, /new URL\("og-v2\.png", siteUrl\)/);
-  assert.match(layout, /50 页等尺寸/);
+  assert.match(layout, /49 页等尺寸/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
   await access(new URL("../public/og-v2.png", import.meta.url));
