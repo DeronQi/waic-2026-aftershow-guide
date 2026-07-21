@@ -23,10 +23,10 @@ test("server-renders the finished WAIC magazine edition", async () => {
   assert.match(html, /<html lang="zh-CN">/i);
   assert.match(html, /<title>WAIC 2026 全景特刊｜从模型竞赛到智能伙伴<\/title>/i);
   assert.match(html, /1100\+/);
-  assert.match(html, /<strong>49<\/strong><span>等尺寸页面<\/span>/);
+  assert.match(html, /<strong>55<\/strong><span>等尺寸页面<\/span>/);
   assert.match(html, /五项结构变化/);
   assert.match(html, /七大专题/);
-  assert.match(html, /六张对比表/);
+  assert.match(html, /九页横向对比/);
   assert.match(html, /26 篇重点展品详解/);
   assert.match(html, /property="og:image" content="https:\/\/waic-2026-aftershow-guide\.deron-qi\.chatgpt\.site\/og-v2\.png"/i);
   assert.doesNotMatch(html, /证据等级|证据 [ABC]|A\/B\/C 来源分级|下载完整资料|codex-preview|SkeletonPreview|阅读说明|三项保留判断|统一资料卡|正文状态|阅读边界|继续追问|研究过程|写作过程/i);
@@ -53,6 +53,11 @@ test("covers the complete outline while preserving equal pages and rich product 
   assert.equal((magazineData.match(/^\s{4}slug: "(?:compute-systems|agents-deliver|robots-work|personal-ai|industry-proof)"/gm) ?? []).length, 5);
   assert.equal((magazineData.match(/^\s{4}slug: "(?:panorama|compute|models-agents|embodied|devices|industry|ecosystem-governance)"/gm) ?? []).length, 7);
   assert.equal((magazineData.match(/title: "(?:超节点与超集群|通用 \/ 专业智能体|全球首发证据与成熟度|机器人场景成熟度|具身模型与世界模型|手机 \/ 眼镜 \/ 耳机)"/g) ?? []).length, 6);
+  assert.match(page, /const comparisonSpreads = comparisonPages\.flatMap/);
+  assert.match(page, /comparisonSpreads\.map/);
+  assert.match(page, /audienceRecommendations\.map\(\(item, dataIndex\)/);
+  assert.match(page, /function ComparisonPage[\s\S]*matrix\.rows\.map/);
+  assert.match(page, /function RecommendationPage[\s\S]*group\.items\.map/);
   assert.match(page, /const totalPages = pageEntries\.length/);
   assert.match(page, /function ChangeDetailPage[\s\S]*story\.sections\.map/);
   assert.match(page, /function ChapterPage[\s\S]*chapter\.sections\.map/);
@@ -70,7 +75,7 @@ test("covers the complete outline while preserving equal pages and rich product 
   assert.match(css, /\.chapter-scroll\s*\{[^}]*overflow-y:\s*auto/s);
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(layout, /new URL\("og-v2\.png", siteUrl\)/);
-  assert.match(layout, /49 页等尺寸/);
+  assert.match(layout, /55 页等尺寸/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
   await access(new URL("../public/og-v2.png", import.meta.url));

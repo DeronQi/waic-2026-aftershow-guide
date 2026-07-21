@@ -290,7 +290,7 @@ export const chapters: Chapter[] = [
 export const comparisonPages: { title: string; deck: string; matrices: ComparisonMatrix[] }[] = [
   {
     title: "跨厂商对比 / 系统与智能体",
-    deck: "六张表把主要路线、交付条件与风险放到同一视野中，呈现系统与产品的真正分水岭。",
+    deck: "从算力系统到通用与专业智能体，把主要路线、交付条件与风险放到同一视野中。",
     matrices: [
       {
         title: "超节点与超集群",

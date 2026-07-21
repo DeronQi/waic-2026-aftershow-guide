@@ -25,7 +25,7 @@ type PageKind =
   | "must-see"
   | "chapter"
   | "comparison"
-  | "recommendations"
+  | "recommendation"
   | "exhibit-index"
   | "exhibit"
   | "exhibitor-index"
@@ -39,6 +39,10 @@ type PageEntry = {
   dataIndex?: number;
 };
 
+const comparisonSpreads = comparisonPages.flatMap((group) =>
+  group.matrices.map((matrix) => ({ ...matrix, deck: group.deck })),
+);
+
 const pageEntries: PageEntry[] = [
   { slug: "cover", label: "封面", kind: "cover" },
   { slug: "contents", label: "总目录", kind: "contents" },
@@ -46,8 +50,8 @@ const pageEntries: PageEntry[] = [
   ...changes.map((item, dataIndex) => ({ slug: `shift-${item.slug}`, label: item.title, kind: "change" as const, dataIndex })),
   { slug: "must-see", label: "20 个不可错过", kind: "must-see" },
   ...chapters.map((item, dataIndex) => ({ slug: item.slug, label: item.title, kind: "chapter" as const, dataIndex })),
-  ...comparisonPages.map((item, dataIndex) => ({ slug: `comparison-${dataIndex + 1}`, label: item.title, kind: "comparison" as const, dataIndex })),
-  { slug: "recommendations", label: "三类读者推荐", kind: "recommendations" },
+  ...comparisonSpreads.map((item, dataIndex) => ({ slug: `comparison-${dataIndex + 1}`, label: item.title, kind: "comparison" as const, dataIndex })),
+  ...audienceRecommendations.map((item, dataIndex) => ({ slug: `recommendation-${dataIndex + 1}`, label: `${item.audience}精选路线`, kind: "recommendation" as const, dataIndex })),
   { slug: "exhibits", label: "重点展品索引", kind: "exhibit-index" },
   ...magazineExhibits.map((item, dataIndex) => ({ slug: `exhibit-${String(dataIndex + 1).padStart(2, "0")}`, label: `${item.vendor} · ${item.title}`, kind: "exhibit" as const, dataIndex })),
   { slug: "exhibitor-index", label: "展商索引", kind: "exhibitor-index" },
@@ -84,7 +88,7 @@ const contentsItems = [
   ["devices", "06", "AI 原生终端", "手机、眼镜、耳机与陪伴硬件"],
   ["industry", "07", "行业应用", "AI4S、工业、能源、医疗教育与安全"],
   ["ecosystem-governance", "08", "学术、生态与治理", "WAIC Academic、SAIL、OPC 与全球合作"],
-  ["comparison-1", "09", "跨厂商对比与推荐", "六张核心表与三类读者精选路线"],
+  ["comparison-1", "09", "跨厂商对比与推荐", "六张核心表与三类读者路线，共 9 个独立版面"],
   ["exhibitor-index", "10", "附录", "重点展商、核心术语与延伸阅读"],
 ] as const;
 
@@ -270,34 +274,32 @@ function ChapterPage({ number, chapter, goToPage }: { number: number; chapter: C
 }
 
 function ComparisonPage({ number, index }: { number: number; index: number }) {
-  const page = comparisonPages[index];
+  const matrix = comparisonSpreads[index];
   return (
-    <PageShell number={number} kicker={`09 / COMPARISON ${index + 1}`} title={page.title} className="comparison-page">
-      <div className="comparison-heading"><span>09.{index + 1}</span><div><h2>{page.title}</h2><p>{page.deck}</p></div></div>
-      <div className="matrix-stack">
-        {page.matrices.map((matrix) => (
-          <section key={matrix.title}>
-            <h3>{matrix.title}</h3>
-            <div className="matrix" role="table" aria-label={matrix.title}>
-              <div className="matrix-row matrix-head" role="row">{matrix.columns.map((column) => <b key={column} role="columnheader">{column}</b>)}</div>
-              {matrix.rows.map((row, rowIndex) => <div className="matrix-row" role="row" key={rowIndex}>{row.map((cell, cellIndex) => <span role="cell" key={cellIndex}>{cell}</span>)}</div>)}
-            </div>
-            <p>{matrix.note}</p>
-          </section>
-        ))}
+    <PageShell number={number} kicker={`09 / COMPARISON ${String(index + 1).padStart(2, "0")}`} title={matrix.title} className="comparison-page">
+      <div className="comparison-heading"><span>09.{String(index + 1).padStart(2, "0")}</span><div><h2>{matrix.title}</h2><p>{matrix.deck}</p></div></div>
+      <div className="matrix-spread">
+        <aside><span>COMPARISON</span><strong>{String(index + 1).padStart(2, "0")}</strong><b>OF 06</b></aside>
+        <section className="matrix-feature">
+          <div className="matrix" role="table" aria-label={matrix.title}>
+            <div className="matrix-row matrix-head" role="row">{matrix.columns.map((column) => <b key={column} role="columnheader">{column}</b>)}</div>
+            {matrix.rows.map((row, rowIndex) => <div className="matrix-row" role="row" key={rowIndex}>{row.map((cell, cellIndex) => <span role="cell" key={cellIndex}>{cell}</span>)}</div>)}
+          </div>
+          <div className="matrix-takeaway"><span>核心判断</span><p>{matrix.note}</p></div>
+        </section>
       </div>
     </PageShell>
   );
 }
 
-function RecommendationsPage({ number }: { number: number }) {
+function RecommendationPage({ number, index }: { number: number; index: number }) {
+  const group = audienceRecommendations[index];
   return (
-    <PageShell number={number} kicker="09.3 / RECOMMENDATIONS" title="三类读者的推荐清单" className="recommendations-page">
-      <div className="recommendation-heading"><span>WHO SHOULD SEE WHAT</span><h2>三类读者，不同路线</h2><p>产业决策者、技术从业者和普通消费者关注的重点并不相同。以下三条路线按使用目的组织，从底层系统、生产工具一路延伸到贴身终端。</p></div>
-      <div className="audience-grid">
-        {audienceRecommendations.map((group, index) => (
-          <section key={group.audience}><header><span>0{index + 1}</span><h3>{group.audience}</h3><p>{group.lead}</p></header><ol>{group.items.map((item) => <li key={item}>{item}</li>)}</ol></section>
-        ))}
+    <PageShell number={number} kicker={`09 / RECOMMENDATION ${String(index + 1).padStart(2, "0")}`} title={`${group.audience}精选路线`} className="recommendations-page">
+      <div className="recommendation-heading"><span>WHO SHOULD SEE WHAT / 0{index + 1}</span><h2>{group.audience}<br />精选路线</h2><p>{group.lead} 本页把最值得关注的系统、产品与议题串成一条完整路线。</p></div>
+      <div className="audience-spread">
+        <aside><span>RECOMMENDED</span><strong>{String(group.items.length).padStart(2, "0")}</strong><b>项重点内容</b></aside>
+        <ol>{group.items.map((item, itemIndex) => <li key={item}><span>{String(itemIndex + 1).padStart(2, "0")}</span><b>{item}</b></li>)}</ol>
       </div>
     </PageShell>
   );
@@ -397,7 +399,7 @@ function renderPage(entry: PageEntry, number: number, goToPage: (page: number) =
     case "must-see": return <MustSeePage number={number} goToPage={goToPage} />;
     case "chapter": return <ChapterPage number={number} chapter={chapters[entry.dataIndex ?? 0]} goToPage={goToPage} />;
     case "comparison": return <ComparisonPage number={number} index={entry.dataIndex ?? 0} />;
-    case "recommendations": return <RecommendationsPage number={number} />;
+    case "recommendation": return <RecommendationPage number={number} index={entry.dataIndex ?? 0} />;
     case "exhibit-index": return <ExhibitIndexPage number={number} goToPage={goToPage} />;
     case "exhibit": return <ExhibitDetailPage number={number} index={entry.dataIndex ?? 0} goToPage={goToPage} />;
     case "exhibitor-index": return <ExhibitorIndexPage number={number} />;
