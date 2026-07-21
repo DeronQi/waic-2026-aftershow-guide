@@ -381,11 +381,11 @@ function GlossaryPage({ number }: { number: number }) {
 function SourcesPage({ number }: { number: number }) {
   return (
     <PageShell number={number} kicker="10.3 / ORIGINALS" title="来源与延伸阅读" className="sources-page">
-      <div className="sources-intro"><span>READ THE ORIGINALS</span><h2>继续阅读<br />原始发布</h2><p>大会规模、现场观察、重点项目、学术与治理议题的原始发布汇集于此，便于继续阅读。</p></div>
+      <div className="sources-intro"><span>READ THE ORIGINALS</span><h2>继续阅读<br />原始发布</h2><p>从会前发布、开幕现场到产业观察与闭幕成果，本页精选政府发布、大会专题与主流媒体的全景报道。</p></div>
       <div className="source-list extended-sources">
         {globalSources.map(([topic, publisher, url], index) => <a href={url} target="_blank" rel="noreferrer" key={`${topic}-${publisher}`}><span>{String(index + 1).padStart(2, "0")}</span><b>{topic}</b><em>{publisher}</em><strong>↗</strong></a>)}
       </div>
-      <p className="source-note">资料更新至 2026 年 7 月 21 日。产品状态可能继续变化，请以发布主体页面为准。</p>
+      <p className="source-note">报道更新至 2026 年 7 月 21 日。链接按会前信息、现场观察与闭幕成果编排。</p>
     </PageShell>
   );
 }

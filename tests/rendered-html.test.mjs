@@ -43,6 +43,7 @@ test("covers the complete outline while preserving equal pages and rich product 
   ]);
 
   const exhibitData = content.slice(content.indexOf("export const exhibits"), content.indexOf("export const trends"));
+  const sourceData = magazineData.slice(magazineData.indexOf("export const globalSources"));
   assert.equal((exhibitData.match(/^\s{4}vendor:/gm) ?? []).length, 25);
   assert.equal((exhibitData.match(/isTopTen: true/g) ?? []).length, 10);
   assert.equal((exhibitData.match(/details: \[/g) ?? []).length, 25);
@@ -50,6 +51,16 @@ test("covers the complete outline while preserving equal pages and rich product 
   assert.match(magazineData, /export const tencentExhibit/);
   assert.match(magazineData, /混元 Hy3 × WorkBuddy/);
   assert.match(magazineData, /export const magazineExhibits = \[\.\.\.exhibits, tencentExhibit\]/);
+  assert.equal((sourceData.match(/^\s{2}\["/gm) ?? []).length, 12);
+  assert.match(sourceData, /上海市政府新闻办/);
+  assert.match(sourceData, /上海发布/);
+  assert.match(sourceData, /新华社/);
+  assert.match(sourceData, /新华网/);
+  assert.match(sourceData, /央视新闻/);
+  assert.match(sourceData, /第一财经/);
+  assert.match(sourceData, /人民网/);
+  assert.match(sourceData, /中国日报网/);
+  assert.doesNotMatch(sourceData, /腾讯混元 Hy3|cloud\.tencent\.com\/product\/workbuddy|腾讯效率智能体工具集|WAIC 现场的 Hy3 与 WorkBuddy/);
   assert.equal((magazineData.match(/^\s{4}slug: "(?:compute-systems|agents-deliver|robots-work|personal-ai|industry-proof)"/gm) ?? []).length, 5);
   assert.equal((magazineData.match(/^\s{4}slug: "(?:panorama|compute|models-agents|embodied|devices|industry|ecosystem-governance)"/gm) ?? []).length, 7);
   assert.equal((magazineData.match(/title: "(?:超节点与超集群|通用 \/ 专业智能体|全球首发证据与成熟度|机器人场景成熟度|具身模型与世界模型|手机 \/ 眼镜 \/ 耳机)"/g) ?? []).length, 6);

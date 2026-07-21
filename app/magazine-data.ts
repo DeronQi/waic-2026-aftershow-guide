@@ -1,4 +1,4 @@
-import { exhibits, keySources, type Artwork, type DetailSection, type Exhibit } from "./content";
+import { exhibits, type Artwork, type DetailSection, type Exhibit } from "./content";
 
 export type EvidenceGrade = "A" | "B" | "C";
 
@@ -453,9 +453,16 @@ export const glossary = [
 ] as const;
 
 export const globalSources = [
-  ...keySources,
-  ["腾讯混元 Hy3", "腾讯", tencentExhibit.source],
-  ["WorkBuddy 产品与企业能力", "腾讯云", "https://cloud.tencent.com/product/workbuddy"],
-  ["腾讯效率智能体工具集", "腾讯", "https://www.tencent.com.cn/zh-cn/articles/2202350.html"],
-  ["WAIC 现场的 Hy3 与 WorkBuddy", "人民网", "https://sh.people.com.cn/BIG5/n2/2026/0719/c134768-41643410.html"],
+  ["大会筹备与整体布局", "上海市政府新闻办", "https://www.shio.gov.cn/TrueCMS/shxwbgs/wxdtt/content/44bee286-669a-48d3-adb0-6d046dc83fdd.htm"],
+  ["三地四馆与六大板块", "上海发布", "https://wsb.sh.gov.cn/ywdt/wshd/20260707/04498533adf845bdb38d0746e6e8ee0f.html"],
+  ["3000余项展品将亮相", "新华社", "https://www.news.cn/20260617/9af59ae097ef421bb28cab1b72363d32/c.html"],
+  ["WAIC 2026 大会专题", "新华网", "https://www.news.cn/zt/waic2026/index.html"],
+  ["“数”看 WAIC 2026", "央视网", "https://kepu.cctv.cn/2026/07/16/ARTIIAQAduoim2DPRv3vvtr0260716.shtml"],
+  ["你好，AI 新伙伴", "央视新闻", "https://www.cctv.com/2026/07/17/ARTImwptleBoTKk9g4ppnD5q260717.shtml"],
+  ["治理、学术、产业多线并进", "第一财经", "https://m.yicai.com/news/103278674.html"],
+  ["十大看点：AI 步入产业层", "第一财经", "https://www.yicai.com/news/103278845.html"],
+  ["从一场大会看 AI 产业发展新方向", "新华网", "https://www.news.cn/tech/20260719/e6d801e02f1341309006fd6177da8bcb/c.html"],
+  ["看见中国 AI 产业链未来的样子", "第一财经", "https://m.yicai.com/news/103282281.html"],
+  ["全球线上流量超 30 亿", "人民网", "https://sh.people.com.cn/n2/2026/0720/c134768-41644534.html"],
+  ["闭幕：现场观众累计超 40 万人次", "中国日报网", "https://cn.chinadaily.com.cn/a/202607/21/WS6a5eb534a310d709c2fbea57.html"],
 ] as const;
