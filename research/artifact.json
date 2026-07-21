@@ -1,0 +1,267 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "WAIC 2026 参展新品与亮点整理大纲",
+    "description": "基于大会官方信息、厂商一手发布和权威媒体现场报道形成的首轮资料框架。",
+    "generatedAt": "2026-07-21T18:00:00+08:00",
+    "filters": [],
+    "cards": [],
+    "tables": [],
+    "charts": [
+      {
+        "id": "coverage_by_track",
+        "title": "首轮重点候选条目数",
+        "subtitle": "25 个候选条目按主要赛道去重归类；表示本资料包覆盖范围，不代表大会全量参展结构",
+        "showDescription": true,
+        "type": "bar",
+        "dataset": "coverage_by_track",
+        "sourceId": "source_research_dossier",
+        "encodings": {
+          "x": {
+            "field": "track",
+            "type": "nominal",
+            "label": "赛道"
+          },
+          "y": {
+            "field": "candidate_count",
+            "type": "quantitative",
+            "label": "候选条目数",
+            "format": "number",
+            "unit": "个"
+          },
+          "tooltip": [
+            {
+              "field": "track",
+              "type": "nominal",
+              "label": "赛道"
+            },
+            {
+              "field": "candidate_count",
+              "type": "quantitative",
+              "label": "候选条目数",
+              "format": "number",
+              "unit": "个"
+            },
+            {
+              "field": "scope_note",
+              "type": "text",
+              "label": "口径"
+            }
+          ]
+        },
+        "xAxisTitle": "赛道",
+        "yAxisTitle": "候选条目数",
+        "valueFormat": "number",
+        "unit": "个",
+        "layout": "full",
+        "maxRows": 6
+      }
+    ],
+    "sources": [
+      {
+        "id": "source_research_dossier",
+        "label": "WAIC 2026 首轮联网调研资料集",
+        "query": {
+          "engine": "PostgreSQL-compatible VALUES query",
+          "sql": "WITH coverage(track, candidate_count, scope_note) AS (VALUES ('算力与芯片', 5, '首轮重点候选；按主要归属去重'), ('模型与智能体', 5, '首轮重点候选；按主要归属去重'), ('具身智能与机器人', 5, '首轮重点候选；按主要归属去重'), ('AI 原生终端', 4, '首轮重点候选；按主要归属去重'), ('行业 AI 与 AI4S', 3, '首轮重点候选；按主要归属去重'), ('安全、治理与学术', 3, '首轮重点候选；按主要归属去重')) SELECT track, candidate_count, scope_note FROM coverage ORDER BY candidate_count DESC, track ASC;",
+          "description": "对 30 个已保存网页和 11 张展商名录原图进行人工阅读，将 25 个重点候选条目按主要赛道去重归类。",
+          "language": "editorial curation",
+          "executed_at": "2026-07-21T18:00:00+08:00",
+          "filters": [
+            "仅纳入有明确新品、现场演示、奖项或代表性产业信号的条目",
+            "同一条目只按主要赛道计一次",
+            "不代表 1100 余家全量参展企业结构"
+          ],
+          "metric_definitions": [
+            "候选条目数 = 首轮不可错过候选清单中按主要赛道去重后的项目数量"
+          ]
+        }
+      },
+      {
+        "id": "source_event_official",
+        "label": "上海市政府新闻办：WAIC 2026 倒计时发布会",
+        "href": "https://www.shio.gov.cn/TrueCMS/shxwbgs/wxdtt/content/44bee286-669a-48d3-adb0-6d046dc83fdd.htm",
+        "query": {
+          "description": "大会时间、主题、三地四馆、参展规模与首发数量。"
+        }
+      },
+      {
+        "id": "source_exhibitor_catalog",
+        "label": "WAIC 2026 展商名录（大会来源转载）",
+        "href": "https://finance.sina.com.cn/hy/hyjz/2026-07-09/doc-inihhrah3944785.shtml",
+        "query": {
+          "description": "大会展商名录原图来源。"
+        }
+      },
+      {
+        "id": "source_ten_highlights",
+        "label": "第一财经：WAIC 2026 十大看点",
+        "href": "https://www.yicai.com/news/103278845.html",
+        "query": {
+          "description": "现场路线、代表展品与产业趋势。"
+        }
+      },
+      {
+        "id": "source_treasures",
+        "label": "南方+：WAIC 2026 十大镇馆之宝",
+        "href": "https://static.nfnews.com/content/202607/16/c12632116.html",
+        "query": {
+          "description": "官方获选项目与项目简介。"
+        }
+      },
+      {
+        "id": "source_closing",
+        "label": "中国日报：WAIC 2026 闭幕数据",
+        "href": "https://cn.chinadaily.com.cn/a/202607/21/WS6a5eb534a310d709c2fbea57.html",
+        "query": {
+          "description": "累计观众、重点项目签约与投资额。"
+        }
+      },
+      {
+        "id": "source_huawei",
+        "label": "华为：昇腾 950 超节点 WAIC 首展",
+        "href": "https://www.huawei.com/cn/news/2026/7/atlas-950-superpod",
+        "query": {
+          "description": "Atlas 950 SuperPoD 的官方展出与技术参数。"
+        }
+      },
+      {
+        "id": "source_zte",
+        "label": "中兴通讯：全栈 AI 与 OEX 超节点",
+        "href": "https://www.zte.com.cn/china/about/news/20260717C2.html",
+        "query": {
+          "description": "OEX 超节点新品和 WAIC 全栈 AI 展示。"
+        }
+      },
+      {
+        "id": "source_stepx",
+        "label": "新华网：STEPX Neo、Step AOS 与 Amoo",
+        "href": "https://www.news.cn/digital/20260714/8354f82874ee4741ad1fd9ef716112ef/c.html",
+        "query": {
+          "description": "大模型原生智能体手机及其操作系统。"
+        }
+      },
+      {
+        "id": "source_matwings",
+        "label": "天鹜科技：MatwingsVenus 亮相 WAIC",
+        "href": "https://www.matwings.com/",
+        "query": {
+          "description": "对话式蛋白质研发智能体和干湿闭环。"
+        }
+      },
+      {
+        "id": "source_waica",
+        "label": "WAIC Academic 2026 官方站",
+        "href": "https://waica2026.worldaic.com.cn/",
+        "query": {
+          "description": "首届 WAIC Academic 的主席、委员会与投稿机制。"
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "layout": "full",
+        "body": "# WAIC 2026 参展新品与亮点整理大纲"
+      },
+      {
+        "id": "executive_summary",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Executive Summary\n\n- **今年的核心变化不是模型更多，而是 AI 更接近生产。** 超节点成为算力竞争单元，智能体开始交付完整任务，机器人进入连续作业场景，手机、眼镜和耳机争夺随身入口。\n- **正式整理应按产业链和使用场景组织，而不是简单按展馆罗列。** 建议采用六条主赛道、三类读者推荐和统一厂商资料卡。\n- **首发和 Demo 必须与商业成熟度分开。** 每项内容同时标注发布状态、可用状态、量产或试点状态、证据等级。\n- **全量覆盖采用两层结构。** 正文深写官方镇馆之宝和代表性项目，附录保留 1100 余家展商索引，避免把未展开单位等同于遗漏。"
+      },
+      {
+        "id": "coverage_intro",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 当前资料覆盖\n\n首轮已保存 30 个网页原始资料和 11 张完整展商名录原图，并筛出 25 个重点候选条目。下图只说明当前调研的编辑覆盖面，不代表大会全量参展企业分布。"
+      },
+      {
+        "id": "coverage_chart",
+        "type": "chart",
+        "chartId": "coverage_by_track",
+        "layout": "full"
+      },
+      {
+        "id": "coverage_note",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 覆盖判断\n\n三条技术主线——算力、模型/智能体、具身智能——各有 5 个重点候选；AI 终端有 4 个；行业 AI/AI4S 与安全/治理/学术各 3 个。后续最需要补强的是：全量展商可机读索引、更多中小厂商的一手发布、量产价格、客户与独立测试。"
+      },
+      {
+        "id": "report_structure",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 建议的正式整理结构\n\n1. **执行摘要与不可错过清单**：十大镇馆之宝 + 十个非获奖但具代表性的首发/演示。\n2. **大会全景与热点迁移**：三地四馆、2025→2026 的变化、资料口径。\n3. **算力、芯片与基础设施**：超节点、国产芯片新架构、液冷与算电协同。\n4. **基础模型、世界模型与智能体**：通用智能体、专业智能体、Agentic OS。\n5. **具身智能与机器人**：工业、仓储、药房、家庭康养、灵巧手和跨本体模型。\n6. **AI 原生终端与可穿戴**：智能体手机、机器人手机、眼镜、耳机和陪伴硬件。\n7. **行业 AI、AI4S、安全与公共服务**：生物医药、工业工程、能源、教育、医疗和安全。\n8. **学术、初创与全球治理**：WAIC Academic、SAIL、H4 初创生态和治理合作。\n9. **跨厂商比较与三类读者推荐**：产业决策者、技术从业者、普通消费者。\n10. **附录**：全展商索引、厂商资料卡、术语表、完整来源与待核实项。"
+      },
+      {
+        "id": "comparison_framework",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 每个厂商/单位统一回答九个问题\n\n1. 这家单位是谁，处在产业链哪一层？\n2. 本届真正的新产品、新版本或首次公开内容是什么？\n3. 核心技术亮点是什么，哪些只是厂商宣称？\n4. 现场能看到或体验到什么？\n5. 是概念、Demo、内测、试点、已上市还是量产？\n6. 有哪些客户、部署、成功率、连续运行或第三方测试证据？\n7. 与同类方案相比，差异在哪里？\n8. 为什么值得看，谁最应该关注？\n9. 仍有哪些风险、隐私、安全、成本或供应链问题？"
+      },
+      {
+        "id": "next_steps",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## 推荐的下一步\n\n- 先完成官方十大镇馆之宝的 10 张深度资料卡。\n- 再按六条赛道补齐 30—50 家代表厂商，每家至少有一条一手来源。\n- 从展商名录原图生成全量索引，标注正文覆盖、仅索引、待查三种状态。\n- 等厂商会后复盘、演讲视频和白皮书上线后做第二轮更新。\n- 最终输出一份可阅读报告，以及可筛选的厂商/产品明细表。"
+      },
+      {
+        "id": "further_questions",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Further Questions\n\n- 最终读者更偏产业决策、技术研究，还是普通消费者？\n- 是否需要覆盖全部 1100 余家展商，还是正文聚焦 50—100 家、其余放索引？\n- “不可错过”更看重技术突破、现场体验、商业化，还是投资价值？\n- 是否需要补充展位、价格、上市时间、联系方式和视频链接？"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "layout": "full",
+        "body": "## Caveats and Assumptions\n\n- 大会刚结束一天，部分厂商正式复盘和技术白皮书尚未发布。\n- 公开口径存在 3000 余项与 4000 余款展品的差异，正文以政府新闻发布会口径为主。\n- 厂商的全球首个、领先、效率提升等描述暂按宣传主张记录，不能替代独立验证。\n- 机器人现场 Demo 不等于随机环境泛化或长时间无人值守；后续必须补成功率、样本数、运行时长和接管条件。"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-21T18:00:00+08:00",
+    "status": "ready",
+    "datasets": {
+      "coverage_by_track": [
+        {
+          "track": "算力与芯片",
+          "candidate_count": 5,
+          "scope_note": "首轮重点候选；按主要归属去重"
+        },
+        {
+          "track": "模型与智能体",
+          "candidate_count": 5,
+          "scope_note": "首轮重点候选；按主要归属去重"
+        },
+        {
+          "track": "具身智能与机器人",
+          "candidate_count": 5,
+          "scope_note": "首轮重点候选；按主要归属去重"
+        },
+        {
+          "track": "AI 原生终端",
+          "candidate_count": 4,
+          "scope_note": "首轮重点候选；按主要归属去重"
+        },
+        {
+          "track": "行业 AI 与 AI4S",
+          "candidate_count": 3,
+          "scope_note": "首轮重点候选；按主要归属去重"
+        },
+        {
+          "track": "安全、治理与学术",
+          "candidate_count": 3,
+          "scope_note": "首轮重点候选；按主要归属去重"
+        }
+      ]
+    },
+    "accessIssues": []
+  },
+  "sources": []
+}

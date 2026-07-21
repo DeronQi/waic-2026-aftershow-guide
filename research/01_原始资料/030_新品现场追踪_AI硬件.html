@@ -1,0 +1,491 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>WAIC新品追踪 | 机器人集体下场打螺丝，多款AI硬件亮相 - RFID新闻中心 - RFID世界网</title>
+    <meta name="keywords" content="机器人" />
+    <meta name="description" content="今天，WAIC 2026在上海开幕。今年展会共有10万平方米、设有3地4个展馆，超1100家企业、3000项展品，有超过300款产品属于全球首发。根据一些读者朋友透露，今年展会人气火爆，门票提前一周已经全部售罄。" />
+    <script src="https://oss.rfidworld.com.cn/js/jquery.js"></script>
+    <script src="https://oss.rfidworld.com.cn/lib/layui/layui.js"></script>
+    <script src="https://oss.rfidworld.com.cn/lib/layui/layuiconfig.js"></script>
+    <script src="https://oss.rfidworld.com.cn/RFID23/js/RFID.js"></script>
+    <script src="https://oss.rfidworld.com.cn/RFID23/js/RFIDView.js"></script>
+    <script src="https://oss.rfidworld.com.cn/RFID23/js/NewsView.js"></script>
+
+    <link href="https://oss.rfidworld.com.cn/lib/layui/css/layui.css" rel="stylesheet" media="all" />
+    <link href="https://oss.rfidworld.com.cn/RFID23/css/comm.css" rel="stylesheet" />
+    <link href="https://oss.rfidworld.com.cn/RFID23/css/page.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="t-hd">
+    <div class="t-hd-tp">
+        <div class="tw flex-s t-tp-box">
+            <div class="lt"></div>
+            <div class="rt flex">
+                <div class="t-tp-item">
+                    <div class="tp-item-title flex">
+                        <span class="tp-item-bt">物联传媒 旗下网站</span>
+                        <img class="icon dh03" src="https://oss.rfidworld.com.cn/RFID23/Img/right.svg" />
+                    </div>
+                    <div class="tp-item-div dh02" id="OurGroupSites">
+                        <div class="flex tp-item-flex"></div>
+                    </div>
+                </div>
+                <a class="btnTm tm btn topLogin" href="https://user.rfidworld.com.cn/Passport/Login">
+                    <img class="icon" src="https://oss.rfidworld.com.cn/RFID23/Img/login.svg" />
+                    登录
+                </a>
+
+                <a class="btnTm tm topReg" href="https://user.rfidworld.com.cn/Passport/UserReg">
+                    <img class="icon" src="https://oss.rfidworld.com.cn/RFID23/Img/reg.svg" />
+                    注册
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="t-hd-ct">
+        <div class="tw flex-s hd-ct-box">
+            <div class="t-hd-logo flex">
+                <img src="https://oss.rfidworld.com.cn/RFID23/Img/logo.svg">
+            </div>
+            <div class="rt">
+<style>
+.hd-search-box{margin:0}
+.hd-search-box .in-nr{width:calc(100% - 200px);border-color:rgba(var(--zColor),1)}
+.hd-search-box .hd-select{border-color:rgba(var(--zColor),1);padding:0 10px;background-color:rgba(var(--zColor),.8);color:#fff;border-left:0}
+.hd-search-box .btnTm{height:42px}
+.hd-search-nr{height:42px;width:300px}
+.hd-select{border-color:#ddd;border-right:0;border-width:1px;padding:5px;color:#666}
+.hd-ct-box .rt .in-ap{width:500px}
+</style>
+                <div class="in-ap hd-search-box">
+                    <div class="in-box in-btn">
+                        <input type="text" class="in-nr hd-search-nr" placeholder="请输入要搜索的内容" id="txtRFIDSEARCHKEY">
+                        <select class="hd-select" id="hd-search-type">
+                            <option value="">请选择分类</option>
+                            <option value="news">新闻</option>
+                            <option value="product">产品</option>
+                            <option value="solution">方案</option>
+                            <option value="success">案例</option>
+                        </select>
+                        <button class="btnTm" id="btnRFIDSEARCH">
+                            <img class="icon" src="https://oss.rfidworld.com.cn/RFID23/Img/search.svg">
+                            搜索
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="t-hd-bot">
+        <div class="tw">
+            <nav class="t-hd-menu flex" id="RFIDMainNav">
+                <a href="/" class="hd-menu-item flex dh02 ">首页</a>
+                <a href="/news/" class="hd-menu-item flex dh02 ">新闻</a>
+                <a href="/company/" class="hd-menu-item flex dh02 ">企业</a>
+                <a href="/product/" class="hd-menu-item flex dh02 ">产品</a>
+                <a href="/solution/" class="hd-menu-item flex dh02 ">方案</a>
+                <a href="/success/" class="hd-menu-item flex dh02">案例</a>
+                <a href="/v/" class="hd-menu-item flex dh02 layui-hide">视频</a>
+                <a href="/biz/" class="hd-menu-item flex dh02 ">供需</a>
+                <a href="/biz/TenderList.aspx" class="hd-menu-item flex dh02 ">招标</a>
+                <a href="/job/" class="hd-menu-item flex dh02 layui-hide">招聘</a>
+                <a href="https://www.iotworld.com.cn/AIOT.aspx" class="hd-menu-item flex dh02 " target="_blank" rel="nofollow">AIoT星图研究院</a>
+                <a href="https://vote.iotworld.com.cn/" class="hd-menu-item flex dh02" target="_blank" rel="nofollow">物联之星</a>
+                <a href="https://www.sziota.com/" class="hd-menu-item flex dh02" target="_blank" rel="nofollow">深圳物联网产业协会</a>
+                <a href="https://www.iotexpo.com.cn/" class="hd-menu-item flex dh02" target="_blank" rel="nofollow">IOTE物联网展</a>
+            </nav>
+        </div>
+    </div>
+</div>
+
+    <div class="tw">
+        <div class="RFIDAdContainer" data-id="RFIDListBanner"></div>
+
+        <div class="p-content flex mt-15">
+            <div class="lt">
+                <div class="content">
+                    <div class="span-box flex-s">
+                        <span class="span1">
+                            <a href="https://www.rfidworld.com.cn/">RFID世界网</a>&nbsp;&gt;&nbsp;
+                            <a href="https://www.rfidworld.com.cn/news/">新闻中心</a> &nbsp;&gt;&nbsp;
+                            <a href="https://www.rfidworld.com.cn/news/list-0-1-1.aspx">今日话题</a> &nbsp;&gt;&nbsp;
+                            正文
+                        </span>
+                    </div>
+                    <h1 class="content-title">WAIC新品追踪 | 机器人集体下场打螺丝，多款AI硬件亮相</h1>
+                    <div class="ct-bs flex">
+                        <div class="zz">作者：来源网络(侵权删)</div>
+                        <div class="ly">来源：RFID世界网</div>
+                        <div class="rq">日期：2026-07-20 11:33:24</div>
+                    </div>
+
+                    <div class="icon-tips flex">
+                        <iframe width="125" height="24" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0" scrolling="no" border="0" src="https://widget.weibo.com/relationship/followbutton.php?language=zh_cn&amp;width=136&amp;height=24&amp;uid=2473914700&amp;style=2&amp;btn=red&amp;dpc=1"></iframe>
+                    </div>
+                    <div class="p-zy mt-10">摘要：今天，WAIC 2026在上海开幕。今年展会共有10万平方米、设有3地4个展馆，超1100家企业、3000项展品，有超过300款产品属于全球首发。根据一些读者朋友透露，今年展会人气火爆，门票提前一周已经全部售罄。
+
+</div>
+                    <div class="p-zy mt-10"><span class="s1">关键词：</span><span class="s2"><a href="https://www.rfidworld.com.cn/kw/news-33259" target="_blank">机器人</a></span></div>
+
+                    <div class="nr"><p>今天，WAIC 2026在上海开幕。今年展会共有10万平方米、设有3地4个展馆，超1100家企业、3000项展品，有超过300款产品属于全球首发。根据一些读者朋友透露，今年展会人气火爆，门票提前一周已经全部售罄。</p><p><br/></p><p>作为开展首日，笔者带大家简单回顾WAIC一些值得关注的新品。</p><p><br/></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/Kicib2qXkuiciaMqADnmptNNrlyiaBrd1g7ahSGdwXFO0X8dQluOO3cfCYN6nuXX8rPaKohQj8Jm5mCA0MYLLr3vB6WysxibBjTnz08f30ybbibVib0/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=0" alt="图片"/></p><p><br/></p><ul class=" list-paddingleft-2"><li><p>豆包手机2（展位上海世博展览馆H2-C1109）</p></li></ul><p><br/></p><p>豆包手机二代同样与努比亚合作，正式名称为NaviX Ultra，硬件由努比亚操刀，软件则搭载了豆包手机助手。手机共有黑、粉、白、蓝四种配色、直板屏幕造型，外观有点类似于Pixel。</p><p><br/></p><p>硬件暂未明确，据悉升级到了骁龙8至尊版。软件方面，它支持语音交互实现通知汇总、查票、创建会议、多平台购物比价等，WAIC现场还演示了新机的拍照P图等功能。另有消息指出，手机备货量约20万台，起售价预计在4000-8000元区间。</p><p><br/></p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/Kicib2qXkuiciaOBZfAyyFJCN4qpPHZVmBia942sCVVfAk2IQ35jPOibAia4QLzFWcEs6wicqznyZa3eic89vXUUaElNzv40goY4WcYRZV9nT8LlXZdM/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=1" alt="图片"/></p><p><br/></p><ul class=" list-paddingleft-2"><li><p>努比亚IMOOCHI AI宠物</p></li></ul><p><br/></p><p>除了手机外，今天努比亚还推出了一款AI陪伴毛绒玩具，今日在各大电商平台正式上线，定价1699元。共有3个版本，支持触摸反馈、性格养成、眼神交互等，搭载了专属的语言系统。iMoochi搭载紫光展锐T8300芯片，支持5处触摸感应 + 重力传感。</p><p><br/></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/Kicib2qXkuiciaM9XuEDZ7icp380ib8Kb4PBGBiaM8Zic1Kgiasv5nYyNfWC8ncB5etAMBicnIlhYeaxvy1ibUb8lF8icRnXxiazm1FHgOZrUqEDs8VT4IzY/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=2" alt="图片"/></p><ul class=" list-paddingleft-2"><li><p>模登时代·伙伴之城（上海世博展览馆）</p></li></ul><p><br/></p><p>这是具身智能产品的集体展示区间。如果说去年的机器人还只是模特，只负责静态展示，今年WAIC期间，它们真的要下下场干活了。模登时代·伙伴之城里面可以看到机器人在汽车生产线干活、下厨、做科研实验、泡茶、打乒乓球等，现场气氛非常热闹。</p><p><br/></p><p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/Kicib2qXkuiciaNjHX804l4l4OOYJibqIjribedjEKb3oZb1rW9RsJ3XQJKyLlQGQxz6g5vwCxOS0d81jeG243vgeL6AdIjw68VIfg1QxgIDT6f4s/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=3" alt="图片"/></p><p><br/></p><ul class=" list-paddingleft-2"><li><p>启元T1</p></li></ul><p><br/></p><p>这是一个上纬新材的消费级具身智能品牌，主要面向家庭、个人日常场景。</p><p><br/></p><p>启元T1采用四足轮足设计，并能够在爬行跟站立两个形态自由切换，可以兼顾室内以及户外等多种使用场景。其依托智元具身大模型生态，并优化了长序列记忆链路，能够更好记住用户的日常习惯以及个性化需求。</p><p><br/></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_gif/Kicib2qXkuiciaO5Wq9jiamU9lXY5ueiaxLQcyPktEGrY6R1VxcAbV6zedncziaOZCsEmBnZQH4KltSwDce69kpgFibpR4xoTicwiaDN0oeLDpY5zReQQ/640?wx_fmt=gif&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=4" alt="图片"/></p><p><br/></p><ul class=" list-paddingleft-2"><li><p>智元远征A3 Ultra（上海世博展览馆H3-C区101）</p></li></ul><p><br/></p><p>这是智元远征系列最新旗舰产品，入选了WAIC2026“镇馆之宝”名单。它号称全球首个可量产商业化部署的全尺寸人形机器人，身高174cm，配备700TOPS算力、高阶灵巧手、360°视觉与激光雷达融合感知系统等。依托自主充电、无人运维与四重主动安全体系，可做到开箱即用以及稳定耐用。</p><p><br/></p><p>官方表示它适用于展厅讲解、酒店接待、场馆导览、门店导购、巡逻巡检、科研教育等场景，充当“24H营业的金牌接待员”角色。</p><p><br/></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/Kicib2qXkuiciaNg0p47cpmNWibzxFeibXw6PMgB9V8wKFyHejw6SgTz1wVYbTdRJzh1p2Qzg2tSoL5uje0NpQF6z4laJuz4TjiaU6A2oVrStRrR9s/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=5" alt="图片"/></p><p><br/></p><ul class=" list-paddingleft-2"><li><p>心言机器人巴布（徐汇西岸国际会展中心-X1B-305）</p></li></ul><p><br/></p><p>心言集团是知名AI泛心理社区《测测》APP背后的运营方，WAIC首次面向公众亮相自家的陪伴机器人【心言机器人巴布】。产品采用轮式驱动，身高约65cm，机身为卡通毛绒形象。</p><p><br/></p><p>巴布搭载了旗下的心元系列大模型，核心用户群为有孩家庭、独居老人和独居女性，聚焦于个性化性格养成、AI家庭摄影师、陪伴式外语对话等场景。</p><p><br/></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/Kicib2qXkuiciaNyYplDecbNib33kBTkVia9Ueja6W2P2N2BLJmD0dNzJD5C0WydGEKCu4FOUulMKsnxS0nBSWjJnZ5ajKaKn6vbvXibXcc2wKXB4Y/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=6" alt="图片"/></p><p><br/></p><ul class=" list-paddingleft-2"><li><p>载人变形机甲GD01（上海世博展览馆 H3 C616）</p></li></ul><p><br/></p><p>宇树现场展出了5月最新发布的载人变形机甲GD01。它身高2.8m，可在双足直立行走以及四足爬行之间切换，它的腹部配备了一个座舱，可用于载人行走。定价390万起。可惜的是这款机器人不提供上手体验，不然效果一定很炸裂。</p><p><br/></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/Kicib2qXkuiciaN3VPBV4V2kDQ4D1CIVd9poWuDCBvv2lc9ia090L5ial4WHBpUzOdJNx6koL7oyY6rcdtaW93p7PUsKibaOQcjnKzOxIjd5PdN26s/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=7" alt="图片"/></p><p><br/></p><ul class=" list-paddingleft-2"><li><p>蚂蚁灵波机器人药房（上海世博展览馆 H1-C701）</p></li></ul><p><br/></p><p>现场陈列了几个药物货架，有几台机器人在里面打工，它们能够根据订单完成分工，连续完成接单、取货和交付等工作。</p><p><br/></p><p>机器人搭载具身基座模型LingBot-VLA 2.0，目前已经在国大药房上海门店投入实际运营。据悉，LingBot-VLA 2.0已经适配乐聚、智元、宇树、银河通用等17家厂商的20余种机器人构型。</p><p><br/></p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/Kicib2qXkuiciaO2QOhahUAs7DRbpIxVryMelUQqulzVg6WZpHfLC0egvRaypTK68GI57voXlaZIwgiaKmgBAwJGkKrFpIiarvCvaqwxIvg3tBfnU/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=8" alt="图片"/></p><p><br/></p><ul class=" list-paddingleft-2"><li><p>原力灵机（上海世博展览馆 H1-C107）</p></li></ul><p><br/></p><p>原力灵机是一个具身智能软硬件技术开发商，成立于去年3月。展区有四台桌面机器人以及2台人形轮式机器人，它们需要在15小时内将8万多块积木拼接成一个长城模型。机器人背后搭载了原力灵机最新的具身通用基础模型DM0.5。</p><p><img src="https://mmbiz.qpic.cn/mmbiz_gif/Kicib2qXkuiciaOdgvx8EOL3icjgOx7pWUNj0kdrEAibIY7eAQRTemAmXLwHTh12A8E7HQpRIVsyF9wk5oBgd8EyibviabYictqDiabOZnJXQlqEeBdF8/640?wx_fmt=gif&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=9" alt="图片"/></p><p><br/></p><ul class=" list-paddingleft-2"><li><p>千问AI智能体耳机</p></li></ul><p><br/></p><p>继AI眼镜之后，千问也开始做AI耳机了，现场亮相了一款与Bose联合打造的耳夹式AI耳机，支持同声传译、会议纪要、健康记录等功能。另外，这款耳机还能与自家的眼镜联动实现更多功能，售价暂未明确。</p><p><br/></p><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/Kicib2qXkuiciaPAV8YxMUsbkVP9GLazd32I6fXWibUmiaGTdTiaT3uribabVTP9zpm8SIgCD83U9mX398iac9sGUicicKqL8lbIGUzqPQ4E9ZO7ZjW4co/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=10" alt="图片"/></p><p><br/></p><ul class=" list-paddingleft-2"><li><p>李未可AI记忆眼镜（西海岸国际会展中心 D区 X1C-505）</p></li></ul><p><br/></p><p>李未可是一家智能眼镜厂商，今天举办了主题为【唤醒记忆】的AI记忆眼镜发布会，产品搭载了WakeeMemory OS，据悉能够记住用户的一些生活经历，比如去过哪里，见过了什么人等等。此外，它还能提供一些主动式服务。</p><p><br/></p><p><img src="https://mmbiz.qpic.cn/mmbiz_png/Kicib2qXkuiciaNtiaxxwYncXPrVNU3LNUPicD9c8jWeaTBsJvdiaHicjug1F4AJZIVxlfjibdqv3VoDKHotQAxoYT8VRqpbg61nW7Lu3wia35Ya1w2I0/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=11" alt="图片"/></p><p><br/></p><p><strong>新硬见·7月活动</strong></p><p>更新：新增2个投资人朋友报名，开放了普通观众报名入口。欢迎各方朋友踊跃参与。<br/></p><ul class=" list-paddingleft-2"></ul><p><img src="https://mmbiz.qpic.cn/mmbiz_png/Kicib2qXkuiciaP2t1AlvDN5aY4qt2G5KXnib0EWLK2BGqng4BZPtkgMOHLVnswDmfIg1HcuiaCwS8H8oKEjLYEmdhCiaeuVWfoS85mibxAOiabScmrc/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=12" alt="图片"/></p><blockquote><p>背靠深圳市物联网产业协会，【新硬见】关注前沿AI硬件，包括但不限于具身智能、AI眼镜、智能可穿戴、AI玩具。平台并试图给行业从业者构建更高密度、更具价值的圈子。【新硬见】正在组建四大群聊，<strong>欢迎扫码加入。</strong></p><p><br/></p><p>1️⃣ 机器人交流群</p><p>2️⃣ AI眼镜&amp;可穿戴交流群</p><p>3️⃣ AI潮玩、教育硬件交流群</p><p>4️⃣ AI+智能硬件群</p></blockquote><p><img alt="图片" src="https://mmbiz.qpic.cn/mmbiz_png/Kicib2qXkuiciaNTjLprGhpIQF2adCuZl1xrb1h1oC1S2ibwicqXbEjeQ6vbJhQdAJl74BZS1xuK9pZGN6s2pvkWnVmbBMAHcHNBOZIYuiamzqz1RU/640?wx_fmt=png&from=appmsg&wxfrom=5&wx_lazy=1&tp=wxpic#imgIndex=7"/></p><p><br/></p></div>
+                    <div class="RFIDAdContainer" data-id="RFIDViewBottom"></div>
+                </div>
+
+                <div class="ct-ft">
+                    <div class="flex p-ft-menu">
+                        
+                        <a class="lt flex" href="https://www.rfidworld.com.cn/news/2607_DB62AA75A7EF5615.html">上一篇：最新数据，2025年UHF RFID标签出货量540亿PCS，有没有达到你的预期？</a>
+                        
+                        
+                    </div>
+                    
+                    <div class="p-box">
+                        <div class="p-box-hd flex-s ">
+                            <div class="lt">相关新闻</div>
+                        </div>
+                        <div class="p-box-ct">
+                            <ul class="img-text2-ul">
+                                
+                                <li class="img-item2-item flex-s">
+                                    <a href="https://www.rfidworld.com.cn/news/2607_5DC19C47AE64B1EF.html" class="flex-s">
+                                        <div class="title">狗狗也能用星链服务，这家厂商将Starlink接入了宠物项圈                                                                                                                                  </div>
+                                        <div class="date">07/17</div>
+                                    </a>
+                                </li>
+                                
+                                <li class="img-item2-item flex-s">
+                                    <a href="https://www.rfidworld.com.cn/news/2607_9D0221C0B60209DA.html" class="flex-s">
+                                        <div class="title">14万㎡、5大品牌展同期联动，IOTE 2026深圳物联网展邀你一次看完全产业链</div>
+                                        <div class="date">07/16</div>
+                                    </a>
+                                </li>
+                                
+                                <li class="img-item2-item flex-s">
+                                    <a href="https://www.rfidworld.com.cn/news/2607_E6BA96C972BC44A8.html" class="flex-s">
+                                        <div class="title">半年融两轮，Looki再获数亿元融资，这款AI吊坠相机要冲击10万销量</div>
+                                        <div class="date">07/16</div>
+                                    </a>
+                                </li>
+                                
+                                <li class="img-item2-item flex-s">
+                                    <a href="https://www.rfidworld.com.cn/news/2607_CDCB7812DFFB8345.html" class="flex-s">
+                                        <div class="title">销量破3000万、用户超290万！Shelly Group定义物联网家庭能源开放新高度</div>
+                                        <div class="date">07/15</div>
+                                    </a>
+                                </li>
+                                
+                                <li class="img-item2-item flex-s">
+                                    <a href="https://www.rfidworld.com.cn/news/2607_5AB2670221379040.html" class="flex-s">
+                                        <div class="title">为了让你睡个好觉，这家AI企业开始对床垫下手了</div>
+                                        <div class="date">07/15</div>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="p-box">
+                        <div class="p-box-hd flex-s "><div class="lt">图片新闻</div></div>
+                        <div class="p-box-ct p-ft-box">
+                            <ul class="img-text2-ul flex-5 flex">
+                                
+                                <li class="flex-li">
+                                    <a href="https://www.rfidworld.com.cn/news/2607_DB62AA75A7EF5615.html" target="_blank">
+                                        <div class="img-box flex">
+                                            <img src="https://s.rfidworld.com.cn/ue/26/20/6392014390812740101768511.png">
+                                        </div>
+                                        <div class="title">最新数据，2025年UHF RFID标签出货量540亿PCS，有没有达到你的预期？</div>
+                                    </a>
+                                </li>
+                                
+                                <li class="flex-li">
+                                    <a href="https://www.rfidworld.com.cn/news/2607_238A65867AEE317C.html" target="_blank">
+                                        <div class="img-box flex">
+                                            <img src="https://s.rfidworld.com.cn/ue/26/20/6392014149600320181759254.png">
+                                        </div>
+                                        <div class="title">上海通信大厂，净利润猛增200%！</div>
+                                    </a>
+                                </li>
+                                
+                                <li class="flex-li">
+                                    <a href="https://www.rfidworld.com.cn/news/2607_8213B8EEE52E66FE.html" target="_blank">
+                                        <div class="img-box flex">
+                                            <img src="https://s.rfidworld.com.cn/ue/26/17/6391990329116044543830992.jpg">
+                                        </div>
+                                        <div class="title">成功杀入国内外标签大厂供应链！这家国产RFID导电胶公司做对了什么</div>
+                                    </a>
+                                </li>
+                                
+                                <li class="flex-li">
+                                    <a href="https://www.rfidworld.com.cn/news/2607_F2D0599BA8F0552E.html" target="_blank">
+                                        <div class="img-box flex">
+                                            <img src="https://s.rfidworld.com.cn/2026/07/17/d92de5cd83fb9f79.jpg">
+                                        </div>
+                                        <div class="title">深港携手育英才——深圳市物联网产业协会接收香港知专设计学院实习生</div>
+                                    </a>
+                                </li>
+                                
+                                <li class="flex-li">
+                                    <a href="https://www.rfidworld.com.cn/news/2607_12614129B56B7418.html" target="_blank">
+                                        <div class="img-box flex">
+                                            <img src="https://s.rfidworld.com.cn/2026/07/17/379550dabc3c417d.jpg">
+                                        </div>
+                                        <div class="title">【党建活动】2026年深圳多支部联合庆祝建党105周年暨八一走访武警某部拥军活动</div>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="rt">
+                <div class="RFIDAdContainer" data-id="RFIDViewRTop"></div>
+
+                <div class="p-box">
+                    <div class="p-box-hd flex-s"><div class="lt">热点专题</div><div class="rt"><a href="https://www.rfidworld.com.cn/RFIDZT/">更多</a></div></div>
+                    <div class="p-box-ct">
+                        <ul class="img-text2-ul" id="RFIDULHotZTList">
+                            
+                            <li class="img-item2-item flex-s">
+                                <a href="https://www.iotexpo.com.cn/sh/NewsView-52ab74de-5a76-4685-9e32-d6565071386c" class="flex-s">
+                                    <div class="title">IOTE 2022 上海RFID无源物联网技术与应用高峰论坛</div>
+                                    <div class="date">08/19</div>
+                                </a>
+                            </li>
+                            
+                            <li class="img-item2-item flex-s">
+                                <a href="https://www.rfidworld.com.cn/rfidzt/html/rfidbbs2021sh.html" class="flex-s">
+                                    <div class="title">IOTE·2021第十八届RFID世界大会</div>
+                                    <div class="date">05/18</div>
+                                </a>
+                            </li>
+                            
+                            <li class="img-item2-item flex-s">
+                                <a href="https://www.iotworld.com.cn/htmlzt/5g2021sh.html" class="flex-s">
+                                    <div class="title">会议专题 | IOTE·2021年度5G物联网产业生态大会</div>
+                                    <div class="date">05/18</div>
+                                </a>
+                            </li>
+                            
+                            <li class="img-item2-item flex-s">
+                                <a href="https://www.iotworld.com.cn/html/IOTZT/2021shceo.html" class="flex-s">
+                                    <div class="title">2021中国物联网CEO大会暨“物联之星”颁奖典礼</div>
+                                    <div class="date">05/18</div>
+                                </a>
+                            </li>
+                            
+                            <li class="img-item2-item flex-s">
+                                <a href="https://www.iotworld.com.cn/html/IOTZT/industry2021sh.html" class="flex-s">
+                                    <div class="title">会议专题 | IOTE·2021上海国际工业物联网应用高峰论坛</div>
+                                    <div class="date">05/18</div>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-box mt-15">
+                    <div class="p-box-hd flex-s"><div class="lt">人物访谈</div><div class="rt"><a href="https://www.rfidworld.com.cn/news/list-0-6-1.aspx">更多</a></div></div>
+                    <div class="p-box-ct">
+                        <ul class="img-text1-ul">
+                            
+                            <li class="img-text1-item flex">
+                                <a href="https://www.rfidworld.com.cn/news/2607_62C878FC08DC97E7.html" target="_blank" class="flex">
+                                    <div class="img-main flex"><img src="https://s.rfidworld.com.cn/ue/26/14/6391961698241911844777541.jpg"></div>
+                                    <div class="text">转型方案服务商后，这家RFID公司营收实现20%增长</div>
+                                </a>
+                            </li>
+                            
+                            <li class="img-text1-item flex">
+                                <a href="https://www.rfidworld.com.cn/news/2606_0686BB5CC0F1B641.html" target="_blank" class="flex">
+                                    <div class="img-main flex"><img src="https://s.rfidworld.com.cn/2026/06/15/7fc82e2868a98e82.jpg"></div>
+                                    <div class="text">刷脸秒领耗材！实验室“无人物资站”体验升级</div>
+                                </a>
+                            </li>
+                            
+                            <li class="img-text1-item flex">
+                                <a href="https://www.rfidworld.com.cn/news/2606_BE060B370761CCE8.html" target="_blank" class="flex">
+                                    <div class="img-main flex"><img src="https://s.rfidworld.com.cn/2026/06/11/cfca045344a9a374.jpg"></div>
+                                    <div class="text">【湾区物道】锚定具身智能赛道，群体智能护航国产机器人扬帆出海——专访深圳中亿集团董事长彭长江</div>
+                                </a>
+                            </li>
+                            
+                            <li class="img-text1-item flex">
+                                <a href="https://www.rfidworld.com.cn/news/2606_50856C485D9B23E9.html" target="_blank" class="flex">
+                                    <div class="img-main flex"><img src="https://s.rfidworld.com.cn/ue/26/02/6391601087009922665454169.jpg"></div>
+                                    <div class="text">为何多家标签厂都采购这家RFID公司的水洗唛设备？</div>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-box mt-15">
+                    <div class="p-box-hd flex-s"><div class="lt">最新发布产品</div><div class="rt"><a href="https://www.rfidworld.com.cn/product/">更多</a></div></div>
+                    <div class="p-box-ct">
+                        <ul class="flex flex-2 flex-li-103">
+                            
+                            <li class="flex-li">
+                                <a href="https://www.rfidworld.com.cn/product/2607_B781C11E09787726.html">
+                                    <div class="img-box flex">
+                                        <img src="https://s.rfidworld.com.cn/2026/07/17/f35f616f656bb254.jpg">
+                                    </div>
+                                    <div class="title">XGSun RFID三联珠宝标珠宝吊牌</div>
+                                </a>
+                            </li>
+                            
+                            <li class="flex-li">
+                                <a href="https://www.rfidworld.com.cn/product/2607_7ED0678D0BB05FBC.html">
+                                    <div class="img-box flex">
+                                        <img src="https://s.rfidworld.com.cn/2026/07/17/dcf1cf924dad69ba.jpg">
+                                    </div>
+                                    <div class="title">XGSun 超高频零售盘点珠宝标</div>
+                                </a>
+                            </li>
+                            
+                            <li class="flex-li">
+                                <a href="https://www.rfidworld.com.cn/product/2607_8EEA5FD8887870D0.html">
+                                    <div class="img-box flex">
+                                        <img src="https://s.rfidworld.com.cn/2026/07/17/26fac439e17344b4.jpg">
+                                    </div>
+                                    <div class="title">干粉玻璃药瓶管理UHF RFID标签</div>
+                                </a>
+                            </li>
+                            
+                            <li class="flex-li">
+                                <a href="https://www.rfidworld.com.cn/product/2607_594DEEDD014761FD.html">
+                                    <div class="img-box flex">
+                                        <img src="https://s.rfidworld.com.cn/2026/07/17/8889862617be7666.jpg">
+                                    </div>
+                                    <div class="title">XGSun RFID抗液体塑料试管标签</div>
+                                </a>
+                            </li>
+                            
+                            <li class="flex-li">
+                                <a href="https://www.rfidworld.com.cn/product/2607_0FBC8CD6058A6E6C.html">
+                                    <div class="img-box flex">
+                                        <img src="https://s.rfidworld.com.cn/2026/07/17/d45e7189e614b455.jpg">
+                                    </div>
+                                    <div class="title">XGSun 超高频抗液体玻璃试剂标签</div>
+                                </a>
+                            </li>
+                            
+                            <li class="flex-li">
+                                <a href="https://www.rfidworld.com.cn/product/2607_C4EA287F9761F661.html">
+                                    <div class="img-box flex">
+                                        <img src="https://s.rfidworld.com.cn/2026/07/17/e404f5fb4d0eaa7b.jpg">
+                                    </div>
+                                    <div class="title">新歌山UHF RFID档案管理标签</div>
+                                </a>
+                            </li>
+                            
+                            <li class="flex-li">
+                                <a href="https://www.rfidworld.com.cn/product/2607_43EBDDD7E0856D99.html">
+                                    <div class="img-box flex">
+                                        <img src="https://s.rfidworld.com.cn/2026/07/17/66a687fb1ac56fa1.jpg">
+                                    </div>
+                                    <div class="title">无人零售管理超高频RFID旗标</div>
+                                </a>
+                            </li>
+                            
+                            <li class="flex-li">
+                                <a href="https://www.rfidworld.com.cn/product/2607_A1A5621334AD1C15.html">
+                                    <div class="img-box flex">
+                                        <img src="https://s.rfidworld.com.cn/2026/07/16/b58c9afef1a946ac.png">
+                                    </div>
+                                    <div class="title">龙兴物联物联网主机E3000</div>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-box mt-15">
+                    <div class="p-box-hd flex-s"><div class="lt">推荐新闻</div><div class="rt"><a href="https://www.rfidworld.com.cn/news/">更多</a></div></div>
+                    <div class="p-box-ct">
+                        <ul class="img-text2-ul">
+                            
+                            <li class="img-item2-item flex-s">
+                                <a href="https://www.rfidworld.com.cn/news/2607_8213B8EEE52E66FE.html" class="flex-s">
+                                    <div class="title">成功杀入国内外标签大厂供应链！这家国产RFID导电胶公司做对了什么</div>
+                                    <div class="date">07/17</div>
+                                </a>
+                            </li>
+                            
+                            <li class="img-item2-item flex-s">
+                                <a href="https://www.rfidworld.com.cn/news/2607_6D3B535520C5E18F.html" class="flex-s">
+                                    <div class="title">2466万粤闽两省RFID车牌项目，高新兴宣布中标</div>
+                                    <div class="date">07/16</div>
+                                </a>
+                            </li>
+                            
+                            <li class="img-item2-item flex-s">
+                                <a href="https://www.rfidworld.com.cn/news/2607_AA794DFA1559998A.html" class="flex-s">
+                                    <div class="title">顺丰宣布与NXP联合研发定制化RFID芯片，推动 RFID 在快递业更广泛的应用</div>
+                                    <div class="date">07/15</div>
+                                </a>
+                            </li>
+                            
+                            <li class="img-item2-item flex-s">
+                                <a href="https://www.rfidworld.com.cn/news/2607_4FC7A333DD89FC29.html" class="flex-s">
+                                    <div class="title">RFID芯片涨价潮来袭，好事还是坏事？</div>
+                                    <div class="date">07/14</div>
+                                </a>
+                            </li>
+                            
+                            <li class="img-item2-item flex-s">
+                                <a href="https://www.rfidworld.com.cn/news/2607_62C878FC08DC97E7.html" class="flex-s">
+                                    <div class="title">转型方案服务商后，这家RFID公司营收实现20%增长</div>
+                                    <div class="date">07/14</div>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" name="hdnId" id="hdnId" value="156620" />
+    <input type="hidden" name="hdnUID" id="hdnUID" value="0" />
+    <input type="hidden" name="hdnTitle" id="hdnTitle" value="WAIC新品追踪 | 机器人集体下场打螺丝，多款AI硬件亮相" />
+    <input type="hidden" name="hdnChanel" id="hdnChanel" value="News" />
+    <footer class="footer t-ft">
+    <div class="tw">
+        <div style="text-align:center;">
+            <p>
+                RFID世界网联系电话：0755-86227155（客服） 传真：0755-86227110 E-mail:cjh@ulinkmedia.cn
+                软文报道：<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&amp;uin=1581170951&amp;site=qq&amp;menu=yes"><img border="0" src="https://oss.rfidworld.com.cn/RFID23/Img/qqChat.gif" alt="点击这里给我发消息"></a>
+            </p>
+            <p>
+                会员客服：<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&amp;uin=1437525885&amp;site=qq&amp;menu=yes"><img border="0" src="https://oss.rfidworld.com.cn/RFID23/Img/qqChat.gif" alt="点击这里给我发消息"></a>
+                广告投放：<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&amp;uin=874031152&amp;site=qq&amp;menu=yes"><img border="0" src="https://oss.rfidworld.com.cn/RFID23/Img/qqChat.gif" alt="点击这里给我发消息"></a>
+            </p>
+            <p>
+                版权所有 &copy; 深圳市物联传媒有限公司 RFID世界网|RFID|电子标签
+                <a href="https://beian.miit.gov.cn/" rel="nofllow" target="_blank">粤ICP备05006090号-1</a>
+                <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030502001434" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;" rel="nofollow">粤公网安备 44030502001434号</a>
+            </p>
+            <p>Copyright 2005-<span id="SPANCOPYRIGHTYEAR">2025</span> www.rfidworld.com.cn All Rights Reserved</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

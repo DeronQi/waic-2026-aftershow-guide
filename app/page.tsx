@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type Track =
   | "算力与芯片"
@@ -349,226 +349,225 @@ const keySources = [
   ["A/B", "全球 AI 治理合作倡议", "新华网", "https://www.news.cn/20260717/3310820b96f949979ce6406712094935/c.html"],
 ];
 
-const curated = exhibits.filter((item) => item.priority === "S");
+const pageLabels = ["封面", "卷首与目录", "四条信号", "算力与芯片", "模型与智能体", "具身智能", "AI 原生终端", "行业 AI · AI4S", "安全 · 学术 · 治理", "资料与来源"];
+
+function Page({ number, kicker, title, className = "", children }: { number: number; kicker: string; title: string; className?: string; children: ReactNode }) {
+  return (
+    <section className={`mag-page ${className}`} aria-label={`第 ${number + 1} 页：${title}`}>
+      <header className="page-head">
+        <span>WAIC 2026 / POST-SHOW EDITION</span>
+        <b>{kicker}</b>
+      </header>
+      <div className="page-body">{children}</div>
+      <footer className="page-foot">
+        <span>新品 · 亮点 · 不可错过</span>
+        <b>{String(number + 1).padStart(2, "0")} / {String(pageLabels.length).padStart(2, "0")}</b>
+      </footer>
+    </section>
+  );
+}
+
+function ExhibitTile({ item, index }: { item: Exhibit; index: number }) {
+  return (
+    <article className="exhibit-tile">
+      <div className="tile-meta">
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <b className={`priority priority-${item.priority.toLowerCase()}`}>{item.priority}</b>
+        <em>证据 {item.evidence}</em>
+      </div>
+      <h3>{item.vendor}</h3>
+      <h4>{item.title}</h4>
+      <p>{item.summary}</p>
+      <div className="tile-bottom">
+        <span>{item.status}</span>
+        <a href={item.source} target="_blank" rel="noreferrer" aria-label={`查看${item.vendor}${item.title}的原始来源`}>来源 ↗</a>
+      </div>
+    </article>
+  );
+}
+
+function TrackPage({ pageNumber, track, title, deck }: { pageNumber: number; track: Track; title: string; deck: string }) {
+  const items = exhibits.filter((item) => item.track === track);
+  return (
+    <Page number={pageNumber} kicker={track} title={title} className="track-page">
+      <div className="chapter-title">
+        <span>{String(pageNumber - 2).padStart(2, "0")} / TRACK</span>
+        <h2>{title}</h2>
+        <p>{deck}</p>
+      </div>
+      <div className={`tile-grid tile-count-${items.length}`}>
+        {items.map((item, index) => <ExhibitTile item={item} index={index} key={`${item.vendor}-${item.title}`} />)}
+      </div>
+    </Page>
+  );
+}
 
 export default function Home() {
-  const [activeTrack, setActiveTrack] = useState<Track | "全部">("全部");
-  const [query, setQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+  const touchStart = useRef<number | null>(null);
 
-  const filtered = useMemo(() => {
-    const keyword = query.trim().toLowerCase();
-    return exhibits.filter((item) => {
-      const inTrack = activeTrack === "全部" || item.track === activeTrack;
-      const text = `${item.vendor} ${item.title} ${item.summary} ${item.why}`.toLowerCase();
-      return inTrack && (!keyword || text.includes(keyword));
-    });
-  }, [activeTrack, query]);
+  const goToPage = (page: number) => setCurrentPage(Math.max(0, Math.min(pageLabels.length - 1, page)));
 
-  const trackCount = (track: Track) => exhibits.filter((item) => item.track === track).length;
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown") goToPage(currentPage + 1);
+      if (event.key === "ArrowLeft" || event.key === "PageUp") goToPage(currentPage - 1);
+      if (event.key === "Home") goToPage(0);
+      if (event.key === "End") goToPage(pageLabels.length - 1);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currentPage]);
 
-  return (
-    <main>
-      <header className="topbar">
-        <a className="brand" href="#top" aria-label="返回页面顶部">
-          <span className="brand-block" aria-hidden="true" />
-          <span>WAIC 26 / POST-SHOW</span>
-        </a>
-        <nav className="nav-links" aria-label="页面导航">
-          <a href="#signals">趋势</a>
-          <a href="#must-see">必看</a>
-          <a href="#explorer">展品索引</a>
-          <a href="#sources">来源</a>
-        </nav>
-        <span className="edition">SHANGHAI · 2026</span>
-      </header>
-
-      <div id="top" className="page-shell">
-        <section className="hero" aria-labelledby="page-title">
-          <div className="hero-copy">
-            <p className="eyebrow">A CURATED FIELD GUIDE TO INTELLIGENCE</p>
-            <h1 id="page-title">WAIC 2026<br />展后精选</h1>
-            <p className="hero-subtitle">新品 · 亮点 · 不可错过</p>
-            <p className="hero-intro">
-              一份从 30 份原始资料中整理出的展后图录。我们不把“首发”等同于成熟，
-              也不把现场 Demo 等同于可规模化落地。
-            </p>
+  const renderPage = () => {
+    if (currentPage === 0) {
+      return (
+        <Page number={0} kicker="ISSUE 01 · JUL 2026" title="封面" className="cover-page">
+          <div className="cover-grid">
+            <div className="cover-copy">
+              <span className="cover-eyebrow">A CURATED FIELD GUIDE TO INTELLIGENCE</span>
+              <h1>WAIC<br />2026</h1>
+              <h2>展后精选</h2>
+              <p>新品 · 亮点 · 不可错过</p>
+            </div>
+            <div className="cover-data">
+              <div><strong>1100+</strong><span>参展单位</span></div>
+              <div><strong>3000+</strong><span>展品</span></div>
+              <div><strong>300+</strong><span>全球首发</span></div>
+              <p>一套基于 30 份网页原文、11 张展商名录图片整理的电子杂志。</p>
+            </div>
           </div>
-          <div className="metric-panel" aria-label="大会核心规模数据">
-            <div className="metric"><strong>1100+</strong><span>参展单位</span><small>EXHIBITORS</small></div>
-            <div className="metric"><strong>3000+</strong><span>展品</span><small>EXHIBITS</small></div>
-            <div className="metric metric-red"><strong>300+</strong><span>全球首发</span><small>GLOBAL DEBUTS</small></div>
-            <a className="metric-source" href="https://www.shio.gov.cn/TrueCMS/shxwbgs/wxdtt/content/44bee286-669a-48d3-adb0-6d046dc83fdd.htm" target="_blank" rel="noreferrer">
-              官方口径 ↗
-            </a>
-          </div>
-        </section>
+          <div className="cover-mark" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
+        </Page>
+      );
+    }
 
-        <section className="editor-note" aria-label="编辑结论">
-          <span className="section-code">EDITOR&apos;S NOTE / 01</span>
-          <p>
-            本届最值得记录的，不是又发布了多少个大模型，而是 AI 以四种更具体的形态进入产业：
-            <strong>超节点成为算力单元、智能体开始交付任务、机器人进入连续作业、AI 原生终端争夺个人入口。</strong>
-          </p>
-        </section>
-
-        <section id="signals" className="section-block">
-          <div className="section-heading">
-            <span>01 / SHIFT</span><h2>四条产业信号</h2><p>从展品看产业如何移动</p>
-          </div>
-          <div className="trend-grid">
-            {trends.map(([index, title, text]) => (
-              <article className="trend-card" key={index}>
-                <span className="trend-index">T/{index}</span>
-                <span className="trend-dot" aria-hidden="true" />
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="must-see" className="section-block">
-          <div className="section-heading">
-            <span>02 / CURATED</span><h2>十大不可错过</h2><p>S 级编辑推荐 · 按赛道而非名次排列</p>
-          </div>
-          <div className="curated-grid">
-            {curated.map((item, index) => (
-              <article className="curated-card" key={item.vendor}>
-                <div className="curated-meta"><span>{String(index + 1).padStart(2, "0")}</span><b>{item.track}</b></div>
-                <h3>{item.vendor}</h3>
-                <h4>{item.title}</h4>
-                <p>{item.summary}</p>
-                <a href={item.source} target="_blank" rel="noreferrer" aria-label={`查看${item.vendor}${item.title}的来源`}>
-                  来源 {item.evidence} ↗
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="route-section" aria-labelledby="route-title">
-          <div className="route-label"><span>03 / ROUTE MAP</span><h2 id="route-title">六大赛道</h2></div>
-          <div className="route-grid">
-            {tracks.map((track, index) => (
-              <button
-                type="button"
-                className="route-stop"
-                key={track.name}
-                onClick={() => {
-                  setActiveTrack(track.name);
-                  document.getElementById("explorer")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                aria-label={`筛选${track.name}，共 ${trackCount(track.name)} 项`}
-              >
-                <span className="station" aria-hidden="true" />
-                <small>{String(index + 1).padStart(2, "0")} · {track.short}</small>
-                <strong>{track.name}</strong>
-                <em>{trackCount(track.name)} 项</em>
-                <p>{track.description}</p>
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section id="explorer" className="section-block explorer">
-          <div className="section-heading">
-            <span>04 / INDEX</span><h2>重点展品索引</h2><p>25 项首轮候选 · 可筛选与检索</p>
-          </div>
-
-          <div className="filter-panel">
-            <label className="search-box">
-              <span>搜索厂商或展品</span>
-              <input
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="例如：超节点、机器人、眼镜"
-                type="search"
-              />
-            </label>
-            <div className="filter-buttons" aria-label="按赛道筛选">
-              <button type="button" className={activeTrack === "全部" ? "active" : ""} onClick={() => setActiveTrack("全部")}>全部 <b>25</b></button>
-              {tracks.map((track) => (
-                <button
-                  type="button"
-                  key={track.name}
-                  className={activeTrack === track.name ? "active" : ""}
-                  onClick={() => setActiveTrack(track.name)}
-                >
-                  {track.name} <b>{trackCount(track.name)}</b>
+    if (currentPage === 1) {
+      return (
+        <Page number={1} kicker="FRONT MATTER" title="卷首与目录" className="contents-page">
+          <div className="contents-layout">
+            <div className="editorial-lead">
+              <span>EDITOR&apos;S NOTE</span>
+              <h2>AI 正以四种<br />更具体的形态<br />进入产业</h2>
+              <p>超节点成为算力竞争单元；智能体开始交付完整任务；机器人进入连续作业；AI 原生终端争夺个人入口。</p>
+              <div className="principles"><b>首发 ≠ 成熟</b><b>Demo ≠ 泛化</b><b>参数 ≠ 可比</b></div>
+            </div>
+            <div className="contents-list">
+              {pageLabels.slice(2).map((label, index) => (
+                <button type="button" key={label} onClick={() => goToPage(index + 2)}>
+                  <span>{String(index + 3).padStart(2, "0")}</span><b>{label}</b><em>GO ↗</em>
                 </button>
               ))}
             </div>
           </div>
+        </Page>
+      );
+    }
 
-          <div className="result-line" aria-live="polite">
-            <span>RESULT / {String(filtered.length).padStart(2, "0")}</span>
-            {(activeTrack !== "全部" || query) && (
-              <button type="button" onClick={() => { setActiveTrack("全部"); setQuery(""); }}>清除筛选</button>
-            )}
-          </div>
-
-          <div className="exhibit-grid">
-            {filtered.map((item, index) => (
-              <article className="exhibit-card" key={`${item.vendor}-${item.title}`}>
-                <div className="exhibit-topline">
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <b className={`priority priority-${item.priority.toLowerCase()}`}>{item.priority}</b>
-                  <em>证据 {item.evidence}</em>
-                </div>
-                <p className="track-tag">{item.track}</p>
-                <h3>{item.vendor}</h3>
-                <h4>{item.title}</h4>
-                <p className="summary">{item.summary}</p>
-                <details>
-                  <summary>为什么值得看</summary>
-                  <p>{item.why}</p>
-                  <p className="status"><strong>证据状态：</strong>{item.status}</p>
-                </details>
-                <a className="source-link" href={item.source} target="_blank" rel="noreferrer">查看原始来源 ↗</a>
+    if (currentPage === 2) {
+      return (
+        <Page number={2} kicker="THE BIG SHIFT" title="四条产业信号" className="signals-page">
+          <div className="signals-title"><span>01 / SHIFT</span><h2>四条产业信号</h2><p>从展品看，产业竞争正从“模型本身”移向系统、执行与入口。</p></div>
+          <div className="signal-grid">
+            {trends.map(([index, title, text]) => (
+              <article key={index}>
+                <span>T/{index}</span><i aria-hidden="true" /><h3>{title}</h3><p>{text}</p>
               </article>
             ))}
           </div>
-          {filtered.length === 0 && <p className="empty-state">没有匹配的项目。换个关键词，或清除筛选。</p>}
-        </section>
+        </Page>
+      );
+    }
 
-        <section id="sources" className="method-section">
-          <div className="method-intro">
-            <span className="section-code">05 / SOURCE NOTES</span>
-            <h2>每一个判断<br />都能回到来源</h2>
-            <p>当前资料库保存 30 个网页原文和 11 张展商名录图片。来源按可追溯性分级，厂商宣传口径不会被自动写成独立事实。</p>
-            <div className="grade-list">
-              <div><b>A</b><span>政府、大会或厂商一手发布</span></div>
-              <div><b>B</b><span>权威媒体现场报道</span></div>
-              <div><b>C</b><span>行业媒体、转载或待补原始材料</span></div>
+    if (currentPage === 3) return <TrackPage pageNumber={3} track="算力与芯片" title="算力从单卡走向系统" deck="超节点、万卡集群、互联、液冷与软件栈共同决定真实可用算力。" />;
+    if (currentPage === 4) return <TrackPage pageNumber={4} track="模型与智能体" title="模型开始交付完整任务" deck="评价重点从回答质量转向任务拆解、工具调用、验证与结果交付。" />;
+    if (currentPage === 5) return <TrackPage pageNumber={5} track="具身智能" title="机器人从会动走向能上岗" deck="真正需要追问的是成功率、无人值守时长、故障恢复、成本与接管条件。" />;
+    if (currentPage === 6) return <TrackPage pageNumber={6} track="AI 原生终端" title="新的个人入口争夺战" deck="眼镜、耳机与手机正在变成持续感知、主动服务的智能伙伴。" />;
+    if (currentPage === 7) return <TrackPage pageNumber={7} track="行业 AI · AI4S" title="AI 深入高门槛工作流" deck="工业工程、能源规划、蛋白质研发与物流场景开始出现完整执行链。" />;
+
+    if (currentPage === 8) {
+      const securityItem = exhibits.find((item) => item.track === "安全 · 治理 · 学术")!;
+      return (
+        <Page number={8} kicker="TRUST & GOVERNANCE" title="安全、学术与治理" className="trust-page">
+          <div className="trust-layout">
+            <div className="trust-title"><span>07 / TRUST</span><h2>能力越强，<br />越需要新的<br />安全与治理底座</h2><p>本届大会首次自主举办 WAIC Academic，并继续把全球 AI 治理放在重要位置。</p></div>
+            <div className="trust-cards">
+              <ExhibitTile item={securityItem} index={0} />
+              <a className="institution-card blue-card" href="https://waica2026.worldaic.com.cn/" target="_blank" rel="noreferrer"><span>ACADEMIC</span><h3>WAIC Academic</h3><p>首届自主学术会议，把论文、学者与产业议题纳入大会主线。</p><b>官方站 ↗</b></a>
+              <a className="institution-card red-card" href="https://www.news.cn/20260717/3310820b96f949979ce6406712094935/c.html" target="_blank" rel="noreferrer"><span>GOVERNANCE</span><h3>全球 AI 治理合作倡议</h3><p>安全、包容、合作与发展不再是展览之外的附录。</p><b>新华网 ↗</b></a>
             </div>
           </div>
-          <div className="source-list">
+          <div className="evidence-strip"><div><b>A</b><span>政府、大会或厂商一手</span></div><div><b>B</b><span>权威媒体现场报道</span></div><div><b>C</b><span>行业媒体或待补原始材料</span></div></div>
+        </Page>
+      );
+    }
+
+    return (
+      <Page number={9} kicker="ARCHIVE & SOURCES" title="资料与来源" className="sources-page">
+        <div className="sources-layout">
+          <div className="archive-panel">
+            <span>FULL RESEARCH PACKAGE</span>
+            <h2>所有原始资料<br />现已进入仓库</h2>
+            <div className="archive-stats"><div><b>30</b><span>网页原文</span></div><div><b>11</b><span>名录图片</span></div><div><b>47</b><span>资料文件</span></div></div>
+            <p>包含原始网页、展商名录图片、首轮摘要、来源目录、图表说明、整理大纲和完整 ZIP。</p>
+            <div className="archive-actions">
+              <a href="downloads/WAIC2026_参展资料_首轮_20260721.zip" download>下载完整资料包 ↓</a>
+              <a href="https://github.com/DeronQi/waic-2026-aftershow-guide/tree/main/research" target="_blank" rel="noreferrer">浏览 GitHub 资料库 ↗</a>
+            </div>
+          </div>
+          <div className="mag-source-list">
             {keySources.map(([grade, topic, publisher, url], index) => (
               <a href={url} target="_blank" rel="noreferrer" key={topic}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <b>{topic}</b>
-                <em>{publisher}</em>
-                <i>{grade}</i>
-                <strong aria-hidden="true">↗</strong>
+                <span>{String(index + 1).padStart(2, "0")}</span><b>{topic}</b><em>{publisher}</em><i>{grade}</i><strong>↗</strong>
               </a>
             ))}
           </div>
-        </section>
+        </div>
+        <div className="source-caveat">政府发布会采用“3000 余项技术产品”；部分展商名录报道采用“4000 余款展品”。本刊以政府口径为主，并保留差异。</div>
+      </Page>
+    );
+  };
 
-        <section className="caveat-section">
-          <span>READ BEFORE SHARING</span>
-          <h2>首发 ≠ 成熟 · Demo ≠ 泛化 · 参数 ≠ 可比</h2>
-          <div>
-            <p>政府发布会使用“3000 余项技术产品”，展商名录相关报道使用“4000 余款展品”。本站以政府口径为主，并保留差异。</p>
-            <p>“全球首个、唯一、领先”等描述默认按厂商口径标注；价格、量产、客户、稳定性和独立测试仍是后续核实重点。</p>
+  return (
+    <main className="magazine-app">
+      <header className="reader-topbar">
+        <div className="reader-brand"><span className="brand-block" aria-hidden="true" /><b>WAIC 2026 展后精选</b><em>电子杂志 · ISSUE 01</em></div>
+        <div className="reader-links">
+          <a href="https://github.com/DeronQi/waic-2026-aftershow-guide" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a href="downloads/WAIC2026_参展资料_首轮_20260721.zip" download>资料包 ↓</a>
+        </div>
+      </header>
+
+      <div className="reader-layout">
+        <nav className="page-rail" aria-label="杂志目录">
+          {pageLabels.map((label, index) => (
+            <button type="button" key={label} className={currentPage === index ? "active" : ""} onClick={() => goToPage(index)} aria-current={currentPage === index ? "page" : undefined}>
+              <span>{String(index + 1).padStart(2, "0")}</span><b>{label}</b>
+            </button>
+          ))}
+        </nav>
+
+        <div className="reader-main">
+          <div
+            className="magazine-frame"
+            onTouchStart={(event) => { touchStart.current = event.changedTouches[0].clientX; }}
+            onTouchEnd={(event) => {
+              if (touchStart.current === null) return;
+              const distance = event.changedTouches[0].clientX - touchStart.current;
+              if (Math.abs(distance) > 42) goToPage(currentPage + (distance < 0 ? 1 : -1));
+              touchStart.current = null;
+            }}
+          >
+            {renderPage()}
           </div>
-        </section>
 
-        <footer className="footer">
-          <div><span className="brand-block" aria-hidden="true" /><strong>WAIC 2026 展后精选</strong></div>
-          <p>首轮资料版 · 更新于 2026-07-21 · 上海</p>
-          <a href="#top">返回顶部 ↑</a>
-        </footer>
+          <div className="reader-controls">
+            <button type="button" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 0} aria-label="上一页">← 上一页</button>
+            <div className="reader-progress"><span style={{ width: `${((currentPage + 1) / pageLabels.length) * 100}%` }} /><b>{pageLabels[currentPage]}</b><em>{String(currentPage + 1).padStart(2, "0")} / {String(pageLabels.length).padStart(2, "0")}</em></div>
+            <button type="button" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === pageLabels.length - 1} aria-label="下一页">下一页 →</button>
+          </div>
+          <p className="reader-hint">键盘 ← → 或在页面上左右滑动翻页</p>
+        </div>
       </div>
     </main>
   );

@@ -6,10 +6,10 @@ const imageUrl = new URL("og.png", siteUrl).toString();
 
 export const metadata: Metadata = {
   title: "WAIC 2026 展后精选｜新品、亮点与不可错过",
-  description: "从 30 份原始资料中整理的 WAIC 2026 展后图录：25 个重点展品、六大赛道、来源分级与核实边界。",
+  description: "十页等尺寸 WAIC 2026 展后电子杂志：25 个重点展品、六大赛道、完整资料包与来源分级。",
   openGraph: {
     title: "WAIC 2026 展后精选",
-    description: "新品 · 亮点 · 不可错过｜25 个重点项目与六大赛道展后图录",
+    description: "新品 · 亮点 · 不可错过｜十页等尺寸展后电子杂志",
     type: "website",
     locale: "zh_CN",
     url: siteUrl,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "WAIC 2026 展后精选",
-    description: "新品 · 亮点 · 不可错过｜25 个重点项目与六大赛道展后图录",
+    description: "新品 · 亮点 · 不可错过｜十页等尺寸展后电子杂志",
     images: [imageUrl],
   },
 };

@@ -25,7 +25,7 @@ async function render() {
   );
 }
 
-test("server-renders the finished WAIC editorial guide", async () => {
+test("server-renders the finished WAIC electronic magazine", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
@@ -35,14 +35,14 @@ test("server-renders the finished WAIC editorial guide", async () => {
   assert.match(html, /<title>WAIC 2026 展后精选｜新品、亮点与不可错过<\/title>/i);
   assert.match(html, /WAIC 2026.*展后精选/s);
   assert.match(html, /1100\+/);
-  assert.match(html, /十大不可错过/);
-  assert.match(html, /重点展品索引/);
-  assert.match(html, /每一个判断.*都能回到来源/s);
+  assert.match(html, /电子杂志/);
+  assert.match(html, /卷首与目录/);
+  assert.match(html, /资料与来源/);
   assert.match(html, /property="og:image" content="https:\/\/waic-2026-aftershow-guide\.deron-qi\.chatgpt\.site\/og\.png"/i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|SkeletonPreview/i);
 });
 
-test("keeps the research index complete and the starter disposable", async () => {
+test("keeps every magazine page uniform and the research package complete", async () => {
   const [page, css, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
@@ -53,9 +53,13 @@ test("keeps the research index complete and the starter disposable", async () =>
   const exhibitData = page.slice(page.indexOf("const exhibits"), page.indexOf("const trends"));
   assert.equal((exhibitData.match(/priority: "[SAB]"/g) ?? []).length, 25);
   assert.equal((page.match(/name: "(?:算力与芯片|模型与智能体|具身智能|AI 原生终端|行业 AI · AI4S|安全 · 治理 · 学术)"/g) ?? []).length, 6);
-  assert.match(page, /useMemo/);
-  assert.match(page, /type="search"/);
-  assert.match(css, /@media \(max-width: 760px\)/);
+  assert.equal((page.match(/"封面"|"卷首与目录"|"四条信号"|"算力与芯片"|"模型与智能体"|"具身智能"|"AI 原生终端"|"行业 AI · AI4S"|"安全 · 学术 · 治理"|"资料与来源"/g) ?? []).length >= 10, true);
+  assert.match(page, /ArrowRight/);
+  assert.match(page, /onTouchStart/);
+  assert.match(page, /className={`mag-page/);
+  assert.match(css, /\.magazine-frame\s*\{[^}]*aspect-ratio:\s*16\s*\/\s*10/s);
+  assert.match(css, /@media \(max-width: 700px\)[\s\S]*\.magazine-frame\s*\{\s*aspect-ratio:\s*3\s*\/\s*4/s);
+  assert.match(css, /\.mag-page\s*\{[^}]*height:\s*100%/s);
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(layout, /new URL\("og\.png", siteUrl\)/);
   assert.doesNotMatch(page, /SkeletonPreview|_sites-preview/);
@@ -63,5 +67,8 @@ test("keeps the research index complete and the starter disposable", async () =>
 
   await assert.rejects(access(new URL("../app/_sites-preview/SkeletonPreview.tsx", import.meta.url)));
   await access(new URL("../public/og.png", import.meta.url));
+  await access(new URL("../public/downloads/WAIC2026_参展资料_首轮_20260721.zip", import.meta.url));
+  await access(new URL("../research/WAIC2026_整理大纲.md", import.meta.url));
+  await access(new URL("../research/02_摘要/首轮调研摘要.md", import.meta.url));
   await assert.rejects(access(new URL("public/_sites-preview", templateRoot)));
 });
