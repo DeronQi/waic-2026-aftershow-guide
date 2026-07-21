@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- static editorial assets use relative paths for GitHub Pages and Sites */
+
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type Track =
@@ -349,7 +351,179 @@ const keySources = [
   ["A/B", "全球 AI 治理合作倡议", "新华网", "https://www.news.cn/20260717/3310820b96f949979ce6406712094935/c.html"],
 ];
 
-const pageLabels = ["封面", "卷首与目录", "四条信号", "算力与芯片", "模型与智能体", "具身智能", "AI 原生终端", "行业 AI · AI4S", "安全 · 学术 · 治理", "资料与来源"];
+type Artwork = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
+const trackArtwork: Record<Track, Artwork> = {
+  "算力与芯片": {
+    src: "images/editorial/event-waic-2.jpg",
+    alt: "WAIC 2026 算力展区的 Atlas 950 SuperPoD 机柜",
+    caption: "本届算力基础设施现场资料图 · 第一财经",
+  },
+  "模型与智能体": {
+    src: "images/editorial/model-minimax.png",
+    alt: "MiniMax M3 模型发布视觉",
+    caption: "模型与智能体赛道资料图 · MiniMax 官方",
+  },
+  "具身智能": {
+    src: "images/editorial/robot-magiclab.jpg",
+    alt: "WAIC 2026 现场的 MagicLab 人形机器人",
+    caption: "具身智能展区现场资料图 · 新华报业",
+  },
+  "AI 原生终端": {
+    src: "images/editorial/terminal-qwen.png",
+    alt: "WAIC 现场发布的 AI 智能体耳机画面",
+    caption: "AI 原生终端现场资料图 · 第一财经",
+  },
+  "行业 AI · AI4S": {
+    src: "images/editorial/industry-siemens.jpg",
+    alt: "西门子 Eigen 工程智能体获得 WAIC SAIL 奖项",
+    caption: "工业智能体资料图 · 西门子官方",
+  },
+  "安全 · 治理 · 学术": {
+    src: "images/editorial/compute-sugon.png",
+    alt: "WAIC 2026 展馆现场与参观人群",
+    caption: "WAIC 2026 展馆现场资料图 · 光明网",
+  },
+};
+
+const exhibitArtwork: Record<string, Artwork> = {
+  华为: {
+    src: "images/editorial/compute-huawei.png",
+    alt: "华为 Atlas 950 SuperPoD 展示区",
+    caption: "Atlas 950 SuperPoD 现场图 · 华为官方",
+  },
+  中科曙光: {
+    src: "images/editorial/compute-sugon.png",
+    alt: "中科曙光 WAIC 2026 展区现场",
+    caption: "曙光展区现场图 · 光明网",
+  },
+  东方晶源: {
+    src: "images/editorial/compute-eastern.jpg",
+    alt: "东方晶源 WAIC 2026 展台",
+    caption: "东方晶源展台现场图 · 爱集微",
+  },
+  MiniMax: {
+    src: "images/editorial/model-minimax.png",
+    alt: "MiniMax M3 模型发布视觉",
+    caption: "MiniMax M3 官方发布图",
+  },
+  MagicLab: {
+    src: "images/editorial/robot-magiclab.jpg",
+    alt: "MagicLab 人形机器人现场展示",
+    caption: "MagicLab 机器人现场图 · 新华报业",
+  },
+  阿里云: {
+    src: "images/editorial/terminal-qwen.png",
+    alt: "WAIC 现场发布的通义智能体终端画面",
+    caption: "通义智能体终端现场资料图 · 第一财经",
+  },
+  西门子: {
+    src: "images/editorial/industry-siemens.jpg",
+    alt: "西门子 Eigen 工程智能体获得 WAIC SAIL 奖项",
+    caption: "Eigen 工程智能体资料图 · 西门子官方",
+  },
+};
+
+const signalDetails = [
+  {
+    title: trends[0][1],
+    deck: trends[0][2],
+    artwork: trackArtwork["算力与芯片"],
+    paragraphs: [
+      "WAIC 2026 的算力焦点不再是一张芯片的峰值参数，而是超节点、万卡集群、互联网络、内存体系、液冷和软件栈能否组合成一套稳定的生产系统。华为 Atlas 950 SuperPoD、中科曙光全国产 AI 超集群等展品，把这种变化放到了展馆中央。",
+      "这意味着采购和评价逻辑也要改变。真实训练与推理能力取决于集群通信效率、故障恢复、调度利用率和可运维性；单卡参数很高，并不自动等于集群中可以持续交付的有效算力。",
+      "看展时最值得追问的是：规模数字对应的是已交付系统还是规划能力？互联效率、能耗、稳定性和软件生态是否有可复现数据？只有这些答案齐备，‘超节点’才从展台概念变成产业基础设施。",
+    ],
+  },
+  {
+    title: trends[1][1],
+    deck: trends[1][2],
+    artwork: trackArtwork["模型与智能体"],
+    paragraphs: [
+      "模型能力正在从一次对话延伸为一条完整任务链。MiniMax M3、豆包编程智能体、阶跃 AI 桌面伙伴等新品共同强调任务拆解、工具调用、过程校验和成果交付，而不只是在聊天框里给出建议。",
+      "产业价值因此从‘回答得像不像’转向‘事情能否真正办完’。一个可用智能体要理解目标、读取上下文、调用外部系统，并在错误发生时重新规划；权限边界和可审计记录也成为产品的一部分。",
+      "判断智能体是否进入生产阶段，应重点查看任务成功率、人工接管点、失败恢复、调用成本以及评测集是否贴近真实工作。漂亮的单次演示只证明路径可行，长期稳定交付才代表产品成熟。",
+    ],
+  },
+  {
+    title: trends[2][1],
+    deck: trends[2][2],
+    artwork: trackArtwork["具身智能"],
+    paragraphs: [
+      "人形机器人仍是展馆最具吸引力的景观，但本届更重要的变化，是厂商开始把叙事从舞台动作转向连续作业。MagicLab、逐际动力、智元和优必选的展品，都把全身控制、跨本体适配或工业岗位作为主要方向。",
+      "‘进入岗位’要求机器人面对长时序任务、环境变化和不可避免的失败。真正困难的不是完成一次动作，而是在传感器误差、物体位置变化和人员干扰下持续完成，并知道何时停机或请求人类接管。",
+      "因此，现场应优先询问无人值守时长、任务成功率、故障恢复、部署成本和已经运行的客户场景。能否从一台样机复制到多台设备、从一天演示复制到数月运营，是具身智能商业化的分水岭。",
+    ],
+  },
+  {
+    title: trends[3][1],
+    deck: trends[3][2],
+    artwork: trackArtwork["AI 原生终端"],
+    paragraphs: [
+      "AI 正从应用中的一个功能，变成手机、眼镜和耳机的系统级入口。阿里云智能体耳机、星纪魅族 AI Phone、AR 智能眼镜等展品，把语音、视觉和个人上下文连接为持续服务。",
+      "入口之争的关键不是再增加一个聊天按钮，而是设备能否在合适的时间理解环境、调用服务并完成动作。低时延、本地推理、续航、跨应用权限和隐私保护，会共同决定这种主动服务是否可信。",
+      "评价终端新品时，应把演示拆成真实使用链：连续佩戴多久、离线还能做什么、哪些数据会上云、误触发如何纠正、服务能否跨应用闭环。只有当这些环节自然衔接，AI 原生终端才会成为新的个人计算入口。",
+    ],
+  },
+];
+
+const PAGE = {
+  cover: 0,
+  contents: 1,
+  signals: 2,
+  signalStart: 3,
+  mustSee: 7,
+  exhibitIndex: 8,
+  exhibitStart: 9,
+};
+
+const sourcePage = PAGE.exhibitStart + exhibits.length;
+const totalPages = sourcePage + 1;
+const mustSee = exhibits.filter((item) => item.priority === "S");
+const chapterNav = [
+  [PAGE.cover, "封面"],
+  [PAGE.contents, "卷首"],
+  [PAGE.signals, "四条信号"],
+  [PAGE.mustSee, "十大必看"],
+  [PAGE.exhibitIndex, "展品索引"],
+  [sourcePage, "资料来源"],
+] as const;
+
+function pageLabel(page: number) {
+  if (page === PAGE.cover) return "封面";
+  if (page === PAGE.contents) return "卷首与目录";
+  if (page === PAGE.signals) return "四条产业信号 · 索引";
+  if (page >= PAGE.signalStart && page < PAGE.mustSee) return `产业信号 · ${signalDetails[page - PAGE.signalStart].title}`;
+  if (page === PAGE.mustSee) return "十大不可错过 · 索引";
+  if (page === PAGE.exhibitIndex) return "重点展品 · 索引";
+  if (page >= PAGE.exhibitStart && page < sourcePage) {
+    const item = exhibits[page - PAGE.exhibitStart];
+    return `${item.vendor} · ${item.title}`;
+  }
+  return "资料与来源";
+}
+
+function pageSlug(page: number) {
+  if (page === PAGE.cover) return "cover";
+  if (page === PAGE.contents) return "contents";
+  if (page === PAGE.signals) return "signals";
+  if (page >= PAGE.signalStart && page < PAGE.mustSee) return `signal-${String(page - PAGE.signalStart + 1).padStart(2, "0")}`;
+  if (page === PAGE.mustSee) return "top-10";
+  if (page === PAGE.exhibitIndex) return "exhibits";
+  if (page >= PAGE.exhibitStart && page < sourcePage) return `exhibit-${String(page - PAGE.exhibitStart + 1).padStart(2, "0")}`;
+  return "sources";
+}
+
+function pageFromHash(hash: string) {
+  const slug = hash.replace(/^#/, "");
+  if (!slug) return null;
+  const page = Array.from({ length: totalPages }, (_, index) => index).find((index) => pageSlug(index) === slug);
+  return page ?? null;
+}
 
 function Page({ number, kicker, title, className = "", children }: { number: number; kicker: string; title: string; className?: string; children: ReactNode }) {
   return (
@@ -361,43 +535,197 @@ function Page({ number, kicker, title, className = "", children }: { number: num
       <div className="page-body">{children}</div>
       <footer className="page-foot">
         <span>新品 · 亮点 · 不可错过</span>
-        <b>{String(number + 1).padStart(2, "0")} / {String(pageLabels.length).padStart(2, "0")}</b>
+        <b>{String(number + 1).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</b>
       </footer>
     </section>
   );
 }
 
-function ExhibitTile({ item, index }: { item: Exhibit; index: number }) {
+function IndexArtwork({ artwork }: { artwork: Artwork }) {
   return (
-    <article className="exhibit-tile">
-      <div className="tile-meta">
-        <span>{String(index + 1).padStart(2, "0")}</span>
-        <b className={`priority priority-${item.priority.toLowerCase()}`}>{item.priority}</b>
-        <em>证据 {item.evidence}</em>
-      </div>
-      <h3>{item.vendor}</h3>
-      <h4>{item.title}</h4>
-      <p>{item.summary}</p>
-      <div className="tile-bottom">
-        <span>{item.status}</span>
-        <a href={item.source} target="_blank" rel="noreferrer" aria-label={`查看${item.vendor}${item.title}的原始来源`}>来源 ↗</a>
-      </div>
-    </article>
+    <figure className="index-artwork">
+      <img src={artwork.src} alt={artwork.alt} />
+    </figure>
   );
 }
 
-function TrackPage({ pageNumber, track, title, deck }: { pageNumber: number; track: Track; title: string; deck: string }) {
-  const items = exhibits.filter((item) => item.track === track);
+function ShareButton() {
+  const [shared, setShared] = useState(false);
+
+  const share = async () => {
+    const shareData = { title: pageLabel(pageFromHash(window.location.hash) ?? 0), url: window.location.href };
+    try {
+      if (navigator.share) await navigator.share(shareData);
+      else await navigator.clipboard.writeText(shareData.url);
+      setShared(true);
+      window.setTimeout(() => setShared(false), 1800);
+    } catch {
+      setShared(false);
+    }
+  };
+
+  return <button type="button" className="share-button" onClick={share}>{shared ? "链接已复制 ✓" : "分享本页 ↗"}</button>;
+}
+
+function SignalIndex({ goToPage }: { goToPage: (page: number) => void }) {
   return (
-    <Page number={pageNumber} kicker={track} title={title} className="track-page">
-      <div className="chapter-title">
-        <span>{String(pageNumber - 2).padStart(2, "0")} / TRACK</span>
-        <h2>{title}</h2>
-        <p>{deck}</p>
+    <Page number={PAGE.signals} kicker="THE BIG SHIFT" title="四条产业信号" className="signals-page">
+      <div className="signals-title"><span>01 / SHIFT</span><h2>四条产业信号</h2><p>每条信号都有一页独立解读。点击卡片进入详情。</p></div>
+      <div className="signal-grid signal-index-grid">
+        {signalDetails.map((signal, index) => (
+          <button type="button" key={signal.title} onClick={() => goToPage(PAGE.signalStart + index)}>
+            <IndexArtwork artwork={signal.artwork} />
+            <span>T/{String(index + 1).padStart(2, "0")}</span>
+            <h3>{signal.title}</h3>
+            <p>{signal.deck}</p>
+            <b>阅读详情 ↗</b>
+          </button>
+        ))}
       </div>
-      <div className={`tile-grid tile-count-${items.length}`}>
-        {items.map((item, index) => <ExhibitTile item={item} index={index} key={`${item.vendor}-${item.title}`} />)}
+    </Page>
+  );
+}
+
+function SignalDetailPage({ index, goToPage }: { index: number; goToPage: (page: number) => void }) {
+  const signal = signalDetails[index];
+  return (
+    <Page number={PAGE.signalStart + index} kicker={`SIGNAL 0${index + 1}`} title={signal.title} className="detail-page signal-detail-page">
+      <div className="detail-layout">
+        <figure className="detail-visual">
+          <img src={signal.artwork.src} alt={signal.artwork.alt} />
+          <figcaption>{signal.artwork.caption}</figcaption>
+          <span className="visual-number">T/{String(index + 1).padStart(2, "0")}</span>
+        </figure>
+        <article className="detail-copy">
+          <div className="detail-kickers"><span>产业信号</span><b>0{index + 1} / 04</b></div>
+          <h2>{signal.title}</h2>
+          <h3>{signal.deck}</h3>
+          <div className="detail-paragraphs">
+            {signal.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+          <div className="detail-actions"><button type="button" className="index-return" onClick={() => goToPage(PAGE.signals)}>← 返回四条信号索引</button><ShareButton /></div>
+        </article>
       </div>
+    </Page>
+  );
+}
+
+function MustSeeIndex({ goToPage }: { goToPage: (page: number) => void }) {
+  return (
+    <Page number={PAGE.mustSee} kicker="EDITOR'S TOP TEN" title="十大不可错过" className="must-index-page">
+      <div className="index-heading"><span>02 / TOP TEN</span><h2>十大不可错过</h2><p>首发性、产业代表性与现场价值综合排序。每项均可进入独立详情页。</p></div>
+      <div className="must-grid">
+        {mustSee.map((item, index) => {
+          const exhibitIndex = exhibits.indexOf(item);
+          const artwork = exhibitArtwork[item.vendor] ?? trackArtwork[item.track];
+          return (
+            <button type="button" key={`${item.vendor}-${item.title}`} onClick={() => goToPage(PAGE.exhibitStart + exhibitIndex)}>
+              <img src={artwork.src} alt="" />
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div><b>{item.vendor}</b><p>{item.title}</p></div>
+              <em>详情 ↗</em>
+            </button>
+          );
+        })}
+      </div>
+    </Page>
+  );
+}
+
+function ExhibitIndex({ goToPage }: { goToPage: (page: number) => void }) {
+  return (
+    <Page number={PAGE.exhibitIndex} kicker="SELECTED EXHIBITS" title="重点展品索引" className="exhibit-index-page">
+      <div className="index-heading compact-heading"><span>03 / INDEX</span><h2>重点展品索引</h2><p>25 项重点展品 · 六条赛道 · 点击任一项目进入独立详情页。</p></div>
+      <div className="exhibit-index-grid">
+        {exhibits.map((item, index) => (
+          <button type="button" key={`${item.vendor}-${item.title}`} onClick={() => goToPage(PAGE.exhibitStart + index)}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <b>{item.vendor}</b>
+            <p>{item.title}</p>
+            <em className={`priority priority-${item.priority.toLowerCase()}`}>{item.priority}</em>
+          </button>
+        ))}
+      </div>
+      <div className="track-legend">
+        {tracks.map((track) => <span key={track.name}><i />{track.name}</span>)}
+      </div>
+    </Page>
+  );
+}
+
+function verificationPrompt(track: Track) {
+  const prompts: Record<Track, string> = {
+    "算力与芯片": "后续还应核对已交付规模、集群利用率、能耗与软件生态的独立验证。",
+    "模型与智能体": "后续还应核对真实任务成功率、人工接管比例、权限边界与单次任务成本。",
+    "具身智能": "后续还应核对无人值守时长、故障恢复、量产成本以及已部署客户数量。",
+    "AI 原生终端": "后续还应核对续航、离线能力、隐私机制以及跨应用任务能否稳定闭环。",
+    "行业 AI · AI4S": "后续还应核对客户案例、业务指标改善、专业人员复核机制与规模化复制成本。",
+    "安全 · 治理 · 学术": "后续还应核对评测范围、误报漏报、第三方审计以及治理机制的实际执行。",
+  };
+  return prompts[track];
+}
+
+function ExhibitDetailPage({ index, goToPage }: { index: number; goToPage: (page: number) => void }) {
+  const item = exhibits[index];
+  const artwork = exhibitArtwork[item.vendor] ?? trackArtwork[item.track];
+  return (
+    <Page number={PAGE.exhibitStart + index} kicker={item.track.toUpperCase()} title={`${item.vendor} · ${item.title}`} className="detail-page exhibit-detail-page">
+      <div className="detail-layout exhibit-detail-layout">
+        <figure className="detail-visual">
+          <img src={artwork.src} alt={artwork.alt} />
+          <figcaption>{artwork.caption}{exhibitArtwork[item.vendor] ? "" : " · 同赛道背景图"}</figcaption>
+          <span className="visual-number">{String(index + 1).padStart(2, "0")}</span>
+        </figure>
+        <article className="detail-copy">
+          <div className="detail-kickers">
+            <span>{item.track}</span>
+            <b>重点展品 {String(index + 1).padStart(2, "0")} / {exhibits.length}</b>
+          </div>
+          <div className="detail-badges">
+            <i className={`priority priority-${item.priority.toLowerCase()}`}>{item.priority}</i>
+            <i>证据 {item.evidence}</i>
+            {item.priority === "S" && <i className="must-badge">十大不可错过</i>}
+          </div>
+          <h2>{item.vendor}</h2>
+          <h3>{item.title}</h3>
+          <div className="detail-paragraphs exhibit-paragraphs">
+            <p>{item.summary}</p>
+            <p>{item.why}</p>
+            <p><b>证据状态：</b>{item.status}。{verificationPrompt(item.track)}</p>
+          </div>
+          <div className="detail-actions">
+            <button type="button" className="index-return" onClick={() => goToPage(PAGE.exhibitIndex)}>← 返回重点展品索引</button>
+            <div><ShareButton /><a href={item.source} target="_blank" rel="noreferrer">原始来源 ↗</a></div>
+          </div>
+        </article>
+      </div>
+    </Page>
+  );
+}
+
+function SourcesPage() {
+  return (
+    <Page number={sourcePage} kicker="ARCHIVE & SOURCES" title="资料与来源" className="sources-page">
+      <div className="sources-layout">
+        <div className="archive-panel">
+          <span>FULL RESEARCH PACKAGE</span>
+          <h2>所有原始资料<br />现已进入仓库</h2>
+          <div className="archive-stats"><div><b>30</b><span>网页原文</span></div><div><b>11</b><span>名录图片</span></div><div><b>49</b><span>资料文件</span></div></div>
+          <p>包含原始网页、展商名录图片、首轮摘要、来源目录、整理大纲和完整 ZIP；图片页均保留来源说明。</p>
+          <div className="archive-actions">
+            <a href="downloads/WAIC2026_参展资料_首轮_20260721.zip" download>下载完整资料包 ↓</a>
+            <a href="https://github.com/DeronQi/waic-2026-aftershow-guide/tree/main/research" target="_blank" rel="noreferrer">浏览 GitHub 资料库 ↗</a>
+          </div>
+        </div>
+        <div className="mag-source-list">
+          {keySources.map(([grade, topic, publisher, url], index) => (
+            <a href={url} target="_blank" rel="noreferrer" key={topic}>
+              <span>{String(index + 1).padStart(2, "0")}</span><b>{topic}</b><em>{publisher}</em><i>{grade}</i><strong>↗</strong>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div className="source-caveat">政府发布会采用“3000 余项技术产品”；部分展商名录报道采用“4000 余款展品”。本刊以政府口径为主，并保留差异。</div>
     </Page>
   );
 }
@@ -406,167 +734,95 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(0);
   const touchStart = useRef<number | null>(null);
 
-  const goToPage = (page: number) => setCurrentPage(Math.max(0, Math.min(pageLabels.length - 1, page)));
+  const goToPage = (page: number) => {
+    const nextPage = Math.max(0, Math.min(totalPages - 1, page));
+    setCurrentPage(nextPage);
+    if (typeof window !== "undefined") window.history.replaceState(null, "", `#${pageSlug(nextPage)}`);
+  };
+
+  useEffect(() => {
+    const syncFromHash = () => {
+      const page = pageFromHash(window.location.hash);
+      if (page !== null) setCurrentPage(page);
+    };
+    syncFromHash();
+    window.addEventListener("hashchange", syncFromHash);
+    return () => window.removeEventListener("hashchange", syncFromHash);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight" || event.key === "PageDown") goToPage(currentPage + 1);
       if (event.key === "ArrowLeft" || event.key === "PageUp") goToPage(currentPage - 1);
       if (event.key === "Home") goToPage(0);
-      if (event.key === "End") goToPage(pageLabels.length - 1);
+      if (event.key === "End") goToPage(totalPages - 1);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [currentPage]);
 
   const renderPage = () => {
-    if (currentPage === 0) {
+    if (currentPage === PAGE.cover) {
       return (
-        <Page number={0} kicker="ISSUE 01 · JUL 2026" title="封面" className="cover-page">
+        <Page number={PAGE.cover} kicker="ISSUE 01 · JUL 2026" title="封面" className="cover-page">
           <div className="cover-grid">
-            <div className="cover-copy">
-              <span className="cover-eyebrow">A CURATED FIELD GUIDE TO INTELLIGENCE</span>
-              <h1>WAIC<br />2026</h1>
-              <h2>展后精选</h2>
-              <p>新品 · 亮点 · 不可错过</p>
-            </div>
-            <div className="cover-data">
-              <div><strong>1100+</strong><span>参展单位</span></div>
-              <div><strong>3000+</strong><span>展品</span></div>
-              <div><strong>300+</strong><span>全球首发</span></div>
-              <p>一套基于 30 份网页原文、11 张展商名录图片整理的电子杂志。</p>
-            </div>
+            <div className="cover-copy"><span className="cover-eyebrow">A CURATED FIELD GUIDE TO INTELLIGENCE</span><h1>WAIC<br />2026</h1><h2>展后精选</h2><p>新品 · 亮点 · 不可错过</p></div>
+            <div className="cover-data"><div><strong>1100+</strong><span>参展单位</span></div><div><strong>3000+</strong><span>展品</span></div><div><strong>300+</strong><span>全球首发</span></div><p>35 页等尺寸电子杂志，包含 3 个索引、29 个独立详情页与完整资料库。</p></div>
           </div>
           <div className="cover-mark" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
         </Page>
       );
     }
 
-    if (currentPage === 1) {
+    if (currentPage === PAGE.contents) {
+      const contents = chapterNav.slice(2);
       return (
-        <Page number={1} kicker="FRONT MATTER" title="卷首与目录" className="contents-page">
+        <Page number={PAGE.contents} kicker="FRONT MATTER" title="卷首与目录" className="contents-page">
           <div className="contents-layout">
-            <div className="editorial-lead">
-              <span>EDITOR&apos;S NOTE</span>
-              <h2>AI 正以四种<br />更具体的形态<br />进入产业</h2>
-              <p>超节点成为算力竞争单元；智能体开始交付完整任务；机器人进入连续作业；AI 原生终端争夺个人入口。</p>
-              <div className="principles"><b>首发 ≠ 成熟</b><b>Demo ≠ 泛化</b><b>参数 ≠ 可比</b></div>
-            </div>
+            <div className="editorial-lead"><span>EDITOR&apos;S NOTE</span><h2>从索引进入<br />每一个现场<br />重点</h2><p>四条信号、十大不可错过与 25 项重点展品，全部拥有可独立分享的详情页。</p><div className="principles"><b>首发 ≠ 成熟</b><b>Demo ≠ 泛化</b><b>参数 ≠ 可比</b></div></div>
             <div className="contents-list">
-              {pageLabels.slice(2).map((label, index) => (
-                <button type="button" key={label} onClick={() => goToPage(index + 2)}>
-                  <span>{String(index + 3).padStart(2, "0")}</span><b>{label}</b><em>GO ↗</em>
-                </button>
-              ))}
+              {contents.map(([page, label]) => <button type="button" key={label} onClick={() => goToPage(page)}><span>{String(page + 1).padStart(2, "0")}</span><b>{label}</b><em>GO ↗</em></button>)}
             </div>
           </div>
         </Page>
       );
     }
 
-    if (currentPage === 2) {
-      return (
-        <Page number={2} kicker="THE BIG SHIFT" title="四条产业信号" className="signals-page">
-          <div className="signals-title"><span>01 / SHIFT</span><h2>四条产业信号</h2><p>从展品看，产业竞争正从“模型本身”移向系统、执行与入口。</p></div>
-          <div className="signal-grid">
-            {trends.map(([index, title, text]) => (
-              <article key={index}>
-                <span>T/{index}</span><i aria-hidden="true" /><h3>{title}</h3><p>{text}</p>
-              </article>
-            ))}
-          </div>
-        </Page>
-      );
-    }
-
-    if (currentPage === 3) return <TrackPage pageNumber={3} track="算力与芯片" title="算力从单卡走向系统" deck="超节点、万卡集群、互联、液冷与软件栈共同决定真实可用算力。" />;
-    if (currentPage === 4) return <TrackPage pageNumber={4} track="模型与智能体" title="模型开始交付完整任务" deck="评价重点从回答质量转向任务拆解、工具调用、验证与结果交付。" />;
-    if (currentPage === 5) return <TrackPage pageNumber={5} track="具身智能" title="机器人从会动走向能上岗" deck="真正需要追问的是成功率、无人值守时长、故障恢复、成本与接管条件。" />;
-    if (currentPage === 6) return <TrackPage pageNumber={6} track="AI 原生终端" title="新的个人入口争夺战" deck="眼镜、耳机与手机正在变成持续感知、主动服务的智能伙伴。" />;
-    if (currentPage === 7) return <TrackPage pageNumber={7} track="行业 AI · AI4S" title="AI 深入高门槛工作流" deck="工业工程、能源规划、蛋白质研发与物流场景开始出现完整执行链。" />;
-
-    if (currentPage === 8) {
-      const securityItem = exhibits.find((item) => item.track === "安全 · 治理 · 学术")!;
-      return (
-        <Page number={8} kicker="TRUST & GOVERNANCE" title="安全、学术与治理" className="trust-page">
-          <div className="trust-layout">
-            <div className="trust-title"><span>07 / TRUST</span><h2>能力越强，<br />越需要新的<br />安全与治理底座</h2><p>本届大会首次自主举办 WAIC Academic，并继续把全球 AI 治理放在重要位置。</p></div>
-            <div className="trust-cards">
-              <ExhibitTile item={securityItem} index={0} />
-              <a className="institution-card blue-card" href="https://waica2026.worldaic.com.cn/" target="_blank" rel="noreferrer"><span>ACADEMIC</span><h3>WAIC Academic</h3><p>首届自主学术会议，把论文、学者与产业议题纳入大会主线。</p><b>官方站 ↗</b></a>
-              <a className="institution-card red-card" href="https://www.news.cn/20260717/3310820b96f949979ce6406712094935/c.html" target="_blank" rel="noreferrer"><span>GOVERNANCE</span><h3>全球 AI 治理合作倡议</h3><p>安全、包容、合作与发展不再是展览之外的附录。</p><b>新华网 ↗</b></a>
-            </div>
-          </div>
-          <div className="evidence-strip"><div><b>A</b><span>政府、大会或厂商一手</span></div><div><b>B</b><span>权威媒体现场报道</span></div><div><b>C</b><span>行业媒体或待补原始材料</span></div></div>
-        </Page>
-      );
-    }
-
-    return (
-      <Page number={9} kicker="ARCHIVE & SOURCES" title="资料与来源" className="sources-page">
-        <div className="sources-layout">
-          <div className="archive-panel">
-            <span>FULL RESEARCH PACKAGE</span>
-            <h2>所有原始资料<br />现已进入仓库</h2>
-            <div className="archive-stats"><div><b>30</b><span>网页原文</span></div><div><b>11</b><span>名录图片</span></div><div><b>47</b><span>资料文件</span></div></div>
-            <p>包含原始网页、展商名录图片、首轮摘要、来源目录、图表说明、整理大纲和完整 ZIP。</p>
-            <div className="archive-actions">
-              <a href="downloads/WAIC2026_参展资料_首轮_20260721.zip" download>下载完整资料包 ↓</a>
-              <a href="https://github.com/DeronQi/waic-2026-aftershow-guide/tree/main/research" target="_blank" rel="noreferrer">浏览 GitHub 资料库 ↗</a>
-            </div>
-          </div>
-          <div className="mag-source-list">
-            {keySources.map(([grade, topic, publisher, url], index) => (
-              <a href={url} target="_blank" rel="noreferrer" key={topic}>
-                <span>{String(index + 1).padStart(2, "0")}</span><b>{topic}</b><em>{publisher}</em><i>{grade}</i><strong>↗</strong>
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className="source-caveat">政府发布会采用“3000 余项技术产品”；部分展商名录报道采用“4000 余款展品”。本刊以政府口径为主，并保留差异。</div>
-      </Page>
-    );
+    if (currentPage === PAGE.signals) return <SignalIndex goToPage={goToPage} />;
+    if (currentPage >= PAGE.signalStart && currentPage < PAGE.mustSee) return <SignalDetailPage index={currentPage - PAGE.signalStart} goToPage={goToPage} />;
+    if (currentPage === PAGE.mustSee) return <MustSeeIndex goToPage={goToPage} />;
+    if (currentPage === PAGE.exhibitIndex) return <ExhibitIndex goToPage={goToPage} />;
+    if (currentPage >= PAGE.exhibitStart && currentPage < sourcePage) return <ExhibitDetailPage index={currentPage - PAGE.exhibitStart} goToPage={goToPage} />;
+    return <SourcesPage />;
   };
 
   return (
     <main className="magazine-app">
       <header className="reader-topbar">
-        <div className="reader-brand"><span className="brand-block" aria-hidden="true" /><b>WAIC 2026 展后精选</b><em>电子杂志 · ISSUE 01</em></div>
-        <div className="reader-links">
-          <a href="https://github.com/DeronQi/waic-2026-aftershow-guide" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <a href="downloads/WAIC2026_参展资料_首轮_20260721.zip" download>资料包 ↓</a>
-        </div>
+        <div className="reader-brand"><span className="brand-block" aria-hidden="true" /><b>WAIC 2026 展后精选</b><em>电子杂志 · 35 PAGES</em></div>
+        <div className="reader-links"><a href="https://github.com/DeronQi/waic-2026-aftershow-guide" target="_blank" rel="noreferrer">GitHub ↗</a><a href="downloads/WAIC2026_参展资料_首轮_20260721.zip" download>资料包 ↓</a></div>
       </header>
 
       <div className="reader-layout">
-        <nav className="page-rail" aria-label="杂志目录">
-          {pageLabels.map((label, index) => (
-            <button type="button" key={label} className={currentPage === index ? "active" : ""} onClick={() => goToPage(index)} aria-current={currentPage === index ? "page" : undefined}>
-              <span>{String(index + 1).padStart(2, "0")}</span><b>{label}</b>
-            </button>
-          ))}
+        <nav className="page-rail" aria-label="杂志章节目录">
+          {chapterNav.map(([page, label]) => {
+            const nextChapter = chapterNav.find(([chapterPage]) => chapterPage > page)?.[0] ?? totalPages;
+            const isActive = currentPage >= page && currentPage < nextChapter;
+            return <button type="button" key={label} className={isActive ? "active" : ""} onClick={() => goToPage(page)} aria-current={currentPage === page ? "page" : undefined}><span>{String(page + 1).padStart(2, "0")}</span><b>{label}</b></button>;
+          })}
         </nav>
 
         <div className="reader-main">
-          <div
-            className="magazine-frame"
-            onTouchStart={(event) => { touchStart.current = event.changedTouches[0].clientX; }}
-            onTouchEnd={(event) => {
-              if (touchStart.current === null) return;
-              const distance = event.changedTouches[0].clientX - touchStart.current;
-              if (Math.abs(distance) > 42) goToPage(currentPage + (distance < 0 ? 1 : -1));
-              touchStart.current = null;
-            }}
-          >
+          <div className="magazine-frame" onTouchStart={(event) => { touchStart.current = event.changedTouches[0].clientX; }} onTouchEnd={(event) => { if (touchStart.current === null) return; const distance = event.changedTouches[0].clientX - touchStart.current; if (Math.abs(distance) > 42) goToPage(currentPage + (distance < 0 ? 1 : -1)); touchStart.current = null; }}>
             {renderPage()}
           </div>
 
           <div className="reader-controls">
             <button type="button" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 0} aria-label="上一页">← 上一页</button>
-            <div className="reader-progress"><span style={{ width: `${((currentPage + 1) / pageLabels.length) * 100}%` }} /><b>{pageLabels[currentPage]}</b><em>{String(currentPage + 1).padStart(2, "0")} / {String(pageLabels.length).padStart(2, "0")}</em></div>
-            <button type="button" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === pageLabels.length - 1} aria-label="下一页">下一页 →</button>
+            <div className="reader-progress"><span style={{ width: `${((currentPage + 1) / totalPages) * 100}%` }} /><b>{pageLabel(currentPage)}</b><em>{String(currentPage + 1).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</em></div>
+            <button type="button" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages - 1} aria-label="下一页">下一页 →</button>
           </div>
-          <p className="reader-hint">键盘 ← → 或在页面上左右滑动翻页</p>
+          <p className="reader-hint">从索引点击进入详情 · 键盘 ← → 或在页面上左右滑动翻页</p>
         </div>
       </div>
     </main>
