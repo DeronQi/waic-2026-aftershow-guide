@@ -2,8 +2,6 @@ import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
-const templateRoot = new URL("../", import.meta.url);
-
 async function render() {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
@@ -16,78 +14,70 @@ async function render() {
   );
 }
 
-test("server-renders the finished WAIC electronic magazine", async () => {
+test("server-renders the outline-led WAIC complete edition", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
   assert.match(html, /<html lang="zh-CN">/i);
-  assert.match(html, /<title>WAIC 2026 展后精选｜新品、亮点与不可错过<\/title>/i);
-  assert.match(html, /WAIC 2026.*展后精选/s);
+  assert.match(html, /<title>WAIC 2026 全景特刊｜从模型竞赛到智能伙伴<\/title>/i);
   assert.match(html, /1100\+/);
-  assert.match(html, /电子杂志/);
-  assert.match(html, /四条信号/);
-  assert.match(html, /十大不可错过/);
-  assert.match(html, /展品索引/);
-  assert.match(html, /35 PAGES/);
-  assert.match(html, /4 篇产业解读 · 25 篇展品详情/);
-  assert.match(html, /property="og:image" content="https:\/\/waic-2026-aftershow-guide\.deron-qi\.chatgpt\.site\/og\.png"/i);
-  assert.doesNotMatch(html, /证据状态|证据 [ABC]|A\/B\/C 来源分级|完整资料包|下载完整资料|codex-preview|SkeletonPreview/i);
+  assert.match(html, /<strong>50<\/strong><span>等尺寸页面<\/span>/);
+  assert.match(html, /五项结构变化/);
+  assert.match(html, /七大专题/);
+  assert.match(html, /六张对比表/);
+  assert.match(html, /26 篇重点展品详解/);
+  assert.match(html, /property="og:image" content="https:\/\/waic-2026-aftershow-guide\.deron-qi\.chatgpt\.site\/og-v2\.png"/i);
+  assert.doesNotMatch(html, /证据等级|证据 [ABC]|A\/B\/C 来源分级|下载完整资料|codex-preview|SkeletonPreview/i);
 });
 
-test("keeps every page uniform, every detail rich, and process artifacts out of the published UI", async () => {
-  const [page, content, css, layout, packageJson] = await Promise.all([
+test("covers the complete outline while preserving equal pages and rich product details", async () => {
+  const [page, content, magazineData, css, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/content.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/magazine-data.ts", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
   const exhibitData = content.slice(content.indexOf("export const exhibits"), content.indexOf("export const trends"));
-  const signalData = content.slice(content.indexOf("export const signalDetails"));
   assert.equal((exhibitData.match(/^\s{4}vendor:/gm) ?? []).length, 25);
   assert.equal((exhibitData.match(/isTopTen: true/g) ?? []).length, 10);
   assert.equal((exhibitData.match(/details: \[/g) ?? []).length, 25);
-  assert.equal((exhibitData.match(/facts: \[/g) ?? []).length, 25);
-  assert.equal((exhibitData.match(/\{ heading:/g) ?? []).length, 75);
   assert.equal((exhibitData.match(/artwork: \{ src:/g) ?? []).length, 25);
-  assert.equal((exhibitData.match(/source: "https:\/\//g) ?? []).length, 25);
-  assert.equal((signalData.match(/title: trends\[\d\]\[1\]/g) ?? []).length, 4);
-  assert.equal((signalData.match(/sections: \[/g) ?? []).length, 4);
-  assert.equal((signalData.match(/\{ heading:/g) ?? []).length, 16);
-  assert.match(page, /const totalPages = sourcePage \+ 1/);
-  assert.match(page, /function SignalDetailPage[\s\S]*signal\.sections\.map/);
+  assert.match(magazineData, /export const tencentExhibit/);
+  assert.match(magazineData, /混元 Hy3 × WorkBuddy/);
+  assert.match(magazineData, /export const magazineExhibits = \[\.\.\.exhibits, tencentExhibit\]/);
+  assert.equal((magazineData.match(/^\s{4}slug: "(?:compute-systems|agents-deliver|robots-work|personal-ai|industry-proof)"/gm) ?? []).length, 5);
+  assert.equal((magazineData.match(/^\s{4}slug: "(?:panorama|compute|models-agents|embodied|devices|industry|ecosystem-governance)"/gm) ?? []).length, 7);
+  assert.equal((magazineData.match(/title: "(?:超节点与超集群|通用 \/ 专业智能体|全球首发证据与成熟度|机器人场景成熟度|具身模型与世界模型|手机 \/ 眼镜 \/ 耳机)"/g) ?? []).length, 6);
+  assert.match(page, /const totalPages = pageEntries\.length/);
+  assert.match(page, /function ChangeDetailPage[\s\S]*story\.sections\.map/);
+  assert.match(page, /function ChapterPage[\s\S]*chapter\.sections\.map/);
   assert.match(page, /function ExhibitDetailPage[\s\S]*item\.details\.map/);
-  assert.match(page, /<img src=\{item\.artwork\.src\} alt=\{item\.artwork\.alt\}/);
-  assert.match(page, /function pageSlug/);
   assert.match(page, /pageFromHash\(window\.location\.hash\)/);
   assert.match(page, /function ShareButton/);
   assert.match(page, /ArrowRight/);
   assert.match(page, /onTouchStart/);
-  assert.match(page, /className={`mag-page/);
-  assert.doesNotMatch(page + content, /证据状态|证据 [ABC]|verificationPrompt|evidence:|status:|priority-[sab]|同赛道背景图/);
-  assert.doesNotMatch(page, /downloads\/|资料包|archive-stats|A\/B\/C/);
+  assert.doesNotMatch(page, /downloads\/|证据等级|evidence:/);
   assert.match(css, /\.magazine-frame\s*\{[^}]*aspect-ratio:\s*16\s*\/\s*10/s);
   assert.match(css, /@media \(max-width: 700px\)[\s\S]*\.magazine-frame\s*\{\s*aspect-ratio:\s*3\s*\/\s*4/s);
   assert.match(css, /\.mag-page\s*\{[^}]*height:\s*100%/s);
   assert.match(css, /\.detail-scroll\s*\{[^}]*overflow-y:\s*auto/s);
-  assert.match(css, /--fs-body:\s*clamp\(13px/);
+  assert.match(css, /\.chapter-scroll\s*\{[^}]*overflow-y:\s*auto/s);
   assert.match(css, /prefers-reduced-motion: reduce/);
-  assert.match(layout, /new URL\("og\.png", siteUrl\)/);
-  assert.doesNotMatch(layout, /完整资料包/);
+  assert.match(layout, /new URL\("og-v2\.png", siteUrl\)/);
+  assert.match(layout, /50 页等尺寸/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
-  await assert.rejects(access(new URL("../app/_sites-preview/SkeletonPreview.tsx", import.meta.url)));
-  await assert.rejects(access(new URL("../public/downloads/WAIC2026_参展资料_首轮_20260721.zip", import.meta.url)));
-  await access(new URL("../public/og.png", import.meta.url));
-  await access(new URL("../public/images/editorial/compute-huawei.png", import.meta.url));
-  await access(new URL("../public/images/editorial/products/kimi-k27.png", import.meta.url));
-  await access(new URL("../public/images/editorial/products/liweke-x-ai.jpg", import.meta.url));
-  await access(new URL("../public/images/editorial/products/senad-iloabot-x.png", import.meta.url));
-  await access(new URL("../public/images/editorial/products/360-security.png", import.meta.url));
+  await access(new URL("../public/og-v2.png", import.meta.url));
+  await access(new URL("../public/images/editorial/products/tencent-hy3.png", import.meta.url));
   await access(new URL("../research/WAIC2026_整理大纲.md", import.meta.url));
-  await access(new URL("../research/02_摘要/详情页配图来源.md", import.meta.url));
-  await assert.rejects(access(new URL("public/_sites-preview", templateRoot)));
+  await access(new URL("../research/03_二轮大纲重做/README.md", import.meta.url));
+  await access(new URL("../research/03_二轮大纲重做/大纲到页面覆盖矩阵.md", import.meta.url));
+  await access(new URL("../research/03_二轮大纲重做/01_原始资料/034_腾讯混元Hy3_官方.html", import.meta.url));
+  await access(new URL("../research/03_二轮大纲重做/01_原始资料/035_腾讯效率智能体工具集_官方.html", import.meta.url));
+  await access(new URL("../research/03_二轮大纲重做/01_原始资料/036_WorkBuddy_腾讯云产品页.html", import.meta.url));
 });
